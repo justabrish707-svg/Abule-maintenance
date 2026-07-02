@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abule Tech — PC Repair & Maintenance | Arba Minch, Ethiopia</title>
+  <meta name="description" content="Expert PC repair, hardware diagnosis, software repair and data recovery in Arba Minch, Ethiopia. Free diagnosis. No fix, no fee guarantee. Call +251 954 897 133.">
+  <meta property="og:title" content="Abule Tech — PC Repair & Maintenance">
+  <meta property="og:description" content="Expert hardware and software maintenance in Arba Minch. Free diagnosis. 24h turnaround. No fix, no fee.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#6366F1">
+  <meta name="keywords" content="PC repair Arba Minch, laptop repair Ethiopia, data recovery, hardware diagnosis, software repair">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236366F1'><path d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/></svg>">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?auto=format&fit=crop&q=80&w=1200&h=630">
+  <link rel="canonical" href="https://abuletech.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+
+  <!-- ═══════════════════════════ NAV ═══════════════════════════ -->
+  <nav id="navbar">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="#" class="nav-brand">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="var(--primary)">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+          </svg>
+          Abule Tech
+        </a>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="#services">Services</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#about">Our Approach</a></li>
+          <li><a href="#guarantee">Guarantee</a></li>
+          <li style="display: flex; align-items: center;">
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">
+              <svg id="moon-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+              <svg id="sun-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="display:none;"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            </button>
+          </li>
+        </ul>
+        <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <a href="#booking" class="btn btn-primary" style="padding: 0.6rem 1.5rem; font-size: 0.9rem;">
+          Book a Repair
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════ HERO ═══════════════════════════ -->
+  <header class="hero">
+    <div class="mesh-bg">
+      <div class="mesh-blob mesh-1"></div>
+      <div class="mesh-blob mesh-2"></div>
+      <div class="mesh-blob mesh-3"></div>
+      <div class="mesh-blob mesh-4"></div>
+    </div>
+    
+    <div class="container">
+      <div class="hero-content">
+        <div class="badge">Arba Minch's Premier Repair Hub</div>
+        <h1 class="hero-title">
+          Every PC Problem.<br>
+          <span>Perfectly Solved.</span>
+        </h1>
+        <p class="hero-subtitle">
+          Experience hardware and software maintenance built on transparency, rapid turnarounds, and absolute precision. 
+        </p>
+        
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary">Book Free Diagnosis</a>
+          <a href="#services" class="btn btn-secondary">Explore Our Services</a>
+        </div>
+        
+        <!-- Social Proof -->
+        <div style="display: flex; align-items: center; gap: 0.75rem; margin-top: 2rem; animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards; opacity: 0; transform: translateY(30px);">
+          <div style="display: flex; gap: -10px;">
+            <div style="width: 32px; height: 32px; border-radius: 50%; background: #E2E8F0; border: 2px solid #FFF; z-index: 3;"></div>
+            <div style="width: 32px; height: 32px; border-radius: 50%; background: #CBD5E1; border: 2px solid #FFF; margin-left: -12px; z-index: 2;"></div>
+            <div style="width: 32px; height: 32px; border-radius: 50%; background: #94A3B8; border: 2px solid #FFF; margin-left: -12px; z-index: 1;"></div>
+          </div>
+          <div style="font-size: 0.85rem; color: var(--text-muted);">
+            <div style="color: #F59E0B; letter-spacing: 2px; margin-bottom: 2px;">★★★★★</div>
+            Trusted by 500+ locals
+          </div>
+        </div>
+      </div>
+      
+      <!-- Abstract Tech Illustration -->
+      <div class="hero-graphic">
+        <svg width="100%" height="100%" viewBox="0 0 500 600" fill="none">
+          <rect x="50" y="100" width="400" height="280" rx="20" fill="var(--surface-color)" stroke="var(--border-color)" stroke-width="2" />
+          <rect x="50" y="100" width="400" height="50" rx="20" fill="var(--bg-color)" stroke="var(--border-color)" stroke-width="2" />
+          <path d="M50 150 L450 150" stroke="var(--border-color)" stroke-width="2"/>
+          <circle cx="80" cy="125" r="6" fill="var(--text-muted)"/>
+          <circle cx="100" cy="125" r="6" fill="var(--text-muted)"/>
+          <circle cx="120" cy="125" r="6" fill="var(--text-muted)"/>
+          <rect x="90" y="190" width="120" height="12" rx="6" fill="var(--bg-color)"/>
+          <rect x="90" y="220" width="280" height="8" rx="4" fill="var(--bg-color)"/>
+          <rect x="90" y="240" width="220" height="8" rx="4" fill="var(--bg-color)"/>
+          <rect x="90" y="280" width="80" height="30" rx="10" fill="var(--mesh-2)"/>
+          
+          <rect x="240" y="250" width="280" height="220" rx="20" fill="var(--surface-color)" stroke="var(--border-color)" stroke-width="2" style="filter:drop-shadow(0 20px 25px rgba(0,0,0,0.05));"/>
+          <path d="M280 400 Q330 300 380 350 T480 280" stroke="var(--primary)" stroke-width="4" stroke-linecap="round" fill="none"/>
+          <circle cx="480" cy="280" r="8" fill="var(--primary)"/>
+        </svg>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════ STATS ═══════════════════════════ -->
+  <section class="stats-section reveal" id="guarantee">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-num">$0</div>
+          <div class="stat-label">Diagnostic Fee</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Transparent Pricing</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num" style="display:flex; justify-content:center; align-items:center;">
+            <svg width="40" height="40" fill="none" stroke="var(--primary)" stroke-width="2.5" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+          </div>
+          <div class="stat-label" style="margin-top: 10px;">No Fix, No Fee Guarantee</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">24<span style="font-size:1.5rem">h</span></div>
+          <div class="stat-label">Average Turnaround</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ SERVICES ═══════════════════════════ -->
+  <section class="services-section" id="services">
+    <div class="container">
+      <div class="services-header reveal">
+        <h2 class="section-title">Complete technical excellence.</h2>
+        <p style="font-size: 1.125rem;">We repair, optimize, and revive hardware and software down to the lowest component level. No guesswork.</p>
+      </div>
+      
+      <div class="services-grid">
+        <!-- Card 1 -->
+        <div class="service-card reveal">
+          <div class="service-icon icon-blue">
+            <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg>
+          </div>
+          <h3>Hardware Diagnosis</h3>
+          <p>We perform component-level inspections on motherboards, power supplies, and logic boards to find exactly what's failing.</p>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="service-card reveal" style="transition-delay: 0.1s;">
+          <div class="service-icon icon-pink">
+            <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+          </div>
+          <h3>Software Repair</h3>
+          <p>Eliminate blue screens, boot loops, driver conflicts, and corrupt OS issues. We restore your system software to pristine speed.</p>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="service-card reveal" style="transition-delay: 0.2s;">
+          <div class="service-icon icon-yellow">
+            <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+          </div>
+          <h3>Performance Tuning</h3>
+          <p>Fresh thermal paste, thorough interior dust extraction, and optimization. We fix overheating and lagging issues permanently.</p>
+        </div>
+
+        <!-- Card 4 (Wide) -->
+        <div class="service-card card-wide reveal" style="transition-delay: 0.3s;">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+            <div>
+              <div class="service-icon" style="background:#F4F4F5; color:#18181B;">
+                <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
+              </div>
+              <h3>Data Recovery & SSD Upgrade</h3>
+              <p style="max-width:350px;">Rescue your valuable data from clicking or failing hard drives. Upgrade seamlessly to lightning-fast NVMe storage.</p>
+            </div>
+            <svg width="150" height="100" viewBox="0 0 150 100" fill="none" style="opacity:0.3;">
+              <rect x="10" y="20" width="130" height="60" rx="8" stroke="#18181B" stroke-width="4"/>
+              <line x1="40" y1="20" x2="40" y2="80" stroke="#18181B" stroke-width="4"/>
+              <circle cx="95" cy="50" r="15" stroke="#18181B" stroke-width="4"/>
+            </svg>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ TESTIMONIALS ═══════════════════════════ -->
+  <section class="testimonials-section" id="testimonials">
+    <div class="container">
+      <div class="services-header reveal">
+        <h2 class="section-title">Trusted by Arba Minch.</h2>
+        <p style="font-size: 1.125rem;">Real feedback from real customers. We let our results speak for themselves.</p>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card reveal">
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="testimonial-text">"My laptop was completely dead — wouldn't power on at all. Abule Tech diagnosed a faulty power jack in 20 minutes and fixed it the same day. Incredible service and completely honest pricing!"</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">YA</div>
+            <div>
+              <div class="author-name">Yohannes Alemu</div>
+              <div class="author-role">University Student &middot; Arba Minch</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal" style="transition-delay: 0.1s;">
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="testimonial-text">"I had 3 years of business data on a failing hard drive. They recovered 98% of it. Worth every birr. Transparent pricing, no surprises, and they explained every step clearly."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar" style="background: linear-gradient(135deg, #EC4899, #8B5CF6);">BM</div>
+            <div>
+              <div class="author-name">Biruk Mekuria</div>
+              <div class="author-role">Business Owner &middot; Arba Minch</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal" style="transition-delay: 0.2s;">
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="testimonial-text">"My PC was overheating and shutting off every 10 minutes. After a deep clean and thermal paste job at Abule Tech, it runs cool and completely silent. Totally transformed!"</p>
+          <div class="testimonial-author">
+            <div class="author-avatar" style="background: linear-gradient(135deg, #F59E0B, #EF4444);">SK</div>
+            <div>
+              <div class="author-name">Sara Kebede</div>
+              <div class="author-role">Graphic Designer &middot; Arba Minch</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ ABOUT ═══════════════════════════ -->
+  <section class="about-section" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-content reveal">
+          <h2 class="section-title">The philosophy behind our repairs.</h2>
+          <p style="font-size:1.125rem; margin-bottom:1.5rem;">
+            Abule Tech was founded by blending design discipline with engineering precision. We don't believe in band-aid solutions. If we fix a machine, we fix it so the issue never returns.
+          </p>
+          <ul class="feature-list">
+            <li>
+              <div class="feature-check">✓</div>
+              <span><strong>Design thinking:</strong> Every wire routed cleanly.</span>
+            </li>
+            <li>
+              <div class="feature-check">✓</div>
+              <span><strong>Total Transparency:</strong> We show you the problem.</span>
+            </li>
+            <li>
+              <div class="feature-check">✓</div>
+              <span><strong>Precision Tools:</strong> No stripped screws or broken clips.</span>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="about-visual reveal" style="transition-delay: 0.2s;">
+          <div style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); width:70%; height:70%;">
+            <svg viewBox="0 0 100 100" fill="none" stroke="var(--primary)" stroke-width="1.5" style="width:100%; height:100%; opacity:0.8;">
+              <circle cx="50" cy="50" r="40" stroke-dasharray="4 4"/>
+              <circle cx="50" cy="50" r="25"/>
+              <circle cx="50" cy="50" r="10" fill="var(--primary)"/>
+              <path d="M50 10 L50 25 M50 75 L50 90 M10 50 L25 50 M75 50 L90 50" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ PRICING ═══════════════════════════ -->
+  <section class="pricing-section" id="pricing">
+    <div class="container">
+      <div class="services-header reveal">
+        <div class="badge" style="animation: none; opacity: 1; transform: none;">Clear &amp; Fair</div>
+        <h2 class="section-title">Simple, honest pricing.</h2>
+        <p style="font-size: 1.125rem;">No hidden fees. You approve the quote before we touch a single component.</p>
+      </div>
+      <div class="pricing-grid">
+        <div class="pricing-card reveal">
+          <div class="pricing-tag">Software Fix</div>
+          <div class="pricing-price">150 &ndash; 400 <span>ETB</span></div>
+          <p class="pricing-desc">For OS issues, viruses, driver problems, slow performance and boot failures.</p>
+          <ul class="pricing-features">
+            <li>&#10003; Free Diagnosis</li>
+            <li>&#10003; OS Reinstall / Repair</li>
+            <li>&#10003; Virus &amp; Malware Removal</li>
+            <li>&#10003; Driver Updates</li>
+            <li>&#10003; Speed Optimization</li>
+          </ul>
+          <a href="https://wa.me/251954897133?text=Hi%20Abule%20Tech!%20I%20need%20a%20Software%20Fix." target="_blank" rel="noopener" class="btn btn-secondary pricing-btn">Book via WhatsApp</a>
+        </div>
+        <div class="pricing-card pricing-card--popular reveal" style="transition-delay: 0.1s;">
+          <div class="popular-badge">Most Popular</div>
+          <div class="pricing-tag">Hardware Repair</div>
+          <div class="pricing-price">500 &ndash; 1,500 <span>ETB</span></div>
+          <p class="pricing-desc">Component-level diagnosis and repair for hardware failures of all kinds.</p>
+          <ul class="pricing-features">
+            <li>&#10003; Free Diagnosis</li>
+            <li>&#10003; Motherboard Repair</li>
+            <li>&#10003; Screen Replacement</li>
+            <li>&#10003; Keyboard / Charging Port</li>
+            <li>&#10003; 7-Day Repair Guarantee</li>
+          </ul>
+          <a href="https://wa.me/251954897133?text=Hi%20Abule%20Tech!%20I%20need%20Hardware%20Repair." target="_blank" rel="noopener" class="btn btn-primary pricing-btn">Book via WhatsApp</a>
+        </div>
+        <div class="pricing-card reveal" style="transition-delay: 0.2s;">
+          <div class="pricing-tag">Data Recovery</div>
+          <div class="pricing-price">1,000 &ndash; 3,000 <span>ETB</span></div>
+          <p class="pricing-desc">Rescue your files from failed, clicking, or corrupted hard drives and SSDs.</p>
+          <ul class="pricing-features">
+            <li>&#10003; Free Assessment</li>
+            <li>&#10003; HDD &amp; SSD Recovery</li>
+            <li>&#10003; No Fix, No Fee</li>
+            <li>&#10003; NVMe SSD Upgrade Option</li>
+            <li>&#10003; Data Backup Consulting</li>
+          </ul>
+          <a href="https://wa.me/251954897133?text=Hi%20Abule%20Tech!%20I%20need%20Data%20Recovery." target="_blank" rel="noopener" class="btn btn-secondary pricing-btn">Book via WhatsApp</a>
+        </div>
+      </div>
+      <p class="pricing-note reveal">* All prices are estimates. Final cost confirmed after free diagnosis &mdash; no surprise charges, ever.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ FAQ ═══════════════════════════ -->
+  <section class="faq-section" id="faq">
+    <div class="container">
+      <div class="services-header reveal">
+        <h2 class="section-title">Questions answered.</h2>
+        <p style="font-size: 1.125rem;">Everything you need to know before you drop off your device.</p>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item reveal">
+          <button class="faq-question">
+            How long does a typical repair take?
+            <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="faq-answer"><p>Most software repairs are done within 2&ndash;4 hours. Hardware repairs typically take 24 hours. Complex jobs like data recovery or motherboard-level repairs may take 48&ndash;72 hours. We always give you an accurate timeline upfront before any work begins.</p></div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-question">
+            Is the diagnostic really free &mdash; no strings attached?
+            <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="faq-answer"><p>Yes &mdash; 100% free with zero obligation. We diagnose your device, identify the problem, and give you a full quote. You only pay if you decide to proceed. We never charge just for telling you what's wrong.</p></div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-question">
+            What if you can't fix it?
+            <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="faq-answer"><p>If we can't fix it, you pay absolutely nothing. Our No Fix, No Fee guarantee is absolute &mdash; no hidden consultation fees, no diagnostic charges if the repair is unsuccessful. We only win when you win.</p></div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-question">
+            Do you offer a warranty on repairs?
+            <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="faq-answer"><p>Yes. All hardware repairs carry a 7-day warranty. If the same issue returns within 7 days of pickup, we fix it at no charge. Software repairs are backed by a 48-hour guarantee.</p></div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-question">
+            Where exactly are you located?
+            <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="faq-answer"><p>We are based in Arba Minch, Ethiopia. Send us a WhatsApp message at +251 954 897 133 and we'll share our exact location pin or arrange a convenient pickup. We're open Monday&ndash;Saturday, 8 AM to 7 PM.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ CTA ═══════════════════════════ -->
+  <section class="cta-section reveal" id="contact">
+    <div class="cta-box">
+      <h2>Bring your tech back to life.</h2>
+      <p>
+        Stop struggling with crashes, freezes, and failing hardware. Drop it off for a free diagnostic—we'll have a quote for you within the hour.
+      </p>
+      
+      <div style="display:flex; justify-content:center; gap:1rem; flex-wrap:wrap; position:relative; z-index:1;">
+        <a href="tel:+251954897133" class="btn btn-primary">📞 Call Now: +251 954 897 133</a>
+      </div>
+      
+      <div style="margin-top:4rem; display:flex; justify-content:center; gap:3rem; flex-wrap:wrap; color:rgba(255,255,255,0.8); font-size:0.95rem; position:relative; z-index:1;">
+        <div style="display:flex; align-items:center; gap:0.5rem;">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          Arba Minch, Ethiopia
+        </div>
+        <div style="display:flex; align-items:center; gap:0.5rem;">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          Mon – Sat · 8 AM – 7 PM
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ BOOKING / CONTACT ═══════════════════════════ -->
+  <section class="contact-section" id="booking">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info reveal">
+          <div class="badge" style="animation: none; opacity: 1; transform: none; margin-bottom: 1rem;">Book a Repair</div>
+          <h2>Drop us your details.<br>We'll take it from there.</h2>
+          <p>Fill the form and we'll open WhatsApp with your message pre-filled. Or reach out directly below.</p>
+          <div class="contact-channels">
+            <a href="tel:+251954897133" class="contact-channel">
+              <div class="channel-icon" style="background:#EEF2FF;">&#128222;</div>
+              <div class="channel-meta">
+                <span>+251 954 897 133</span>
+                <span class="channel-label">Call us directly</span>
+              </div>
+            </a>
+            <a href="https://wa.me/251954897133" target="_blank" rel="noopener" class="contact-channel">
+              <div class="channel-icon" style="background:#DCFCE7;">&#128172;</div>
+              <div class="channel-meta">
+                <span>+251 954 897 133</span>
+                <span class="channel-label">WhatsApp &mdash; fastest response</span>
+              </div>
+            </a>
+            <a href="https://t.me/Abule_48" target="_blank" rel="noopener" class="contact-channel">
+              <div class="channel-icon" style="background:#E0F2FE;">&#9992;&#65039;</div>
+              <div class="channel-meta">
+                <span>@Abule_48</span>
+                <span class="channel-label">Telegram</span>
+              </div>
+            </a>
+            <a href="https://instagram.com/abule_48" target="_blank" rel="noopener" class="contact-channel">
+              <div class="channel-icon" style="background:#FCE7F3;">&#128247;</div>
+              <div class="channel-meta">
+                <span>@abule_48</span>
+                <span class="channel-label">Instagram</span>
+              </div>
+            </a>
+          </div>
+          
+          <!-- Google Maps Embed -->
+          <div style="margin-top: 2rem; border-radius: 14px; overflow: hidden; border: 1px solid var(--border-color); box-shadow: var(--shadow-sm);">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126600.95764042848!2d37.47214714652253!3d6.032608402438699!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x17b077a2af5ccfa7%3A0xc665809cf932c0d8!2sArba%20Minch%2C%20Ethiopia!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+        <div class="contact-form-wrap reveal" style="transition-delay: 0.15s;">
+          <h3>Book a Free Diagnosis</h3>
+          <p>We'll confirm your booking via WhatsApp within minutes. No spam, ever.</p>
+          <form id="booking-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="f-name">Your Name</label>
+                <input type="text" id="f-name" placeholder="e.g. Yohannes" required>
+              </div>
+              <div class="form-group">
+                <label for="f-phone">Phone Number</label>
+                <input type="tel" id="f-phone" placeholder="+251 9XX XXX XXX" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="f-device">Device Type</label>
+              <select id="f-device" required>
+                <option value="" disabled selected>Select your device...</option>
+                <option value="Laptop">Laptop</option>
+                <option value="Desktop PC">Desktop PC</option>
+                <option value="MacBook">MacBook</option>
+                <option value="Hard Drive / SSD (Data Recovery)">Hard Drive / SSD &mdash; Data Recovery</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="f-issue">Describe the Problem</label>
+              <textarea id="f-issue" placeholder="e.g. My laptop won't turn on. It makes a clicking sound when I press the power button..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary form-submit">&#128242; Send via WhatsApp</button>
+          </form>
+          <div class="form-success-msg" id="form-success">
+            <h4>&#9989; WhatsApp Opened!</h4>
+            <p>Your details are pre-filled. Just press Send in WhatsApp &mdash; we'll reply within minutes.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ LIVE TICKER ═══════════════════════════ -->
+  <div style="background: var(--bg-color); padding: 0.75rem 0; border-top: 1px solid var(--border-color); text-align: center; font-size: 0.9rem; font-weight: 500;">
+    <span style="display:inline-block; width:8px; height:8px; background:#22C55E; border-radius:50%; margin-right:6px; box-shadow: 0 0 8px #22C55E; animation: pulse-dot 2s infinite;"></span>
+    Currently accepting new repairs in Arba Minch — 24h average turnaround time.
+  </div>
+  <style>
+    @keyframes pulse-dot {
+      0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+      70% { box-shadow: 0 0 0 6px rgba(34, 197, 94, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+    }
+  </style>
+
+  <!-- ═══════════════════════════ FOOTER ═══════════════════════════ -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div style="display:flex; align-items:center; gap:0.5rem; font-weight:800; font-size:1.5rem; margin-bottom:1rem; color:var(--text-main);">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="var(--primary)"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            Abule Tech
+          </div>
+          <p>
+            Precision hardware and software maintenance. Free diagnosis, absolute transparency.
+          </p>
+        </div>
+        
+        <div class="footer-nav">
+          <div class="footer-nav-col">
+            <h4>Company</h4>
+            <ul>
+              <li><a href="#about">About</a></li>
+              <li><a href="#contact">Contact</a></li>
+              <li><a href="#contact">Location</a></li>
+            </ul>
+          </div>
+          <div class="footer-nav-col">
+            <h4>Services</h4>
+            <ul>
+              <li><a href="#services">Hardware Diagnostics</a></li>
+              <li><a href="#services">Software Repair</a></li>
+              <li><a href="#services">Data Recovery</a></li>
+            </ul>
+          </div>
+          <div class="footer-nav-col">
+            <h4>Legal</h4>
+            <ul>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Terms of Service</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <div>&copy; 2026 Abule Tech. Built with precision in Arba Minch.</div>
+        <div style="display:flex; gap:1.5rem; align-items:center;">
+          <!-- Instagram -->
+          <a href="https://instagram.com/abule_48" target="_blank" rel="noopener" aria-label="Instagram" style="color:var(--text-muted); transition:color 0.2s;" onmouseover="this.style.color='#E1306C'" onmouseout="this.style.color='var(--text-muted)'">
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <!-- Telegram -->
+          <a href="https://t.me/Abule_48" target="_blank" rel="noopener" aria-label="Telegram" style="color:var(--text-muted); transition:color 0.2s;" onmouseover="this.style.color='#26A5E4'" onmouseout="this.style.color='var(--text-muted)'">
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+          </a>
+          <!-- TikTok -->
+          <a href="https://tiktok.com/@abulala88" target="_blank" rel="noopener" aria-label="TikTok" style="color:var(--text-muted); transition:color 0.2s;" onmouseover="this.style.color='#000000'" onmouseout="this.style.color='var(--text-muted)'">
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════════ WHATSAPP FLOAT ═══════════════════════════ -->
+  <a id="wa-float" class="whatsapp-float" href="https://wa.me/251954897133?text=Hello%20Abule%20Tech!%20I%20need%20help%20with%20my%20PC." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+    <span class="whatsapp-tooltip">Chat on WhatsApp</span>
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="#FFF">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
+    </svg>
+  </a>
+
+  <!-- ═══════════════════════════ SCRIPTS ═══════════════════════════ -->
+  <script src="./app.js" defer></script>
+</body>
+</html>

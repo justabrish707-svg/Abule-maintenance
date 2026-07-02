@@ -75,7 +75,7 @@ function ServiceCard({ service, idx, delay }: { service: typeof SERVICES[0]; idx
 
       {/* Bottom link */}
       <div style={{
-        display: 'flex', alignItems: 'center', gap: '0.4rem',
+        display: 'flex', alignItems: 'center',
         marginTop: '1.5rem', fontSize: '0.85rem', fontWeight: 600,
         color: accent, transition: 'gap 0.2s',
         gap: hovered ? '0.6rem' : '0.4rem',

@@ -1,4 +1,8 @@
+import { useLanguage } from '../context/LanguageContext';
+
 export default function Hero() {
+  const { t } = useLanguage();
+
   return (
     <section style={{ position: 'relative', overflow: 'hidden', paddingTop: '9rem', paddingBottom: '6rem', minHeight: '100vh', display: 'flex', alignItems: 'center' }}>
 
@@ -40,7 +44,7 @@ export default function Hero() {
               animation: 'pulse-dot 2s infinite',
               boxShadow: '0 0 0 0 rgba(34,197,94,0.7)',
             }} />
-            Arba Minch's Premier Tech Hub
+            {t('hero_badge')}
           </div>
 
           {/* Headline */}
@@ -54,21 +58,20 @@ export default function Hero() {
             opacity: 0,
             color: 'var(--text)',
           }}>
-            Every PC Problem.<br />
-            <span className="gradient-text">Perfectly Fixed.</span>
+            {t('hero_title_1')}<br />
+            <span className="gradient-text">{t('hero_title_2')}</span>
           </h1>
 
           {/* Subtitle */}
           <p style={{
-            fontSize: 'clamp(1rem, 1.4vw, 1.1rem)',
-            color: 'var(--muted)',
+            fontSize: '1.05rem',
             lineHeight: 1.75,
-            maxWidth: 480,
+            color: 'var(--muted)',
             marginBottom: '2.5rem',
             animation: 'fadeUp 0.8s cubic-bezier(0.16,1,0.3,1) 0.2s forwards',
             opacity: 0,
           }}>
-            Hardware &amp; software expertise built on radical transparency, 24-hour turnarounds, and a no-fix, no-fee guarantee — right here in Arba Minch.
+            {t('hero_subtitle')}
           </p>
 
           {/* CTA Buttons */}
@@ -91,7 +94,7 @@ export default function Hero() {
               onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-3px)'; e.currentTarget.style.boxShadow = '0 16px 32px rgba(99,102,241,0.5), 0 4px 12px rgba(99,102,241,0.3)'; }}
               onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = '0 8px 24px rgba(99,102,241,0.4), 0 2px 8px rgba(99,102,241,0.2)'; }}
             >
-              🛠️ Book Free Diagnosis
+              🛠️ {t('hero_cta_book')}
             </a>
             <a
               href="#services"
@@ -109,7 +112,7 @@ export default function Hero() {
               onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-3px)'; e.currentTarget.style.boxShadow = 'var(--shadow-md)'; e.currentTarget.style.borderColor = 'rgba(99,102,241,0.3)'; }}
               onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = 'var(--shadow-sm)'; e.currentTarget.style.borderColor = 'var(--border)'; }}
             >
-              Explore Services →
+              {t('hero_cta_explore')} →
             </a>
           </div>
 
@@ -140,7 +143,7 @@ export default function Hero() {
             <div>
               <div style={{ color: '#F59E0B', letterSpacing: 3, fontSize: '0.9rem' }}>★★★★★</div>
               <div style={{ fontSize: '0.82rem', color: 'var(--muted)', marginTop: 2 }}>
-                Trusted by <strong style={{ color: 'var(--text)', fontWeight: 700 }}>500+</strong> customers in Arba Minch
+                {t('hero_trusted')}
               </div>
             </div>
 
@@ -150,7 +153,7 @@ export default function Hero() {
             {/* Quick stat */}
             <div>
               <div style={{ fontSize: '1.1rem', fontWeight: 900, color: 'var(--text)', letterSpacing: '-0.04em' }}>98%</div>
-              <div style={{ fontSize: '0.75rem', color: 'var(--muted)' }}>Success rate</div>
+              <div style={{ fontSize: '0.75rem', color: 'var(--muted)' }}>{t('hero_success_rate')}</div>
             </div>
           </div>
         </div>

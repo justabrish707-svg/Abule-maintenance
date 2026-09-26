@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useTheme } from '../context/ThemeContext';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function Navbar() {
   const { theme, toggle } = useTheme();
+  const { language, setLanguage, t } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [active, setActive] = useState('');
@@ -14,12 +16,12 @@ export default function Navbar() {
   }, []);
 
   const links = [
-    { href: '#services', label: 'Services' },
-    { href: '#tools', label: 'Estimator & Tracker' },
-    { href: '#about', label: 'About' },
-    { href: '#pricing', label: 'Pricing' },
-    { href: '#faq', label: 'FAQ' },
-    { href: '#contact', label: 'Contact' },
+    { href: '#services', label: t('nav_services') },
+    { href: '#tools', label: t('nav_tools') },
+    { href: '#about', label: t('nav_about') },
+    { href: '#pricing', label: t('nav_pricing') },
+    { href: '#faq', label: t('nav_faq') },
+    { href: '#contact', label: t('nav_contact') },
   ];
 
   return (
@@ -53,7 +55,7 @@ export default function Navbar() {
           </a>
 
           {/* Desktop Nav */}
-          <ul style={{ gap: '2.5rem', listStyle: 'none', alignItems: 'center' }} className="hidden md:flex">
+          <ul style={{ gap: '2.2rem', listStyle: 'none', alignItems: 'center' }} className="hidden md:flex">
             {links.map(l => (
               <li key={l.href} style={{ position: 'relative' }}>
                 <a
@@ -61,8 +63,8 @@ export default function Navbar() {
                   onClick={() => setActive(l.href)}
                   style={{
                     textDecoration: 'none',
-                    fontSize: '0.9rem',
-                    fontWeight: 500,
+                    fontSize: '0.875rem',
+                    fontWeight: 600,
                     color: active === l.href ? 'var(--primary)' : 'var(--muted)',
                     transition: 'color 0.2s',
                     paddingBottom: 4,
@@ -86,6 +88,27 @@ export default function Navbar() {
 
           {/* Right controls */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+            {/* EN / AM Language Switcher Pill */}
+            <button
+              onClick={() => setLanguage(language === 'en' ? 'am' : 'en')}
+              style={{
+                background: 'var(--surface-2)', border: '1px solid var(--border)',
+                color: 'var(--text)', cursor: 'pointer',
+                padding: '0.35rem 0.75rem', borderRadius: 99,
+                display: 'flex', alignItems: 'center', gap: '0.35rem',
+                fontSize: '0.78rem', fontWeight: 800, transition: 'all 0.2s',
+                boxShadow: 'var(--shadow-sm)',
+              }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--primary)'; }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; }}
+              aria-label="Toggle language"
+              title="Switch language between English and Amharic"
+            >
+              <span>{language === 'en' ? '🇬🇧' : '🇪🇹'}</span>
+              <span>{language === 'en' ? 'EN' : 'አማ'}</span>
+            </button>
+
+            {/* Theme Toggle */}
             <button
               onClick={toggle}
               style={{
@@ -102,71 +125,101 @@ export default function Navbar() {
               {theme === 'dark' ? '☀️' : '🌙'}
             </button>
 
+            {/* Book Now Button */}
             <a
               href="#contact"
               className="hidden md:inline-flex"
               style={{
-                padding: '0.5rem 1.25rem',
-                borderRadius: 99, fontWeight: 700, fontSize: '0.875rem',
-                textDecoration: 'none', color: '#fff',
-                background: 'linear-gradient(135deg, var(--primary), var(--secondary))',
+                background: 'linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%)',
+                color: '#fff', textDecoration: 'none', padding: '0.55rem 1.25rem',
+                borderRadius: 99, fontSize: '0.85rem', fontWeight: 700,
                 boxShadow: '0 4px 14px rgba(99,102,241,0.35)',
-                transition: 'all 0.3s ease',
-                border: 'none',
+                transition: 'all 0.2s cubic-bezier(0.16,1,0.3,1)',
               }}
-              onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 8px 20px rgba(99,102,241,0.5)'; }}
+              onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 8px 20px rgba(99,102,241,0.45)'; }}
               onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = '0 4px 14px rgba(99,102,241,0.35)'; }}
             >
-              Book Now ↗
+              {t('nav_book_now')} ↗
             </a>
 
-            {/* Hamburger */}
+            {/* Mobile Hamburger Button */}
             <button
-              onClick={() => setMenuOpen(o => !o)}
-              className="md:hidden"
-              style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 6, flexDirection: 'column', gap: 5 }}
-              aria-label="Menu"
+              className={`hamburger md:hidden ${menuOpen ? 'open' : ''}`}
+              onClick={() => setMenuOpen(!menuOpen)}
+              aria-label="Toggle navigation menu"
+              aria-expanded={menuOpen}
+              style={{
+                background: 'var(--surface-2)',
+                border: '1px solid var(--border)',
+                borderRadius: 12,
+                padding: '8px 10px',
+                cursor: 'pointer',
+              }}
             >
-              {[0,1,2].map(i => (
-                <span key={i} style={{
-                  display: 'block', width: 22, height: 2, borderRadius: 4,
-                  background: 'var(--text)', transition: 'all 0.3s ease',
-                  transform: menuOpen
-                    ? i === 0 ? 'translateY(7px) rotate(45deg)'
-                    : i === 2 ? 'translateY(-7px) rotate(-45deg)' : 'none'
-                    : 'none',
-                  opacity: menuOpen && i === 1 ? 0 : 1,
-                }} />
-              ))}
+              <span />
+              <span />
+              <span />
             </button>
           </div>
         </div>
-      </div>
 
-      {/* Mobile Menu */}
-      <div style={{
-        maxHeight: menuOpen ? 400 : 0,
-        overflow: 'hidden', transition: 'max-height 0.4s cubic-bezier(0.16,1,0.3,1)',
-        background: 'var(--surface)', borderTop: menuOpen ? '1px solid var(--border)' : 'none',
-      }}>
-        <div style={{ padding: '1rem 1.5rem 1.5rem', display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
-          {links.map(l => (
-            <a key={l.href} href={l.href}
-              onClick={() => { setMenuOpen(false); setActive(l.href); }}
-              style={{
-                padding: '0.75rem 1rem', borderRadius: 12, textDecoration: 'none',
-                fontSize: '0.95rem', fontWeight: 500, color: 'var(--muted)',
-                transition: 'all 0.2s',
-              }}
-              onMouseEnter={e => { e.currentTarget.style.background = 'var(--surface-2)'; e.currentTarget.style.color = 'var(--text)'; }}
-              onMouseLeave={e => { e.currentTarget.style.background = ''; e.currentTarget.style.color = 'var(--muted)'; }}
-            >{l.label}</a>
-          ))}
-          <a href="#contact" onClick={() => setMenuOpen(false)}
-            style={{ marginTop: '0.5rem', padding: '0.75rem 1rem', borderRadius: 12, textDecoration: 'none', fontWeight: 700, fontSize: '0.9rem', color: '#fff', background: 'linear-gradient(135deg, var(--primary), var(--secondary))', textAlign: 'center' }}>
-            Book Free Diagnosis
-          </a>
-        </div>
+        {/* Mobile Nav Menu Dropdown */}
+        {menuOpen && (
+          <div
+            className="md:hidden"
+            style={{
+              padding: '1.25rem 0 1.5rem',
+              borderTop: '1px solid var(--border)',
+              background: theme === 'dark' ? 'rgba(8,12,24,0.96)' : 'rgba(248,250,255,0.96)',
+              backdropFilter: 'blur(20px)',
+              WebkitBackdropFilter: 'blur(20px)',
+              borderRadius: '0 0 20px 20px',
+            }}
+          >
+            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+              {links.map(l => (
+                <li key={l.href}>
+                  <a
+                    href={l.href}
+                    onClick={() => { setActive(l.href); setMenuOpen(false); }}
+                    style={{
+                      display: 'block',
+                      padding: '0.75rem 1rem',
+                      borderRadius: 12,
+                      textDecoration: 'none',
+                      fontSize: '1rem',
+                      fontWeight: 600,
+                      color: active === l.href ? 'var(--primary)' : 'var(--text)',
+                      background: active === l.href ? 'rgba(99,102,241,0.1)' : 'transparent',
+                    }}
+                  >
+                    {l.label}
+                  </a>
+                </li>
+              ))}
+              <li style={{ paddingTop: '0.75rem', marginTop: '0.5rem', borderTop: '1px solid var(--border)' }}>
+                <a
+                  href="#contact"
+                  onClick={() => setMenuOpen(false)}
+                  style={{
+                    display: 'block',
+                    textAlign: 'center',
+                    background: 'linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%)',
+                    color: '#fff',
+                    textDecoration: 'none',
+                    padding: '0.875rem',
+                    borderRadius: 99,
+                    fontWeight: 700,
+                    fontSize: '0.95rem',
+                    boxShadow: '0 4px 14px rgba(99,102,241,0.35)',
+                  }}
+                >
+                  {t('nav_book_now')} ↗
+                </a>
+              </li>
+            </ul>
+          </div>
+        )}
       </div>
     </nav>
   );

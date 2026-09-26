@@ -54,8 +54,8 @@ export default function Contact() {
 
   return (
     <section id="contact" className="py-32" style={{ background: 'var(--bg)' }}>
-      <div className="max-w-[1200px] mx-auto px-6">
-        <div className="text-center max-w-[560px] mx-auto mb-16">
+      <div className="max-w-300 mx-auto px-6">
+        <div className="text-center max-w-140 mx-auto mb-16">
           <div className="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest mb-4" style={{ background: 'rgba(99,102,241,0.1)', color: 'var(--primary)' }}>
             Get In Touch
           </div>
@@ -113,16 +113,16 @@ export default function Contact() {
               </div>
             )}
             <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-              <input id="f-name" name="name" required value={form.name} onChange={handleChange} placeholder="Your Full Name" style={inputStyle} onFocus={e => { e.target.style.borderColor = 'var(--primary)'; e.target.style.boxShadow = '0 0 0 3px rgba(99,102,241,0.1)'; }} onBlur={e => { e.target.style.borderColor = 'var(--border)'; e.target.style.boxShadow = ''; }} />
-              <input id="f-phone" name="phone" type="tel" required value={form.phone} onChange={handleChange} placeholder="Phone Number" style={inputStyle} onFocus={e => { e.target.style.borderColor = 'var(--primary)'; e.target.style.boxShadow = '0 0 0 3px rgba(99,102,241,0.1)'; }} onBlur={e => { e.target.style.borderColor = 'var(--border)'; e.target.style.boxShadow = ''; }} />
-              <select id="f-device" name="device" required value={form.device} onChange={handleChange} style={inputStyle} onFocus={e => { e.target.style.borderColor = 'var(--primary)'; e.target.style.boxShadow = '0 0 0 3px rgba(99,102,241,0.1)'; }} onBlur={e => { e.target.style.borderColor = 'var(--border)'; e.target.style.boxShadow = ''; }}>
+              <input id="f-name" name="name" autoComplete="name" required value={form.name} onChange={handleChange} placeholder="Your Full Name" style={inputStyle} onFocus={e => { e.target.style.borderColor = 'var(--primary)'; e.target.style.boxShadow = '0 0 0 3px rgba(99,102,241,0.1)'; }} onBlur={e => { e.target.style.borderColor = 'var(--border)'; e.target.style.boxShadow = ''; }} />
+              <input id="f-phone" name="phone" type="tel" autoComplete="tel" required value={form.phone} onChange={handleChange} placeholder="Phone Number" style={inputStyle} onFocus={e => { e.target.style.borderColor = 'var(--primary)'; e.target.style.boxShadow = '0 0 0 3px rgba(99,102,241,0.1)'; }} onBlur={e => { e.target.style.borderColor = 'var(--border)'; e.target.style.boxShadow = ''; }} />
+              <select id="f-device" name="device" autoComplete="off" required value={form.device} onChange={handleChange} style={inputStyle} onFocus={e => { e.target.style.borderColor = 'var(--primary)'; e.target.style.boxShadow = '0 0 0 3px rgba(99,102,241,0.1)'; }} onBlur={e => { e.target.style.borderColor = 'var(--border)'; e.target.style.boxShadow = ''; }}>
                 <option value="">Select Device Type</option>
                 <option value="Desktop PC">Desktop PC</option>
                 <option value="Laptop">Laptop</option>
                 <option value="All-in-One">All-in-One</option>
                 <option value="Other">Other</option>
               </select>
-              <textarea id="f-issue" name="issue" required value={form.issue} onChange={handleChange} placeholder="Describe the issue..." rows={4} style={{ ...inputStyle, resize: 'vertical' }} onFocus={e => { e.target.style.borderColor = 'var(--primary)'; e.target.style.boxShadow = '0 0 0 3px rgba(99,102,241,0.1)'; }} onBlur={e => { e.target.style.borderColor = 'var(--border)'; e.target.style.boxShadow = ''; }} />
+              <textarea id="f-issue" name="issue" autoComplete="off" required value={form.issue} onChange={handleChange} placeholder="Describe the issue..." rows={4} style={{ ...inputStyle, resize: 'vertical' }} onFocus={e => { e.target.style.borderColor = 'var(--primary)'; e.target.style.boxShadow = '0 0 0 3px rgba(99,102,241,0.1)'; }} onBlur={e => { e.target.style.borderColor = 'var(--border)'; e.target.style.boxShadow = ''; }} />
               <button
                 type="submit"
                 disabled={loading}

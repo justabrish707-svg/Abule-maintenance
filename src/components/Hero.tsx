@@ -18,8 +18,9 @@ export default function Hero() {
         maskImage: 'radial-gradient(ellipse 80% 60% at 50% 50%, black 40%, transparent 100%)',
       }} />
 
-      <div style={{ maxWidth: 1240, margin: '0 auto', padding: '0 1.5rem', width: '100%', position: 'relative', zIndex: 2 }}>
-        <div style={{ maxWidth: 680 }}>
+      <div style={{ maxWidth: 1240, margin: '0 auto', padding: '0 1.5rem', width: '100%', position: 'relative', zIndex: 2, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }}>
+        {/* LEFT: Copy */}
+        <div style={{ maxWidth: 620 }}>
 
           {/* Status badge */}
           <div style={{
@@ -44,7 +45,7 @@ export default function Hero() {
 
           {/* Headline */}
           <h1 style={{
-            fontSize: 'clamp(2.6rem, 5.5vw, 5rem)',
+            fontSize: 'clamp(2.6rem, 4.5vw, 5rem)',
             fontWeight: 900,
             letterSpacing: '-0.055em',
             lineHeight: 1.04,
@@ -59,15 +60,15 @@ export default function Hero() {
 
           {/* Subtitle */}
           <p style={{
-            fontSize: 'clamp(1rem, 1.6vw, 1.15rem)',
+            fontSize: 'clamp(1rem, 1.4vw, 1.1rem)',
             color: 'var(--muted)',
             lineHeight: 1.75,
-            maxWidth: 500,
+            maxWidth: 480,
             marginBottom: '2.5rem',
             animation: 'fadeUp 0.8s cubic-bezier(0.16,1,0.3,1) 0.2s forwards',
             opacity: 0,
           }}>
-            Hardware & software expertise built on radical transparency, 24-hour turnarounds, and a no-fix, no-fee guarantee — right here in Arba Minch.
+            Hardware &amp; software expertise built on radical transparency, 24-hour turnarounds, and a no-fix, no-fee guarantee — right here in Arba Minch.
           </p>
 
           {/* CTA Buttons */}
@@ -154,73 +155,112 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Hero Graphic */}
+        {/* RIGHT: Hero Graphic — now always visible on desktop */}
         <div style={{
-          position: 'absolute', right: '-2rem', top: '50%',
-          width: 520, height: 580,
-          zIndex: 1,
-          display: 'none',
+          position: 'relative',
+          width: '100%',
+          height: 540,
           animation: 'fadeUp 1.2s cubic-bezier(0.16,1,0.3,1) 0.5s forwards, floatHero 7s ease-in-out 1.7s infinite alternate',
           opacity: 0,
-        }} className="lg:block">
+        }}>
           {/* Glow behind SVG */}
           <div style={{
             position: 'absolute', top: '30%', left: '20%',
             width: 300, height: 300, borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(99,102,241,0.2), transparent 70%)',
+            background: 'radial-gradient(circle, rgba(99,102,241,0.22), transparent 70%)',
+            filter: 'blur(50px)',
+          }} />
+          <div style={{
+            position: 'absolute', top: '60%', left: '50%',
+            width: 200, height: 200, borderRadius: '50%',
+            background: 'radial-gradient(circle, rgba(236,72,153,0.15), transparent 70%)',
             filter: 'blur(40px)',
           }} />
+
           <svg viewBox="0 0 520 580" fill="none" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
             {/* Main monitor card */}
-            <rect x="60" y="60" width="360" height="260" rx="24" fill="url(#monitorGrad)" fillOpacity="0.1" stroke="url(#strokeGrad)" strokeWidth="1.5" />
+            <rect x="60" y="60" width="360" height="260" rx="24" fill="url(#monitorGrad)" fillOpacity="0.12" stroke="url(#strokeGrad)" strokeWidth="1.5" />
             {/* Monitor bezel */}
-            <rect x="80" y="80" width="320" height="210" rx="14" fill="#0B0F1E" fillOpacity="0.85" />
+            <rect x="80" y="80" width="320" height="210" rx="14" fill="#0B0F1E" fillOpacity="0.88" />
             {/* Screen glow */}
             <rect x="88" y="88" width="304" height="194" rx="10" fill="url(#screenGrad)" />
+
+            {/* Toolbar dots */}
+            <circle cx="106" cy="105" r="5" fill="#FF5F57" fillOpacity="0.85" />
+            <circle cx="120" cy="105" r="5" fill="#FFBD2E" fillOpacity="0.85" />
+            <circle cx="134" cy="105" r="5" fill="#28CA41" fillOpacity="0.85" />
+
             {/* Code lines */}
             {[
-              { x: 108, w: 80, c: '#818CF8' },
-              { x: 108, w: 140, c: '#A78BFA', y: 15 },
-              { x: 108, w: 60, c: '#F472B6', y: 30 },
-              { x: 108, w: 120, c: '#818CF8', y: 45 },
-              { x: 108, w: 100, c: '#34D399', y: 60 },
-              { x: 108, w: 160, c: '#FCD34D', y: 75 },
-              { x: 108, w: 70, c: '#F472B6', y: 90 },
-              { x: 108, w: 140, c: '#818CF8', y: 105 },
+              { x: 108, w: 80,  c: '#818CF8', y: 0  },
+              { x: 108, w: 140, c: '#A78BFA', y: 17 },
+              { x: 108, w: 60,  c: '#F472B6', y: 34 },
+              { x: 128, w: 120, c: '#818CF8', y: 51 },
+              { x: 128, w: 100, c: '#34D399', y: 68 },
+              { x: 128, w: 160, c: '#FCD34D', y: 85 },
+              { x: 108, w: 70,  c: '#F472B6', y: 102 },
+              { x: 108, w: 140, c: '#818CF8', y: 119 },
+              { x: 128, w: 90,  c: '#34D399', y: 136 },
+              { x: 108, w: 60,  c: '#A78BFA', y: 153 },
             ].map((l, i) => (
-              <rect key={i} x={l.x} y={108 + (l.y || i * 15)} width={l.w} height={5} rx="2.5" fill={l.c} fillOpacity="0.85" />
+              <rect key={i} x={l.x} y={120 + l.y} width={l.w} height={5} rx="2.5" fill={l.c} fillOpacity="0.8" />
             ))}
             {/* Cursor blink */}
-            <rect x="108" y="218" width="2" height="14" rx="1" fill="#818CF8" fillOpacity="0.9">
+            <rect x="108" y="282" width="2" height="14" rx="1" fill="#818CF8" fillOpacity="0.9">
               <animate attributeName="opacity" values="1;0;1" dur="1.2s" repeatCount="indefinite" />
             </rect>
+
             {/* Stand */}
             <rect x="220" y="322" width="60" height="50" rx="8" fill="url(#monitorGrad)" fillOpacity="0.25" />
             <rect x="190" y="370" width="120" height="14" rx="7" fill="url(#monitorGrad)" fillOpacity="0.35" />
 
             {/* Floating chip: CPU */}
-            <rect x="30" y="200" width="72" height="44" rx="12" fill="url(#cardGlass)" stroke="url(#strokeGrad)" strokeWidth="1" />
-            <text x="66" y="217" textAnchor="middle" fill="#818CF8" fontSize="9" fontWeight="800" letterSpacing="1">CPU</text>
-            <text x="66" y="232" textAnchor="middle" fill="#94A3B8" fontSize="8">3.8 GHz</text>
+            <rect x="18" y="180" width="80" height="50" rx="14" fill="url(#cardGlass)" stroke="url(#strokeGrad)" strokeWidth="1" />
+            <text x="58" y="199" textAnchor="middle" fill="#818CF8" fontSize="9" fontWeight="800" letterSpacing="1">CPU</text>
+            <text x="58" y="215" textAnchor="middle" fill="#94A3B8" fontSize="8">3.8 GHz</text>
+            <text x="58" y="226" textAnchor="middle" fill="#34D399" fontSize="7" fontWeight="600">● ACTIVE</text>
 
             {/* Floating chip: RAM */}
-            <rect x="418" y="150" width="72" height="44" rx="12" fill="url(#cardGlass)" stroke="url(#strokeAccent)" strokeWidth="1" />
-            <text x="454" y="167" textAnchor="middle" fill="#F472B6" fontSize="9" fontWeight="800" letterSpacing="1">RAM</text>
-            <text x="454" y="182" textAnchor="middle" fill="#94A3B8" fontSize="8">16 GB</text>
+            <rect x="422" y="130" width="82" height="52" rx="14" fill="url(#cardGlass)" stroke="url(#strokeAccent)" strokeWidth="1" />
+            <text x="463" y="150" textAnchor="middle" fill="#F472B6" fontSize="9" fontWeight="800" letterSpacing="1">RAM</text>
+            <text x="463" y="165" textAnchor="middle" fill="#94A3B8" fontSize="8">16 GB DDR4</text>
+            <text x="463" y="176" textAnchor="middle" fill="#818CF8" fontSize="7">72% used</text>
+
+            {/* Floating chip: SSD */}
+            <rect x="422" y="220" width="82" height="52" rx="14" fill="url(#cardGlass)" stroke="url(#strokeTeal)" strokeWidth="1" />
+            <text x="463" y="240" textAnchor="middle" fill="#14B8A6" fontSize="9" fontWeight="800" letterSpacing="1">SSD</text>
+            <text x="463" y="255" textAnchor="middle" fill="#94A3B8" fontSize="8">512 GB</text>
+            <text x="463" y="266" textAnchor="middle" fill="#34D399" fontSize="7">● HEALTHY</text>
 
             {/* Status card */}
-            <rect x="80" y="420" width="320" height="120" rx="20" fill="url(#statusCard)" stroke="url(#strokeGrad)" strokeWidth="1" />
+            <rect x="70" y="408" width="340" height="130" rx="22" fill="url(#statusCard)" stroke="url(#strokeGrad)" strokeWidth="1" />
             {/* Status pulse */}
-            <circle cx="116" cy="460" r="18" fill="rgba(99,102,241,0.15)" />
-            <text x="116" y="466" textAnchor="middle" fontSize="18">🛠️</text>
-            <rect x="148" y="445" width="100" height="8" rx="4" fill="#6366F1" fillOpacity="0.7" />
-            <rect x="148" y="460" width="160" height="6" rx="3" fill="#94A3B8" fillOpacity="0.5" />
-            <rect x="148" y="474" width="80" height="6" rx="3" fill="#22C55E" fillOpacity="0.7" />
+            <circle cx="110" cy="448" r="20" fill="rgba(99,102,241,0.12)" />
+            <text x="110" y="455" textAnchor="middle" fontSize="20">🛠️</text>
+            <rect x="144" y="434" width="110" height="8" rx="4" fill="#6366F1" fillOpacity="0.75" />
+            <rect x="144" y="450" width="170" height="6" rx="3" fill="#94A3B8" fillOpacity="0.5" />
+            <rect x="144" y="464" width="90" height="6" rx="3" fill="#22C55E" fillOpacity="0.75" />
+            <rect x="144" y="478" width="60" height="5" rx="2.5" fill="#F59E0B" fillOpacity="0.6" />
             {/* Progress bar */}
-            <rect x="100" y="500" width="260" height="6" rx="3" fill="rgba(99,102,241,0.1)" />
-            <rect x="100" y="500" width="195" height="6" rx="3" fill="url(#progressGrad)">
-              <animate attributeName="width" from="0" to="195" dur="2s" fill="freeze" />
+            <rect x="90" y="505" width="280" height="7" rx="3.5" fill="rgba(99,102,241,0.1)" />
+            <rect x="90" y="505" width="210" height="7" rx="3.5" fill="url(#progressGrad)">
+              <animate attributeName="width" from="0" to="210" dur="2.2s" fill="freeze" />
             </rect>
+            <text x="313" y="513" textAnchor="start" fill="#94A3B8" fontSize="8">75%</text>
+
+            {/* Decorative dots pattern */}
+            {[...Array(6)].map((_, row) =>
+              [...Array(6)].map((_, col) => (
+                <circle
+                  key={`${row}-${col}`}
+                  cx={16 + col * 16}
+                  cy={400 + row * 16}
+                  r="1.5"
+                  fill="#6366F1"
+                  fillOpacity={0.15 + Math.random() * 0.1}
+                />
+              ))
+            )}
 
             <defs>
               <linearGradient id="monitorGrad" x1="0" y1="0" x2="520" y2="580" gradientUnits="userSpaceOnUse">
@@ -236,6 +276,10 @@ export default function Hero() {
                 <stop stopColor="#EC4899" stopOpacity="0.5" />
                 <stop offset="1" stopColor="#F472B6" stopOpacity="0.3" />
               </linearGradient>
+              <linearGradient id="strokeTeal" x1="0" y1="0" x2="1" y2="1">
+                <stop stopColor="#14B8A6" stopOpacity="0.5" />
+                <stop offset="1" stopColor="#0D9488" stopOpacity="0.3" />
+              </linearGradient>
               <linearGradient id="screenGrad" x1="88" y1="88" x2="392" y2="282" gradientUnits="userSpaceOnUse">
                 <stop stopColor="#1E293B" />
                 <stop offset="1" stopColor="#0F172A" />
@@ -244,13 +288,13 @@ export default function Hero() {
                 <stop stopColor="#6366F1" />
                 <stop offset="1" stopColor="#EC4899" />
               </linearGradient>
-              <linearGradient id="statusCard" x1="80" y1="420" x2="400" y2="540" gradientUnits="userSpaceOnUse">
-                <stop stopColor="white" stopOpacity="0.95" />
-                <stop offset="1" stopColor="#F1F5F9" stopOpacity="0.9" />
+              <linearGradient id="statusCard" x1="70" y1="408" x2="410" y2="538" gradientUnits="userSpaceOnUse">
+                <stop stopColor="white" stopOpacity="0.97" />
+                <stop offset="1" stopColor="#F1F5F9" stopOpacity="0.92" />
               </linearGradient>
               <linearGradient id="cardGlass" x1="0" y1="0" x2="1" y2="1">
-                <stop stopColor="white" stopOpacity="0.1" />
-                <stop offset="1" stopColor="white" stopOpacity="0.03" />
+                <stop stopColor="white" stopOpacity="0.12" />
+                <stop offset="1" stopColor="white" stopOpacity="0.04" />
               </linearGradient>
             </defs>
           </svg>

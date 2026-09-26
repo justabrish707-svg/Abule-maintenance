@@ -170,8 +170,8 @@ body {
 /* ─── Glass Surface ────────────────────────────── */
 .glass {
   background: rgba(255,255,255,0.7);
-  backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
   border: 1px solid rgba(255,255,255,0.5);
 }
 [data-theme="dark"] .glass {
@@ -261,3 +261,29 @@ body {
   transform: translateX(8px);
 }
 .whatsapp-float:hover .whatsapp-tooltip { opacity: 1; transform: translateX(0); }
+
+/* ─── Grid & Layout Utilities ─────────────────── */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+@media (max-width: 900px) {
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 500px) {
+  .stats-grid { grid-template-columns: 1fr; }
+}
+
+.responsive-3-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+@media (max-width: 1024px) {
+  .responsive-3-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .responsive-3-grid { grid-template-columns: 1fr; }
+}
+

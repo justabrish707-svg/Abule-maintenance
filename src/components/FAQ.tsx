@@ -8,7 +8,7 @@ export default function FAQ() {
 
   return (
     <section id="faq" className="py-32" style={{ background: 'var(--surface)' }}>
-      <div className="max-w-[800px] mx-auto px-6">
+      <div className="max-w-200 mx-auto px-6">
         <div className="text-center mb-16">
           <div className="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest mb-4" style={{ background: 'rgba(99,102,241,0.1)', color: 'var(--primary)' }}>
             FAQ

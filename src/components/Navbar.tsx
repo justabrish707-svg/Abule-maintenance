@@ -52,7 +52,7 @@ export default function Navbar() {
           </a>
 
           {/* Desktop Nav */}
-          <ul style={{ display: 'flex', gap: '2.5rem', listStyle: 'none', alignItems: 'center' }} className="hidden md:flex">
+          <ul style={{ gap: '2.5rem', listStyle: 'none', alignItems: 'center' }} className="hidden md:flex">
             {links.map(l => (
               <li key={l.href} style={{ position: 'relative' }}>
                 <a
@@ -123,7 +123,7 @@ export default function Navbar() {
             <button
               onClick={() => setMenuOpen(o => !o)}
               className="md:hidden"
-              style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 6, display: 'flex', flexDirection: 'column', gap: 5 }}
+              style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 6, flexDirection: 'column', gap: 5 }}
               aria-label="Menu"
             >
               {[0,1,2].map(i => (

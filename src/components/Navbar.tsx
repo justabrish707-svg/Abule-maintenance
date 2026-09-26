@@ -15,6 +15,7 @@ export default function Navbar() {
 
   const links = [
     { href: '#services', label: 'Services' },
+    { href: '#tools', label: 'Estimator & Tracker' },
     { href: '#about', label: 'About' },
     { href: '#pricing', label: 'Pricing' },
     { href: '#faq', label: 'FAQ' },

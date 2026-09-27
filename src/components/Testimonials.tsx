@@ -1,17 +1,19 @@
 import { useState } from 'react';
+import { useLanguage } from '../context/LanguageContext';
 import { TESTIMONIALS } from '../data/content';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 
-const AVATAR_COLORS = [
-  ['#6366F1', '#8B5CF6'],
-  ['#EC4899', '#F472B6'],
-  ['#14B8A6', '#0D9488'],
-];
+const CATEGORY_MAP: Record<string, { label: string; icon: string }> = {
+  all: { label: 'All Reviews', icon: '🌟' },
+  data: { label: 'Data Recovery', icon: '💾' },
+  hardware: { label: 'Hardware Repair', icon: '🖥️' },
+  software: { label: 'Software & OS', icon: '⚙️' },
+};
 
-function TestCard({ t, idx, delay }: { t: typeof TESTIMONIALS[0]; idx: number; delay: number }) {
+function TestCard({ t, delay }: { t: typeof TESTIMONIALS[0]; delay: number }) {
   const { ref, isVisible } = useIntersectionObserver();
   const [hovered, setHovered] = useState(false);
-  const [c1, c2] = AVATAR_COLORS[idx % 3];
+  const catInfo = CATEGORY_MAP[t.category || 'hardware'] || CATEGORY_MAP.hardware;
 
   return (
     <div
@@ -23,56 +25,49 @@ function TestCard({ t, idx, delay }: { t: typeof TESTIMONIALS[0]; idx: number; d
         transitionDelay: `${delay}ms`,
         background: 'var(--surface)',
         border: '1px solid var(--border)',
-        borderRadius: 28,
-        padding: '2.5rem 2rem',
-        position: 'relative',
-        overflow: 'hidden',
-        transition: 'transform 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.4s, border-color 0.3s',
-        transform: hovered ? 'translateY(-8px)' : '',
-        boxShadow: hovered ? 'var(--shadow-xl)' : 'var(--shadow-sm)',
-        borderColor: hovered ? `${c1}40` : 'var(--border)',
+        borderRadius: 18,
+        padding: '2rem 1.75rem',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
+        transform: hovered ? 'translateY(-4px)' : 'none',
+        borderColor: hovered ? 'var(--border-strong)' : 'var(--border)',
+        boxShadow: hovered ? 'var(--shadow-md)' : 'none',
       }}
     >
-      {/* Background quote mark */}
-      <div style={{
-        position: 'absolute', top: -10, right: 20,
-        fontSize: '8.5rem', lineHeight: 1, fontWeight: 900,
-        color: c1, opacity: 0.05, userSelect: 'none', fontFamily: 'Georgia, serif',
-        pointerEvents: 'none',
-      }}>"</div>
+      <div>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
+          <div style={{ color: '#F59E0B', fontSize: '0.95rem', letterSpacing: 2 }}>★★★★★</div>
+          <span style={{
+            fontSize: '0.7rem', fontWeight: 600,
+            color: 'var(--muted)', background: 'var(--surface-2)', border: '1px solid var(--border)',
+            padding: '0.2rem 0.65rem', borderRadius: 99,
+          }}>
+            {catInfo.icon} {catInfo.label}
+          </span>
+        </div>
 
-      {/* Stars */}
-      <div style={{ display: 'flex', gap: '0.25rem', marginBottom: '1.25rem' }}>
-        {Array.from({ length: t.stars }).map((_, i) => (
-          <span key={i} style={{ color: '#F59E0B', fontSize: '1.1rem' }}>★</span>
-        ))}
+        <p style={{ fontSize: '0.9rem', lineHeight: 1.65, color: 'var(--text)', fontStyle: 'italic', marginBottom: '1.75rem' }}>
+          {t.text}
+        </p>
       </div>
 
-      <p style={{ fontSize: '0.95rem', lineHeight: 1.8, color: 'var(--muted)', fontStyle: 'italic', marginBottom: '2rem', position: 'relative' }}>
-        {t.text}
-      </p>
-
-      {/* Author */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0.875rem' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', paddingTop: '1rem', borderTop: '1px solid var(--border)' }}>
         <div style={{
-          width: 46, height: 46, borderRadius: '50%',
-          background: `linear-gradient(135deg, ${c1}, ${c2})`,
+          width: 38, height: 38, borderRadius: '50%',
+          background: 'var(--surface-2)', border: '1px solid var(--border)',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
-          color: '#fff', fontWeight: 800, fontSize: '0.9rem',
-          flexShrink: 0,
-          boxShadow: `0 4px 14px ${c1}45`,
-          transition: 'transform 0.3s',
-          transform: hovered ? 'scale(1.1)' : 'scale(1)',
+          color: 'var(--text)', fontWeight: 700, fontSize: '0.825rem',
         }}>
           {t.initials}
         </div>
         <div style={{ flex: 1, minWidth: 0 }}>
-          <div style={{ fontWeight: 800, fontSize: '0.95rem', color: 'var(--text)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{t.name}</div>
-          <div style={{ fontSize: '0.8rem', color: 'var(--muted)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{t.role}</div>
+          <div style={{ fontWeight: 700, fontSize: '0.875rem', color: 'var(--text)' }}>{t.name}</div>
+          <div style={{ fontSize: '0.78rem', color: 'var(--muted)' }}>{t.role}</div>
         </div>
-        {/* Verified badge */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', fontSize: '0.72rem', fontWeight: 700, color: c1, background: `${c1}12`, border: `1px solid ${c1}20`, padding: '0.3rem 0.65rem', borderRadius: 99, flexShrink: 0 }}>
-          ✓ Verified
+        <div style={{ fontSize: '0.7rem', fontWeight: 600, color: '#22C55E', background: 'rgba(34,197,94,0.1)', padding: '0.2rem 0.55rem', borderRadius: 99 }}>
+          Verified ✓
         </div>
       </div>
     </div>
@@ -80,54 +75,81 @@ function TestCard({ t, idx, delay }: { t: typeof TESTIMONIALS[0]; idx: number; d
 }
 
 export default function Testimonials() {
-  return (
-    <section style={{ padding: '8rem 0', background: 'var(--surface-2)', position: 'relative', overflow: 'hidden' }}>
-      {/* Background grid */}
-      <div style={{
-        position: 'absolute', inset: 0,
-        backgroundImage: 'radial-gradient(circle, rgba(99,102,241,0.05) 1px, transparent 1px)',
-        backgroundSize: '36px 36px',
-        maskImage: 'radial-gradient(ellipse 100% 100% at 50% 50%, black, transparent)',
-      }} />
+  const { t } = useLanguage();
+  const [filter, setFilter] = useState<string>('all');
 
-      <div style={{ maxWidth: 1240, margin: '0 auto', padding: '0 1.5rem', position: 'relative' }}>
-        <div style={{ textAlign: 'center', maxWidth: 580, margin: '0 auto 4rem' }}>
-          <div className="section-badge">💬 Customer Stories</div>
-          <h2 className="section-heading" style={{ marginBottom: '1rem' }}>
-            Real People.<br /><span className="gradient-text">Real Results.</span>
+  const filtered = filter === 'all'
+    ? TESTIMONIALS
+    : TESTIMONIALS.filter(t => t.category === filter);
+
+  return (
+    <section style={{ padding: '7rem 0', background: 'var(--surface-2)', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)' }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 1.5rem' }}>
+        
+        {/* Section Header */}
+        <div style={{ textAlign: 'center', maxWidth: 560, margin: '0 auto 2.5rem' }}>
+          <div className="section-badge">{t('test_badge')}</div>
+          <h2 className="section-heading" style={{ marginBottom: '0.85rem' }}>
+            {t('test_title_1')}<br /><span className="gradient-text">{t('test_title_2')}</span>
           </h2>
-          <p style={{ fontSize: '1rem', color: 'var(--muted)', lineHeight: 1.75 }}>
-            Don't just take our word for it — hear what local device owners say about Abule Maintenance.
+          <p style={{ fontSize: '0.975rem', color: 'var(--muted)', lineHeight: 1.65 }}>
+            {t('test_desc')}
           </p>
         </div>
 
-        <div className="responsive-3-grid">
-          {TESTIMONIALS.map((t, i) => <TestCard key={t.id} t={t} idx={i} delay={i * 80} />)}
+        {/* Category Pills */}
+        <div style={{
+          display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '0.5rem',
+          marginBottom: '3rem',
+        }}>
+          {Object.entries(CATEGORY_MAP).map(([catKey, catObj]) => {
+            const isActive = filter === catKey;
+            return (
+              <button
+                key={catKey}
+                onClick={() => setFilter(catKey)}
+                style={{
+                  padding: '0.45rem 1.15rem', borderRadius: 99,
+                  fontWeight: 600, fontSize: '0.825rem', border: '1px solid',
+                  cursor: 'pointer', transition: 'all 0.2s ease',
+                  borderColor: isActive ? 'var(--primary)' : 'var(--border)',
+                  background: isActive ? 'var(--primary)' : 'var(--surface)',
+                  color: isActive ? '#fff' : 'var(--muted)',
+                }}
+              >
+                <span>{catObj.icon}</span> {catObj.label}
+              </button>
+            );
+          })}
         </div>
 
-        {/* Bottom aggregate rating bar */}
+        {/* Cards Grid */}
+        <div className="responsive-3-grid">
+          {filtered.map((t, i) => <TestCard key={t.id} t={t} delay={i * 60} />)}
+        </div>
+
+        {/* Rating Summary Bar */}
         <div style={{
-          marginTop: '4rem', padding: '1.75rem 2.5rem', borderRadius: 28,
+          marginTop: '3.5rem', padding: '1.5rem 2rem', borderRadius: 18,
           background: 'var(--surface)', border: '1px solid var(--border)',
-          display: 'flex', alignItems: 'center', justifyContent: 'space-around', gap: '2rem', flexWrap: 'wrap',
-          boxShadow: 'var(--shadow-md)',
+          display: 'flex', alignItems: 'center', justifyContent: 'space-around', gap: '1.5rem', flexWrap: 'wrap',
         }}>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <div style={{ fontSize: '2.5rem', fontWeight: 900, color: 'var(--text)', letterSpacing: '-0.04em' }}>4.9 / 5.0</div>
-            <div style={{ color: '#F59E0B', fontSize: '1.1rem', letterSpacing: 3, margin: '2px 0' }}>★★★★★</div>
-            <div style={{ fontSize: '0.825rem', fontWeight: 600, color: 'var(--muted)' }}>Average Customer Rating</div>
+          <div style={{ textAlign: 'center' }}>
+            <div style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--text)', letterSpacing: '-0.03em' }}>4.9 / 5.0</div>
+            <div style={{ fontSize: '0.78rem', color: 'var(--muted)', marginTop: 2 }}>Average Customer Rating</div>
           </div>
-          <div style={{ width: 1, height: 50, background: 'var(--border)' }} />
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <div style={{ fontSize: '2.5rem', fontWeight: 900, color: 'var(--text)', letterSpacing: '-0.04em' }}>500+</div>
-            <div style={{ fontSize: '0.825rem', fontWeight: 600, color: 'var(--muted)', marginTop: 4 }}>Devices Successfully Repaired</div>
+          <div style={{ width: 1, height: 36, background: 'var(--border)' }} />
+          <div style={{ textAlign: 'center' }}>
+            <div style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--text)', letterSpacing: '-0.03em' }}>500+</div>
+            <div style={{ fontSize: '0.78rem', color: 'var(--muted)', marginTop: 2 }}>Devices Fixed</div>
           </div>
-          <div style={{ width: 1, height: 50, background: 'var(--border)' }} />
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <div style={{ fontSize: '2.5rem', fontWeight: 900, color: 'var(--text)', letterSpacing: '-0.04em' }}>98%</div>
-            <div style={{ fontSize: '0.825rem', fontWeight: 600, color: 'var(--muted)', marginTop: 4 }}>Customer Recommendation Rate</div>
+          <div style={{ width: 1, height: 36, background: 'var(--border)' }} />
+          <div style={{ textAlign: 'center' }}>
+            <div style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--text)', letterSpacing: '-0.03em' }}>98%</div>
+            <div style={{ fontSize: '0.78rem', color: 'var(--muted)', marginTop: 2 }}>Recommendation Rate</div>
           </div>
         </div>
+
       </div>
     </section>
   );

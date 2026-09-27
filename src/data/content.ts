@@ -46,6 +46,7 @@ export const TESTIMONIALS = [
   {
     id: 1,
     stars: 5,
+    category: 'data',
     text: '"Abule Tech recovered my entire thesis project from a dead hard drive. I was in tears. They saved my academic year. Absolute professionals."',
     name: 'Hirut Bekele',
     role: 'University Student',
@@ -54,6 +55,7 @@ export const TESTIMONIALS = [
   {
     id: 2,
     stars: 5,
+    category: 'hardware',
     text: '"My shop PC was completely down. Abule fixed it within 4 hours and even optimized the whole system. Best PC repair in Arba Minch, hands down."',
     name: 'Dawit Tesfaye',
     role: 'Business Owner',
@@ -62,10 +64,38 @@ export const TESTIMONIALS = [
   {
     id: 3,
     stars: 5,
+    category: 'software',
     text: '"Transparent pricing, fast work, and they explained everything clearly. I finally understand what was wrong with my laptop. Highly recommend!"',
     name: 'Yonas Girma',
     role: 'Freelancer',
     initials: 'YG',
+  },
+  {
+    id: 4,
+    stars: 5,
+    category: 'hardware',
+    text: '"My MacBook had a short circuit on the motherboard. Local shops said it was trash. Abule micro-soldered it back to life! Saved me over $1,000."',
+    name: 'Amare Mamo',
+    role: 'Software Developer',
+    initials: 'AM',
+  },
+  {
+    id: 5,
+    stars: 5,
+    category: 'data',
+    text: '"Recovered 5 years of family photos from a corrupted SD card. Fast, honest, and very reasonable pricing. I am forever grateful."',
+    name: 'Tigist Alemu',
+    role: 'Photographer',
+    initials: 'TA',
+  },
+  {
+    id: 6,
+    stars: 5,
+    category: 'software',
+    text: '"Full OS reinstall and malware cleanup done in less than 3 hours. My slow workstation runs smoother than when I first bought it!"',
+    name: 'Biniyam Worku',
+    role: 'Graphic Designer',
+    initials: 'BW',
   },
 ];
 

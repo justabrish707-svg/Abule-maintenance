@@ -31,7 +31,6 @@ const ISSUES: IssueOption[] = [
   { id: 'screen', name: 'Screen / Battery / Keyboard Fix', minPrice: 500, maxPrice: 1500, time: 'Same Day / 24h', description: 'Replacement of physical components with quality tested parts.' },
 ];
 
-// Demo Ticket Data for Live Status Tracker
 interface TicketStatus {
   id: string;
   customerName: string;
@@ -69,15 +68,14 @@ const DEMO_TICKETS: Record<string, TicketStatus> = {
 };
 
 const TRACKER_STEPS = [
-  { step: 1, label: 'Received', icon: '📥' },
-  { step: 2, label: 'Diagnostics', icon: '🔬' },
-  { step: 3, label: 'In Repair', icon: '🛠️' },
-  { step: 4, label: 'Testing', icon: '🧪' },
-  { step: 5, label: 'Ready', icon: '🎉' },
+  { step: 1, label: 'Received' },
+  { step: 2, label: 'Diagnostics' },
+  { step: 3, label: 'In Repair' },
+  { step: 4, label: 'Testing' },
+  { step: 5, label: 'Ready' },
 ];
 
 export default function RepairTools() {
-  // Tab state: 'estimator' | 'tracker'
   const [activeTab, setActiveTab] = useState<'estimator' | 'tracker'>('estimator');
 
   // Estimator State
@@ -110,39 +108,35 @@ export default function RepairTools() {
   const whatsappUrl = `https://wa.me/251954897133?text=${encodeURIComponent(bookingMsg)}`;
 
   return (
-    <section id="tools" style={{ padding: '8rem 0', background: 'var(--surface)', position: 'relative', overflow: 'hidden' }}>
-      {/* Background glow */}
-      <div style={{ position: 'absolute', top: '30%', left: '50%', transform: 'translate(-50%, -50%)', width: 700, height: 350, background: 'radial-gradient(ellipse, rgba(99,102,241,0.06), transparent 70%)', pointerEvents: 'none' }} />
-
-      <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 1.5rem', position: 'relative' }}>
+    <section id="tools" style={{ padding: '7rem 0', background: 'var(--surface-2)', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)' }}>
+      <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 1.5rem' }}>
 
         {/* Section Header */}
-        <div style={{ textAlign: 'center', maxWidth: 620, margin: '0 auto 3rem' }}>
-          <div className="section-badge">🛠️ Interactive Tools</div>
-          <h2 className="section-heading" style={{ marginBottom: '1rem' }}>
-            Instant Estimate &<br /><span className="gradient-text">Live Repair Tracker</span>
+        <div style={{ textAlign: 'center', maxWidth: 560, margin: '0 auto 2.5rem' }}>
+          <div className="section-badge">Interactive Tools</div>
+          <h2 className="section-heading" style={{ marginBottom: '0.85rem' }}>
+            Instant Estimate &<br /><span className="gradient-text">Live Status Tracker</span>
           </h2>
-          <p style={{ fontSize: '1rem', color: 'var(--muted)', lineHeight: 1.75 }}>
-            Calculate your repair price in seconds or check the live progress of your device in repair.
+          <p style={{ fontSize: '0.975rem', color: 'var(--muted)', lineHeight: 1.65 }}>
+            Calculate your repair price in seconds or check the real-time repair progress of your device.
           </p>
         </div>
 
-        {/* Tab Toggle Bar */}
+        {/* Tab Segmented Control */}
         <div style={{
-          display: 'flex', justifyContent: 'center', gap: '0.75rem',
-          maxWidth: 420, margin: '0 auto 3.5rem', padding: '0.4rem',
-          background: 'var(--surface-2)', border: '1px solid var(--border)',
-          borderRadius: 99, boxShadow: 'var(--shadow-sm)',
+          display: 'flex', justifyContent: 'center', gap: '0.5rem',
+          maxWidth: 380, margin: '0 auto 3rem', padding: '0.35rem',
+          background: 'var(--surface)', border: '1px solid var(--border)',
+          borderRadius: 99,
         }}>
           <button
             onClick={() => setActiveTab('estimator')}
             style={{
-              flex: 1, padding: '0.75rem 1.25rem', borderRadius: 99,
-              fontWeight: 700, fontSize: '0.9rem', border: 'none', cursor: 'pointer',
-              transition: 'all 0.3s ease',
+              flex: 1, padding: '0.65rem 1.15rem', borderRadius: 99,
+              fontWeight: 600, fontSize: '0.85rem', border: 'none', cursor: 'pointer',
+              transition: 'all 0.2s ease',
               background: activeTab === 'estimator' ? 'var(--primary)' : 'transparent',
               color: activeTab === 'estimator' ? '#fff' : 'var(--muted)',
-              boxShadow: activeTab === 'estimator' ? '0 4px 14px rgba(99,102,241,0.35)' : 'none',
             }}
           >
             🧮 Price Estimator
@@ -150,12 +144,11 @@ export default function RepairTools() {
           <button
             onClick={() => setActiveTab('tracker')}
             style={{
-              flex: 1, padding: '0.75rem 1.25rem', borderRadius: 99,
-              fontWeight: 700, fontSize: '0.9rem', border: 'none', cursor: 'pointer',
-              transition: 'all 0.3s ease',
+              flex: 1, padding: '0.65rem 1.15rem', borderRadius: 99,
+              fontWeight: 600, fontSize: '0.85rem', border: 'none', cursor: 'pointer',
+              transition: 'all 0.2s ease',
               background: activeTab === 'tracker' ? 'var(--primary)' : 'transparent',
               color: activeTab === 'tracker' ? '#fff' : 'var(--muted)',
-              boxShadow: activeTab === 'tracker' ? '0 4px 14px rgba(99,102,241,0.35)' : 'none',
             }}
           >
             🔎 Track Repair Status
@@ -165,53 +158,53 @@ export default function RepairTools() {
         {/* TAB 1: ESTIMATOR */}
         {activeTab === 'estimator' && (
           <div style={{
-            background: 'var(--bg)', border: '1px solid var(--border)',
-            borderRadius: 32, padding: '2.5rem', boxShadow: 'var(--shadow-lg)',
-            display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem',
+            background: 'var(--surface)', border: '1px solid var(--border)',
+            borderRadius: 24, padding: '2.25rem', boxShadow: 'var(--shadow-md)',
+            display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2.5rem',
           }} className="responsive-3-grid">
 
-            {/* Left Column: Selections */}
+            {/* Left Column */}
             <div>
-              <h3 style={{ fontSize: '1.15rem', fontWeight: 800, marginBottom: '1.25rem', color: 'var(--text)' }}>
-                1. Select Your Device
+              <h3 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: '1rem', color: 'var(--text)' }}>
+                1. Select Device
               </h3>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '0.75rem', marginBottom: '2rem' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '0.65rem', marginBottom: '1.75rem' }}>
                 {DEVICES.map(dev => (
                   <button
                     key={dev.id}
                     onClick={() => setSelectedDevice(dev.id)}
                     style={{
-                      padding: '1rem', borderRadius: 16, border: '1px solid',
+                      padding: '0.85rem', borderRadius: 12, border: '1px solid',
                       borderColor: selectedDevice === dev.id ? 'var(--primary)' : 'var(--border)',
-                      background: selectedDevice === dev.id ? 'rgba(99,102,241,0.1)' : 'var(--surface)',
+                      background: selectedDevice === dev.id ? 'var(--primary-light)' : 'var(--surface-2)',
                       color: selectedDevice === dev.id ? 'var(--primary)' : 'var(--text)',
-                      display: 'flex', alignItems: 'center', gap: '0.75rem',
-                      fontWeight: 700, fontSize: '0.9rem', cursor: 'pointer',
+                      display: 'flex', alignItems: 'center', gap: '0.65rem',
+                      fontWeight: 600, fontSize: '0.85rem', cursor: 'pointer',
                       transition: 'all 0.2s ease',
                       textAlign: 'left',
                     }}
                   >
-                    <span style={{ fontSize: '1.4rem' }}>{dev.icon}</span>
+                    <span style={{ fontSize: '1.2rem' }}>{dev.icon}</span>
                     {dev.name}
                   </button>
                 ))}
               </div>
 
-              <h3 style={{ fontSize: '1.15rem', fontWeight: 800, marginBottom: '1.25rem', color: 'var(--text)' }}>
-                2. Select Main Issue
+              <h3 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: '1rem', color: 'var(--text)' }}>
+                2. Select Primary Issue
               </h3>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
                 {ISSUES.map(iss => (
                   <button
                     key={iss.id}
                     onClick={() => setSelectedIssue(iss.id)}
                     style={{
-                      padding: '1rem 1.25rem', borderRadius: 16, border: '1px solid',
+                      padding: '0.85rem 1rem', borderRadius: 12, border: '1px solid',
                       borderColor: selectedIssue === iss.id ? 'var(--primary)' : 'var(--border)',
-                      background: selectedIssue === iss.id ? 'rgba(99,102,241,0.1)' : 'var(--surface)',
+                      background: selectedIssue === iss.id ? 'var(--primary-light)' : 'var(--surface-2)',
                       color: selectedIssue === iss.id ? 'var(--primary)' : 'var(--text)',
                       display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-                      fontWeight: 600, fontSize: '0.875rem', cursor: 'pointer',
+                      fontWeight: 500, fontSize: '0.825rem', cursor: 'pointer',
                       transition: 'all 0.2s ease',
                       textAlign: 'left',
                     }}
@@ -225,60 +218,52 @@ export default function RepairTools() {
               </div>
             </div>
 
-            {/* Right Column: Calculated Result Box */}
+            {/* Right Column */}
             <div style={{
-              background: 'var(--surface)', border: '1px solid var(--border)',
-              borderRadius: 24, padding: '2rem', display: 'flex', flexDirection: 'column',
-              justifyContent: 'space-between', position: 'relative', overflow: 'hidden',
-              boxShadow: 'var(--shadow-md)',
+              background: 'var(--surface-2)', border: '1px solid var(--border)',
+              borderRadius: 18, padding: '1.75rem', display: 'flex', flexDirection: 'column',
+              justifyContent: 'space-between',
             }}>
-              {/* Top Accent line */}
-              <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 4, background: 'linear-gradient(90deg, #6366F1, #EC4899)' }} />
-
               <div>
-                <div style={{ fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--primary)', marginBottom: '0.5rem' }}>
+                <div style={{ fontSize: '0.72rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--primary)', marginBottom: '0.5rem' }}>
                   Estimated Price Summary
                 </div>
 
-                <div style={{ fontSize: '2.75rem', fontWeight: 900, color: 'var(--text)', letterSpacing: '-0.05em', marginBottom: '0.5rem' }}>
-                  {currentIssue.minPrice} – {currentIssue.maxPrice} <span style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--muted)' }}>ETB</span>
+                <div style={{ fontSize: '2.5rem', fontWeight: 800, color: 'var(--text)', letterSpacing: '-0.04em', marginBottom: '0.5rem' }}>
+                  {currentIssue.minPrice} – {currentIssue.maxPrice} <span style={{ fontSize: '1.1rem', fontWeight: 600, color: 'var(--muted)' }}>ETB</span>
                 </div>
 
-                <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.35rem 0.85rem', borderRadius: 99, background: 'rgba(20,184,166,0.1)', color: '#14B8A6', fontSize: '0.8rem', fontWeight: 700, marginBottom: '1.5rem' }}>
+                <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', padding: '0.3rem 0.75rem', borderRadius: 99, background: 'rgba(34,197,94,0.1)', color: '#22C55E', fontSize: '0.78rem', fontWeight: 600, marginBottom: '1.25rem' }}>
                   ⏱️ Turnaround: {currentIssue.time}
                 </div>
 
-                <p style={{ fontSize: '0.9rem', lineHeight: 1.6, color: 'var(--muted)', marginBottom: '1.75rem' }}>
+                <p style={{ fontSize: '0.875rem', lineHeight: 1.6, color: 'var(--muted)', marginBottom: '1.5rem' }}>
                   {currentIssue.description}
                 </p>
 
-                {/* Included Perks */}
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem', marginBottom: '2rem' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '1.75rem' }}>
                   {['Free written estimate before work starts', 'No-Fix, No-Fee Guarantee', '30-Day warranty on parts & repair'].map(perk => (
-                    <div key={perk} style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '0.85rem', color: 'var(--text)', fontWeight: 600 }}>
-                      <span style={{ color: '#22C55E', fontWeight: 900 }}>✓</span>
+                    <div key={perk} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.825rem', color: 'var(--text)', fontWeight: 500 }}>
+                      <span style={{ color: '#22C55E', fontWeight: 800 }}>✓</span>
                       {perk}
                     </div>
                   ))}
                 </div>
               </div>
 
-              {/* Booking CTA */}
               <a
                 href={whatsappUrl}
                 target="_blank"
                 rel="noreferrer"
                 style={{
-                  display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.6rem',
-                  padding: '1rem', borderRadius: 99, background: 'linear-gradient(135deg, #25D366, #20BA58)',
-                  color: '#fff', textDecoration: 'none', fontWeight: 800, fontSize: '0.95rem',
-                  boxShadow: '0 8px 24px rgba(37,211,102,0.35)',
-                  transition: 'transform 0.2s, box-shadow 0.2s',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
+                  padding: '0.85rem', borderRadius: 99, background: '#25D366',
+                  color: '#fff', textDecoration: 'none', fontWeight: 700, fontSize: '0.875rem',
+                  boxShadow: '0 4px 14px rgba(37,211,102,0.3)',
+                  transition: 'opacity 0.2s',
                 }}
-                onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-2px)'}
-                onMouseLeave={e => e.currentTarget.style.transform = ''}
               >
-                <span>💬</span> Book This Estimate on WhatsApp
+                💬 Book This Estimate on WhatsApp
               </a>
             </div>
 
@@ -288,49 +273,44 @@ export default function RepairTools() {
         {/* TAB 2: LIVE TRACKER */}
         {activeTab === 'tracker' && (
           <div style={{
-            background: 'var(--bg)', border: '1px solid var(--border)',
-            borderRadius: 32, padding: '2.5rem', boxShadow: 'var(--shadow-lg)',
-            maxWidth: 760, margin: '0 auto',
+            background: 'var(--surface)', border: '1px solid var(--border)',
+            borderRadius: 24, padding: '2.25rem', boxShadow: 'var(--shadow-md)',
+            maxWidth: 720, margin: '0 auto',
           }}>
-
             {/* Ticket Search Form */}
-            <form onSubmit={handleTrackSearch} style={{ display: 'flex', gap: '0.75rem', marginBottom: '2rem' }}>
+            <form onSubmit={handleTrackSearch} style={{ display: 'flex', gap: '0.65rem', marginBottom: '1.75rem' }}>
               <input
                 type="text"
                 value={ticketInput}
                 onChange={e => setTicketInput(e.target.value)}
                 placeholder="Enter Ticket ID (e.g. AB-4801)"
-                style={{
-                  flex: 1, padding: '0.9rem 1.25rem', borderRadius: 16,
-                  border: '1px solid var(--border)', background: 'var(--surface)',
-                  color: 'var(--text)', fontSize: '0.95rem', fontWeight: 600,
-                  outline: 'none', textTransform: 'uppercase',
-                }}
+                className="input-sleek"
+                style={{ textTransform: 'uppercase' }}
               />
               <button
                 type="submit"
                 style={{
-                  padding: '0.9rem 1.75rem', borderRadius: 16, border: 'none',
-                  background: 'var(--primary)', color: '#fff', fontWeight: 800,
-                  fontSize: '0.95rem', cursor: 'pointer', boxShadow: '0 4px 14px rgba(99,102,241,0.3)',
+                  padding: '0.85rem 1.5rem', borderRadius: 12, border: 'none',
+                  background: 'var(--primary)', color: '#fff', fontWeight: 600,
+                  fontSize: '0.875rem', cursor: 'pointer', whiteSpace: 'nowrap',
                 }}
               >
-                Track Ticket 🔎
+                Track 🔎
               </button>
             </form>
 
-            {/* Sample Helper Buttons */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '2rem', flexWrap: 'wrap' }}>
-              <span style={{ fontSize: '0.8rem', color: 'var(--muted)', fontWeight: 600 }}>Try Demo Tickets:</span>
+            {/* Sample Buttons */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1.75rem', flexWrap: 'wrap' }}>
+              <span style={{ fontSize: '0.78rem', color: 'var(--muted)', fontWeight: 500 }}>Try Demo Tickets:</span>
               {Object.keys(DEMO_TICKETS).map(code => (
                 <button
                   key={code}
                   type="button"
                   onClick={() => { setTicketInput(code); setSearchedTicket(DEMO_TICKETS[code]); setSearchError(null); }}
                   style={{
-                    padding: '0.35rem 0.75rem', borderRadius: 99, border: '1px solid var(--border)',
-                    background: 'var(--surface)', color: 'var(--primary)', fontSize: '0.78rem',
-                    fontWeight: 700, cursor: 'pointer',
+                    padding: '0.3rem 0.65rem', borderRadius: 99, border: '1px solid var(--border)',
+                    background: 'var(--surface-2)', color: 'var(--primary)', fontSize: '0.75rem',
+                    fontWeight: 600, cursor: 'pointer',
                   }}
                 >
                   {code}
@@ -338,45 +318,41 @@ export default function RepairTools() {
               ))}
             </div>
 
-            {/* Search Error */}
             {searchError && (
-              <div style={{ padding: '1rem', borderRadius: 16, background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.2)', color: '#EF4444', fontSize: '0.875rem', fontWeight: 600 }}>
+              <div style={{ padding: '0.85rem', borderRadius: 12, background: 'rgba(239,68,68,0.1)', color: '#EF4444', fontSize: '0.85rem', fontWeight: 500 }}>
                 ⚠️ {searchError}
               </div>
             )}
 
-            {/* Ticket Result Display */}
             {searchedTicket && (
               <div style={{
-                background: 'var(--surface)', border: '1px solid var(--border)',
-                borderRadius: 24, padding: '2rem', marginTop: '1rem',
+                background: 'var(--surface-2)', border: '1px solid var(--border)',
+                borderRadius: 18, padding: '1.75rem', marginTop: '1rem',
               }}>
-                {/* Header */}
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem', borderBottom: '1px solid var(--border)', paddingBottom: '1rem' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem', borderBottom: '1px solid var(--border)', paddingBottom: '0.85rem' }}>
                   <div>
-                    <div style={{ fontSize: '1.25rem', fontWeight: 900, color: 'var(--text)' }}>
+                    <div style={{ fontSize: '1.1rem', fontWeight: 800, color: 'var(--text)' }}>
                       Ticket #{searchedTicket.id}
                     </div>
-                    <div style={{ fontSize: '0.85rem', color: 'var(--muted)' }}>
+                    <div style={{ fontSize: '0.8rem', color: 'var(--muted)' }}>
                       Owner: {searchedTicket.customerName} · {searchedTicket.device}
                     </div>
                   </div>
-                  <div style={{ fontSize: '0.78rem', fontWeight: 700, color: 'var(--primary)', background: 'rgba(99,102,241,0.1)', padding: '0.4rem 0.85rem', borderRadius: 99 }}>
-                    Updated {searchedTicket.updatedAt}
+                  <div style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--primary)', background: 'var(--primary-light)', padding: '0.3rem 0.75rem', borderRadius: 99 }}>
+                    {searchedTicket.updatedAt}
                   </div>
                 </div>
 
-                {/* Progress Steps Visual Bar */}
-                <div style={{ display: 'flex', justifyContent: 'space-between', position: 'relative', margin: '2.5rem 0 2rem' }}>
-                  {/* Connecting Line */}
+                {/* Progress Tracker */}
+                <div style={{ display: 'flex', justifyContent: 'space-between', position: 'relative', margin: '2rem 0 1.5rem' }}>
                   <div style={{
-                    position: 'absolute', top: 22, left: '5%', right: '5%', height: 3,
+                    position: 'absolute', top: 16, left: '5%', right: '5%', height: 2,
                     background: 'var(--border)', zIndex: 1,
                   }} />
                   <div style={{
-                    position: 'absolute', top: 22, left: '5%',
+                    position: 'absolute', top: 16, left: '5%',
                     width: `${((searchedTicket.step - 1) / (TRACKER_STEPS.length - 1)) * 90}%`,
-                    height: 3, background: 'var(--primary)', zIndex: 2, transition: 'width 0.6s ease',
+                    height: 2, background: 'var(--primary)', zIndex: 2, transition: 'width 0.4s ease',
                   }} />
 
                   {TRACKER_STEPS.map(s => {
@@ -386,18 +362,16 @@ export default function RepairTools() {
                     return (
                       <div key={s.step} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', zIndex: 3, position: 'relative' }}>
                         <div style={{
-                          width: 46, height: 46, borderRadius: '50%',
-                          background: isCompleted ? 'var(--primary)' : 'var(--surface-2)',
+                          width: 34, height: 34, borderRadius: '50%',
+                          background: isCompleted ? 'var(--primary)' : 'var(--surface)',
                           color: isCompleted ? '#fff' : 'var(--muted)',
-                          border: isCurrent ? '3px solid #EC4899' : `2px solid ${isCompleted ? 'var(--primary)' : 'var(--border)'}`,
+                          border: `2px solid ${isCurrent ? 'var(--primary)' : 'var(--border)'}`,
                           display: 'flex', alignItems: 'center', justifyContent: 'center',
-                          fontSize: '1.2rem', fontWeight: 800,
-                          boxShadow: isCurrent ? '0 0 16px rgba(236,72,153,0.5)' : 'none',
-                          transition: 'all 0.3s ease',
+                          fontSize: '0.8rem', fontWeight: 700,
                         }}>
-                          {s.icon}
+                          {s.step}
                         </div>
-                        <span style={{ fontSize: '0.78rem', fontWeight: isCurrent ? 800 : 600, color: isCurrent ? 'var(--primary)' : 'var(--muted)', marginTop: '0.6rem' }}>
+                        <span style={{ fontSize: '0.75rem', fontWeight: isCurrent ? 700 : 500, color: isCurrent ? 'var(--text)' : 'var(--muted)', marginTop: '0.5rem' }}>
                           {s.label}
                         </span>
                       </div>
@@ -405,12 +379,11 @@ export default function RepairTools() {
                   })}
                 </div>
 
-                {/* Latest Technician Note */}
-                <div style={{ background: 'var(--bg)', borderRadius: 16, padding: '1rem 1.25rem', border: '1px solid var(--border)' }}>
-                  <div style={{ fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase', color: 'var(--muted)', marginBottom: '0.25rem' }}>
+                <div style={{ background: 'var(--surface)', borderRadius: 12, padding: '0.85rem 1rem', border: '1px solid var(--border)' }}>
+                  <div style={{ fontSize: '0.72rem', fontWeight: 700, textTransform: 'uppercase', color: 'var(--muted)', marginBottom: '0.2rem' }}>
                     📝 Latest Status Note:
                   </div>
-                  <div style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--text)' }}>
+                  <div style={{ fontSize: '0.875rem', fontWeight: 500, color: 'var(--text)' }}>
                     "{searchedTicket.notes}"
                   </div>
                 </div>

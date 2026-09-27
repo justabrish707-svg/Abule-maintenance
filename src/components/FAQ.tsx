@@ -9,27 +9,35 @@ export default function FAQ() {
   const { t } = useLanguage();
 
   return (
-    <section id="faq" className="py-32" style={{ background: 'var(--surface)' }}>
-      <div className="max-w-200 mx-auto px-6">
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest mb-4" style={{ background: 'rgba(99,102,241,0.1)', color: 'var(--primary)' }}>
-            {t('faq_badge')}
-          </div>
-          <h2 className="text-4xl font-extrabold tracking-tight" style={{ color: 'var(--text)' }}>
+    <section id="faq" style={{ padding: '7rem 0', background: 'var(--surface-2)', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)' }}>
+      <div style={{ maxWidth: 800, margin: '0 auto', padding: '0 1.5rem' }}>
+        
+        {/* Section Header */}
+        <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+          <div className="section-badge">{t('faq_badge')}</div>
+          <h2 className="section-heading">
             {t('faq_title_1')}{' '}<span className="gradient-text">{t('faq_title_2')}</span>
           </h2>
         </div>
+
         <div
           ref={ref as React.RefObject<HTMLDivElement>}
-          className={`flex flex-col gap-3 reveal ${isVisible ? 'active' : ''}`}
+          className={`reveal ${isVisible ? 'active' : ''}`}
+          style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem' }}
         >
           {FAQS.map((faq, i) => {
             const isOpen = openIdx === i;
             return (
               <div
                 key={i}
-                className="rounded-2xl border overflow-hidden transition-all duration-300"
-                style={{ borderColor: isOpen ? 'rgba(99,102,241,0.3)' : 'var(--border)', background: 'var(--bg)' }}
+                style={{
+                  borderRadius: 14,
+                  border: '1px solid',
+                  borderColor: isOpen ? 'var(--primary)' : 'var(--border)',
+                  background: 'var(--surface)',
+                  overflow: 'hidden',
+                  transition: 'border-color 0.2s ease',
+                }}
               >
                 <button
                   type="button"
@@ -37,13 +45,30 @@ export default function FAQ() {
                   aria-expanded={isOpen}
                   aria-controls={`faq-answer-${i}`}
                   onClick={() => setOpenIdx(isOpen ? null : i)}
-                  className="w-full flex items-center justify-between px-6 py-5 text-left cursor-pointer transition-colors"
-                  style={{ background: 'transparent', border: 'none' }}
+                  style={{
+                    width: '100%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    padding: '1.15rem 1.35rem',
+                    textAlign: 'left',
+                    cursor: 'pointer',
+                    background: 'transparent',
+                    border: 'none',
+                    color: 'var(--text)',
+                  }}
                 >
-                  <h3 className="text-sm font-semibold" style={{ color: 'var(--text)' }}>{faq.q}</h3>
+                  <h3 style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--text)' }}>{faq.q}</h3>
                   <span
-                    className="text-lg shrink-0 ml-4 transition-transform duration-300"
-                    style={{ color: 'var(--primary)', transform: isOpen ? 'rotate(45deg)' : 'none' }}
+                    style={{
+                      fontSize: '1.1rem',
+                      fontWeight: 600,
+                      color: isOpen ? 'var(--primary)' : 'var(--muted)',
+                      transform: isOpen ? 'rotate(45deg)' : 'none',
+                      transition: 'transform 0.25s ease, color 0.25s ease',
+                      marginLeft: '1rem',
+                      flexShrink: 0,
+                    }}
                   >
                     +
                   </span>
@@ -52,10 +77,15 @@ export default function FAQ() {
                   id={`faq-answer-${i}`}
                   role="region"
                   aria-labelledby={`faq-header-${i}`}
-                  className="overflow-hidden transition-all duration-300"
-                  style={{ maxHeight: isOpen ? '300px' : '0px' }}
+                  style={{
+                    maxHeight: isOpen ? '240px' : '0px',
+                    overflow: 'hidden',
+                    transition: 'max-height 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+                  }}
                 >
-                  <p className="px-6 pb-5 text-sm leading-relaxed" style={{ color: 'var(--muted)' }}>{faq.a}</p>
+                  <p style={{ padding: '0 1.35rem 1.15rem', fontSize: '0.875rem', lineHeight: 1.65, color: 'var(--muted)' }}>
+                    {faq.a}
+                  </p>
                 </div>
               </div>
             );

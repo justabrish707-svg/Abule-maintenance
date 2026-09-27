@@ -10,7 +10,7 @@ export default function Navbar() {
   const [active, setActive] = useState('');
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
@@ -25,202 +25,190 @@ export default function Navbar() {
   ];
 
   return (
-    <nav
+    <header
       style={{
         position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
-        transition: 'all 0.4s cubic-bezier(0.16,1,0.3,1)',
+        transition: 'all 0.3s ease',
         background: scrolled
-          ? theme === 'dark' ? 'rgba(8,12,24,0.92)' : 'rgba(248,250,255,0.92)'
+          ? (theme === 'dark' ? 'rgba(9, 13, 22, 0.85)' : 'rgba(250, 250, 252, 0.85)')
           : 'transparent',
-        backdropFilter: scrolled ? 'blur(20px)' : 'none',
-        WebkitBackdropFilter: scrolled ? 'blur(20px)' : 'none',
+        backdropFilter: scrolled ? 'blur(16px)' : 'none',
+        WebkitBackdropFilter: scrolled ? 'blur(16px)' : 'none',
         borderBottom: scrolled ? '1px solid var(--border)' : '1px solid transparent',
-        boxShadow: scrolled ? '0 4px 24px rgba(0,0,0,0.06)' : 'none',
       }}
     >
-      <div style={{ maxWidth: 1240, margin: '0 auto', padding: '0 1.5rem' }}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 72 }}>
-          {/* Brand */}
-          <a href="#" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 1.5rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 68 }}>
+          
+          {/* Brand Logo Mark */}
+          <a href="#" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
             <div style={{
-              width: 36, height: 36, borderRadius: 12,
-              background: 'linear-gradient(135deg, #6366F1 0%, #EC4899 100%)',
+              width: 32, height: 32, borderRadius: 10,
+              background: 'var(--primary)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontSize: '1rem', fontWeight: 900, color: '#fff',
-              boxShadow: '0 4px 12px rgba(99,102,241,0.4)',
+              fontSize: '0.95rem', fontWeight: 800, color: '#fff',
+              boxShadow: '0 0 16px rgba(99, 102, 241, 0.35)',
             }}>A</div>
-            <span style={{ fontWeight: 900, fontSize: '1.15rem', letterSpacing: '-0.04em', color: 'var(--text)' }}>
-              Abule<span style={{ color: 'var(--primary)' }}>Tech</span>
+            <span style={{ fontWeight: 800, fontSize: '1.05rem', letterSpacing: '-0.03em', color: 'var(--text)' }}>
+              Abulè<span style={{ color: 'var(--primary)' }}>Tech</span>
             </span>
           </a>
 
-          {/* Desktop Nav */}
-          <ul style={{ gap: '2.2rem', listStyle: 'none', alignItems: 'center' }} className="hidden md:flex">
+          {/* Desktop Navigation Links */}
+          <nav className="hidden md:flex" style={{ gap: '2rem', alignItems: 'center' }}>
             {links.map(l => (
-              <li key={l.href} style={{ position: 'relative' }}>
-                <a
-                  href={l.href}
-                  onClick={() => setActive(l.href)}
-                  style={{
-                    textDecoration: 'none',
-                    fontSize: '0.875rem',
-                    fontWeight: 600,
-                    color: active === l.href ? 'var(--primary)' : 'var(--muted)',
-                    transition: 'color 0.2s',
-                    paddingBottom: 4,
-                  }}
-                  onMouseEnter={e => (e.currentTarget.style.color = 'var(--text)')}
-                  onMouseLeave={e => (e.currentTarget.style.color = active === l.href ? 'var(--primary)' : 'var(--muted)')}
-                >
-                  {l.label}
-                  {active === l.href && (
-                    <span style={{
-                      position: 'absolute', bottom: -2, left: 0, right: 0, height: 2,
-                      background: 'linear-gradient(90deg, var(--primary), var(--accent))',
-                      borderRadius: 99, animation: 'slideRight 0.3s ease forwards',
-                      transformOrigin: 'left',
-                    }} />
-                  )}
-                </a>
-              </li>
+              <a
+                key={l.href}
+                href={l.href}
+                onClick={() => setActive(l.href)}
+                style={{
+                  textDecoration: 'none',
+                  fontSize: '0.85rem',
+                  fontWeight: 500,
+                  color: active === l.href ? 'var(--text)' : 'var(--muted)',
+                  transition: 'color 0.2s',
+                  position: 'relative',
+                  padding: '0.35rem 0',
+                }}
+                onMouseEnter={e => (e.currentTarget.style.color = 'var(--text)')}
+                onMouseLeave={e => (e.currentTarget.style.color = active === l.href ? 'var(--text)' : 'var(--muted)')}
+              >
+                {l.label}
+                {active === l.href && (
+                  <span style={{
+                    position: 'absolute', bottom: 0, left: 0, right: 0, height: 2,
+                    background: 'var(--primary)', borderRadius: 99,
+                  }} />
+                )}
+              </a>
             ))}
-          </ul>
+          </nav>
 
-          {/* Right controls */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-            {/* EN / AM Language Switcher Pill */}
+          {/* Right Action Controls */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+            
+            {/* Language Pill Switcher */}
             <button
               onClick={() => setLanguage(language === 'en' ? 'am' : 'en')}
               style={{
                 background: 'var(--surface-2)', border: '1px solid var(--border)',
                 color: 'var(--text)', cursor: 'pointer',
-                padding: '0.35rem 0.75rem', borderRadius: 99,
+                padding: '0.35rem 0.65rem', borderRadius: 99,
                 display: 'flex', alignItems: 'center', gap: '0.35rem',
-                fontSize: '0.78rem', fontWeight: 800, transition: 'all 0.2s',
-                boxShadow: 'var(--shadow-sm)',
+                fontSize: '0.75rem', fontWeight: 700, transition: 'all 0.2s',
               }}
-              onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--primary)'; }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--border-strong)'; }}
               onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; }}
               aria-label="Toggle language"
-              title="Switch language between English and Amharic"
             >
               <span>{language === 'en' ? '🇬🇧' : '🇪🇹'}</span>
               <span>{language === 'en' ? 'EN' : 'አማ'}</span>
             </button>
 
-            {/* Theme Toggle */}
+            {/* Theme Switcher Button */}
             <button
               onClick={toggle}
               style={{
                 background: 'var(--surface-2)', border: '1px solid var(--border)',
                 color: 'var(--text)', cursor: 'pointer',
-                width: 38, height: 38, borderRadius: '50%',
+                width: 34, height: 34, borderRadius: '50%',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontSize: '1rem', transition: 'all 0.2s',
+                fontSize: '0.9rem', transition: 'all 0.2s',
               }}
-              onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--primary)'; e.currentTarget.style.boxShadow = '0 0 0 3px var(--glow-primary)'; }}
-              onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.boxShadow = ''; }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--border-strong)'; }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; }}
               aria-label="Toggle theme"
             >
               {theme === 'dark' ? '☀️' : '🌙'}
             </button>
 
-            {/* Book Now Button */}
+            {/* Primary Action Button */}
             <a
               href="#contact"
               className="hidden md:inline-flex"
               style={{
-                background: 'linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%)',
-                color: '#fff', textDecoration: 'none', padding: '0.55rem 1.25rem',
-                borderRadius: 99, fontSize: '0.85rem', fontWeight: 700,
-                boxShadow: '0 4px 14px rgba(99,102,241,0.35)',
-                transition: 'all 0.2s cubic-bezier(0.16,1,0.3,1)',
+                background: 'var(--primary)',
+                color: '#fff', textDecoration: 'none',
+                padding: '0.5rem 1.15rem', borderRadius: 99,
+                fontSize: '0.82rem', fontWeight: 600,
+                transition: 'all 0.2s ease',
+                boxShadow: '0 2px 10px rgba(99, 102, 241, 0.25)',
               }}
-              onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 8px 20px rgba(99,102,241,0.45)'; }}
-              onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = '0 4px 14px rgba(99,102,241,0.35)'; }}
+              onMouseEnter={e => { e.currentTarget.style.background = 'var(--primary-hover)'; }}
+              onMouseLeave={e => { e.currentTarget.style.background = 'var(--primary)'; }}
             >
-              {t('nav_book_now')} ↗
+              {t('nav_book_now')} →
             </a>
 
-            {/* Mobile Hamburger Button */}
+            {/* Mobile Navigation Toggle */}
             <button
-              className={`hamburger md:hidden ${menuOpen ? 'open' : ''}`}
+              className="md:hidden"
               onClick={() => setMenuOpen(!menuOpen)}
               aria-label="Toggle navigation menu"
-              aria-expanded={menuOpen}
               style={{
                 background: 'var(--surface-2)',
                 border: '1px solid var(--border)',
-                borderRadius: 12,
-                padding: '8px 10px',
+                borderRadius: 8,
+                padding: '6px 10px',
+                color: 'var(--text)',
+                fontSize: '1rem',
                 cursor: 'pointer',
               }}
             >
-              <span />
-              <span />
-              <span />
+              {menuOpen ? '✕' : '☰'}
             </button>
           </div>
         </div>
 
-        {/* Mobile Nav Menu Dropdown */}
+        {/* Mobile Nav Dropdown */}
         {menuOpen && (
           <div
             className="md:hidden"
             style={{
-              padding: '1.25rem 0 1.5rem',
+              padding: '1rem 0 1.25rem',
               borderTop: '1px solid var(--border)',
-              background: theme === 'dark' ? 'rgba(8,12,24,0.96)' : 'rgba(248,250,255,0.96)',
-              backdropFilter: 'blur(20px)',
-              WebkitBackdropFilter: 'blur(20px)',
-              borderRadius: '0 0 20px 20px',
+              background: theme === 'dark' ? '#090D16' : '#FAFAFC',
             }}
           >
-            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
               {links.map(l => (
-                <li key={l.href}>
-                  <a
-                    href={l.href}
-                    onClick={() => { setActive(l.href); setMenuOpen(false); }}
-                    style={{
-                      display: 'block',
-                      padding: '0.75rem 1rem',
-                      borderRadius: 12,
-                      textDecoration: 'none',
-                      fontSize: '1rem',
-                      fontWeight: 600,
-                      color: active === l.href ? 'var(--primary)' : 'var(--text)',
-                      background: active === l.href ? 'rgba(99,102,241,0.1)' : 'transparent',
-                    }}
-                  >
-                    {l.label}
-                  </a>
-                </li>
-              ))}
-              <li style={{ paddingTop: '0.75rem', marginTop: '0.5rem', borderTop: '1px solid var(--border)' }}>
                 <a
-                  href="#contact"
-                  onClick={() => setMenuOpen(false)}
+                  key={l.href}
+                  href={l.href}
+                  onClick={() => { setActive(l.href); setMenuOpen(false); }}
                   style={{
-                    display: 'block',
-                    textAlign: 'center',
-                    background: 'linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%)',
-                    color: '#fff',
+                    padding: '0.65rem 0.85rem',
+                    borderRadius: 8,
                     textDecoration: 'none',
-                    padding: '0.875rem',
-                    borderRadius: 99,
-                    fontWeight: 700,
-                    fontSize: '0.95rem',
-                    boxShadow: '0 4px 14px rgba(99,102,241,0.35)',
+                    fontSize: '0.9rem',
+                    fontWeight: 500,
+                    color: active === l.href ? 'var(--primary)' : 'var(--text)',
                   }}
                 >
-                  {t('nav_book_now')} ↗
+                  {l.label}
                 </a>
-              </li>
-            </ul>
+              ))}
+              <a
+                href="#contact"
+                onClick={() => setMenuOpen(false)}
+                style={{
+                  textAlign: 'center',
+                  background: 'var(--primary)',
+                  color: '#fff',
+                  textDecoration: 'none',
+                  padding: '0.75rem',
+                  borderRadius: 99,
+                  fontWeight: 600,
+                  fontSize: '0.875rem',
+                  marginTop: '0.5rem',
+                }}
+              >
+                {t('nav_book_now')} →
+              </a>
+            </div>
           </div>
         )}
       </div>
-    </nav>
+    </header>
   );
 }

@@ -85,6 +85,14 @@ export const TRANSLATIONS = {
     contact_submit: 'Submit & Send on WhatsApp',
     contact_sending: 'Connecting to WhatsApp...',
     contact_sent: '✓ Thank you! Redirecting to WhatsApp...',
+
+    // CTA
+    cta_badge: 'Free Diagnosis Available Now',
+    cta_title_1: 'Is Your PC',
+    cta_title_2: 'Letting You Down?',
+    cta_desc: 'Get a free diagnosis today. No commitment, no surprises — just real answers and fast solutions.',
+    cta_btn_book: 'Book Free Diagnosis',
+    cta_btn_wa: 'Chat on WhatsApp',
   },
 
   am: {
@@ -168,6 +176,14 @@ export const TRANSLATIONS = {
     contact_submit: 'በዋትሳፕ (WhatsApp) ይላኩ',
     contact_sending: 'ወደ ዋትሳፕ በመገናኘት ላይ...',
     contact_sent: '✓ እናመሰግናለን! ወደ ዋትሳፕ በመዛወር ላይ...',
+
+    // CTA
+    cta_badge: 'ነፃ ምርመራ አሁኑኑ ያግኙ',
+    cta_title_1: 'ኮምፒውተርዎ',
+    cta_title_2: 'ቸግሮዎታል?',
+    cta_desc: 'ዛሬውኑ ነፃ ምርመራ ያግኙ። ምንም አይነት ድብቅ ክፍያ የለም — ፈጣን እና ታማኝ ጥገና።',
+    cta_btn_book: 'ነፃ ምርመራ ይዘዙ',
+    cta_btn_wa: 'በዋትሳፕ ያውሩን',
   },
 };
 

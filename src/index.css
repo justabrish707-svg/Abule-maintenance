@@ -3,266 +3,235 @@
 
 @import "tailwindcss";
 
-/* ─── Design Tokens ────────────────────────────── */
+/* ─── Design Tokens (Apple / Linear Ultra-Minimalist) ──────────────── */
 :root {
   --primary: #6366F1;
-  --primary-light: #818CF8;
-  --secondary: #8B5CF6;
-  --accent: #EC4899;
-  --teal: #14B8A6;
-  --bg: #F8FAFF;
+  --primary-hover: #4F46E5;
+  --primary-light: rgba(99, 102, 241, 0.1);
+  --secondary: #38BDF8;
+  --accent: #F43F5E;
+  
+  --bg: #FAFAFC;
   --surface: #FFFFFF;
-  --surface-2: #F1F5FE;
-  --text: #0B0F1E;
+  --surface-2: #F1F3F9;
+  --surface-hover: #F8FAFC;
+  
+  --text: #0F172A;
   --muted: #64748B;
+  --muted-light: #94A3B8;
+  
   --border: #E2E8F0;
   --border-strong: #CBD5E1;
+  --border-focus: rgba(99, 102, 241, 0.5);
 
-  --mesh-1: #FFE4E6;
-  --mesh-2: #DBEAFE;
-  --mesh-3: #EDE9FE;
-  --mesh-4: #CCFBF1;
-
-  --glow-primary: rgba(99, 102, 241, 0.3);
-  --glow-accent: rgba(236, 72, 153, 0.2);
-
-  --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);
-  --shadow-md: 0 4px 16px rgba(0,0,0,0.06), 0 2px 6px rgba(0,0,0,0.04);
-  --shadow-lg: 0 20px 40px rgba(0,0,0,0.06), 0 8px 16px rgba(99,102,241,0.1);
-  --shadow-xl: 0 30px 60px rgba(0,0,0,0.1), 0 12px 24px rgba(99,102,241,0.15);
-  --shadow-glow: 0 0 40px rgba(99,102,241,0.15), 0 20px 40px rgba(0,0,0,0.06);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 20px -2px rgba(0, 0, 0, 0.05), 0 2px 6px -1px rgba(0, 0, 0, 0.03);
+  --shadow-lg: 0 16px 40px -4px rgba(0, 0, 0, 0.08), 0 4px 12px -2px rgba(0, 0, 0, 0.04);
+  --shadow-glow: 0 0 30px rgba(99, 102, 241, 0.12);
 }
 
 [data-theme="dark"] {
-  --bg: #080C18;
-  --surface: #0F1629;
-  --surface-2: #131929;
-  --text: #F1F5FF;
-  --muted: #8B9CC8;
-  --border: #1E2A45;
-  --border-strong: #253050;
+  --bg: #090D16;
+  --surface: #0F1626;
+  --surface-2: #141E33;
+  --surface-hover: #19253F;
+  
+  --text: #F8FAFC;
+  --muted: #94A3B8;
+  --muted-light: #64748B;
+  
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.16);
+  --border-focus: rgba(99, 102, 241, 0.6);
 
-  --mesh-1: rgba(236,72,153,0.12);
-  --mesh-2: rgba(99,102,241,0.12);
-  --mesh-3: rgba(139,92,246,0.12);
-  --mesh-4: rgba(20,184,166,0.1);
-
-  --glow-primary: rgba(99,102,241,0.4);
-  --shadow-lg: 0 20px 40px rgba(0,0,0,0.3), 0 8px 16px rgba(99,102,241,0.15);
-  --shadow-xl: 0 30px 60px rgba(0,0,0,0.4), 0 12px 24px rgba(99,102,241,0.2);
-  --shadow-glow: 0 0 60px rgba(99,102,241,0.2), 0 20px 40px rgba(0,0,0,0.3);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 40px rgba(99, 102, 241, 0.18);
 }
 
-/* ─── Reset ────────────────────────────────────── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+/* ─── Reset & Base ────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
 body {
   background-color: var(--bg);
   color: var(--text);
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.01em;
   overflow-x: hidden;
-  transition: background-color 0.4s ease, color 0.4s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* ─── Keyframes ────────────────────────────────── */
+/* ─── Keyframe Animations ────────────────────── */
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(40px); }
+  from { opacity: 0; transform: translateY(24px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+
 @keyframes fadeIn {
   from { opacity: 0; }
   to   { opacity: 1; }
 }
-@keyframes scaleIn {
-  from { opacity: 0; transform: scale(0.92); }
-  to   { opacity: 1; transform: scale(1); }
-}
-@keyframes float-slow {
-  0%   { transform: scale(1) translate(0, 0) rotate(0deg); }
-  33%  { transform: scale(1.08) translate(60px, 40px) rotate(3deg); }
-  66%  { transform: scale(0.94) translate(-40px, 60px) rotate(-2deg); }
-  100% { transform: scale(1.04) translate(-60px, -30px) rotate(1deg); }
-}
-@keyframes gradient-text {
-  0%   { background-position: 0% 50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-@keyframes shimmer {
-  0%   { background-position: -200% center; }
-  100% { background-position: 200% center; }
-}
-@keyframes pulse-ring {
-  0%   { box-shadow: 0 0 0 0 var(--glow-primary); }
-  70%  { box-shadow: 0 0 0 10px transparent; }
-  100% { box-shadow: 0 0 0 0 transparent; }
-}
-@keyframes wa-pulse {
-  0%, 100% { box-shadow: 0 8px 30px rgba(37,211,102,0.5); }
-  50%       { box-shadow: 0 8px 40px rgba(37,211,102,0.8), 0 0 0 12px rgba(37,211,102,0.1); }
-}
-@keyframes floatHero {
-  0%   { transform: translateY(-42%) rotate(0deg); }
-  100% { transform: translateY(-46%) rotate(0.5deg); }
-}
-@keyframes pulse-dot {
-  0%   { box-shadow: 0 0 0 0 rgba(34,197,94,0.7); }
-  70%  { box-shadow: 0 0 0 8px rgba(34,197,94,0); }
-  100% { box-shadow: 0 0 0 0 rgba(34,197,94,0); }
-}
-@keyframes spin {
-  100% { transform: translate(-50%, -50%) rotate(360deg); }
-}
-@keyframes borderGlow {
-  0%, 100% { border-color: rgba(99,102,241,0.3); }
-  50%       { border-color: rgba(99,102,241,0.7); }
-}
-@keyframes slideRight {
-  from { transform: scaleX(0); }
-  to   { transform: scaleX(1); }
-}
-@keyframes countUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
+
+@keyframes bounce-scroll {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-6px); }
+  60% { transform: translateY(-3px); }
 }
 
-/* ─── Gradient Text ────────────────────────────── */
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.scroll-indicator {
+  animation: bounce-scroll 2.5s infinite;
+  transition: all 0.2s ease;
+}
+.scroll-indicator:hover {
+  transform: scale(1.1);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+/* ─── Typography & Utilities ──────────────────── */
 .gradient-text {
-  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 50%, var(--secondary) 100%);
-  background-size: 300% auto;
+  background: linear-gradient(135deg, #F8FAFC 0%, #818CF8 50%, #38BDF8 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: gradient-text 5s ease infinite;
 }
 
-.gradient-text-alt {
-  background: linear-gradient(135deg, var(--teal) 0%, var(--primary) 60%, var(--accent) 100%);
-  background-size: 200% auto;
+[data-theme="light"] .gradient-text {
+  background: linear-gradient(135deg, #0F172A 0%, #4F46E5 50%, #0284C7 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: gradient-text 5s ease infinite;
 }
 
-/* ─── Mesh Blobs ───────────────────────────────── */
-.mesh-blob {
-  position: absolute;
-  filter: blur(90px);
-  border-radius: 50%;
-  opacity: 0.65;
-  will-change: transform;
-  animation: float-slow 22s infinite alternate ease-in-out;
-}
-
-/* ─── Reveal ───────────────────────────────────── */
 .reveal {
   opacity: 0;
-  transform: translateY(32px);
-  transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1);
+  transform: translateY(24px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.reveal.active { opacity: 1; transform: translateY(0); }
-
-/* ─── Glass Surface ────────────────────────────── */
-.glass {
-  background: rgba(255,255,255,0.7);
-  -webkit-backdrop-filter: blur(20px);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255,255,255,0.5);
-}
-[data-theme="dark"] .glass {
-  background: rgba(15,22,41,0.7);
-  border: 1px solid rgba(255,255,255,0.06);
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-/* ─── Section Badge ────────────────────────────── */
+/* ─── Linear/Apple Section Badge ─────────────── */
 .section-badge {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.4rem 1rem;
+  padding: 0.35rem 0.85rem;
   border-radius: 99px;
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  background: linear-gradient(135deg, rgba(99,102,241,0.12), rgba(139,92,246,0.08));
+  background: var(--surface-2);
   color: var(--primary);
-  border: 1px solid rgba(99,102,241,0.18);
+  border: 1px solid var(--border);
   margin-bottom: 1.25rem;
 }
 
-/* ─── Section Header ───────────────────────────── */
+/* ─── Section Heading ────────────────────────── */
 .section-heading {
-  font-size: clamp(2rem, 4vw, 3.25rem);
-  font-weight: 900;
-  letter-spacing: -0.04em;
-  line-height: 1.08;
+  font-size: clamp(2.2rem, 4vw, 3.5rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
   color: var(--text);
 }
 
-/* ─── Premium Card ─────────────────────────────── */
-.card {
+/* ─── Sleek Minimal Card ─────────────────────── */
+.card-sleek {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 24px;
-  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1),
-              box-shadow 0.4s cubic-bezier(0.16,1,0.3,1),
+  border-radius: 20px;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
               border-color 0.3s ease;
   position: relative;
-  overflow: hidden;
 }
-.card::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, transparent 60%);
-  pointer-events: none;
-}
-.card:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--shadow-xl);
-  border-color: rgba(99,102,241,0.2);
+.card-sleek:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-lg);
 }
 
-/* ─── WhatsApp Float ───────────────────────────── */
+/* ─── Form Inputs ────────────────────────────── */
+.input-sleek {
+  width: 100%;
+  padding: 0.85rem 1.15rem;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 0.9rem;
+  font-weight: 500;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  font-family: inherit;
+}
+.input-sleek:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+/* ─── Floating WhatsApp Button ────────────────── */
 .whatsapp-float {
   position: fixed;
-  bottom: 2rem; right: 2rem;
+  bottom: 2rem;
+  right: 2rem;
   z-index: 999;
-  width: 58px; height: 58px;
-  background: linear-gradient(135deg, #25D366, #20BA58);
+  width: 52px;
+  height: 52px;
+  background: #25D366;
   border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 8px 30px rgba(37,211,102,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4);
   text-decoration: none;
-  transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
-  animation: wa-pulse 3s ease infinite;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
-.whatsapp-float:hover { transform: scale(1.15) translateY(-3px); }
+.whatsapp-float:hover {
+  transform: scale(1.1);
+}
 .whatsapp-tooltip {
   position: absolute;
-  right: 70px;
+  right: 64px;
   background: var(--text);
-  color: #FFF;
-  padding: 0.5rem 1rem;
-  border-radius: 10px;
-  font-size: 0.82rem;
+  color: var(--bg);
+  padding: 0.4rem 0.85rem;
+  border-radius: 8px;
+  font-size: 0.8rem;
   font-weight: 600;
   white-space: nowrap;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.2s, transform 0.2s;
-  transform: translateX(8px);
+  transform: translateX(6px);
 }
-.whatsapp-float:hover .whatsapp-tooltip { opacity: 1; transform: translateX(0); }
+.whatsapp-float:hover .whatsapp-tooltip {
+  opacity: 1;
+  transform: translateX(0);
+}
 
-/* ─── Grid & Layout Utilities ─────────────────── */
+/* ─── Grid Utilities ─────────────────────────── */
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -286,4 +255,3 @@ body {
 @media (max-width: 640px) {
   .responsive-3-grid { grid-template-columns: 1fr; }
 }
-

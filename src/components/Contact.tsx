@@ -1,6 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import type { FormEvent } from 'react';
 import { useLanguage } from '../context/LanguageContext';
+import { validateContactSubmission, cleanPhone, sanitizeText, type ContactValidationErrors } from '../utils/validation';
+import { checkRateLimit, recordActionTimestamp } from '../utils/rateLimiter';
+import { trackEvent } from '../utils/analytics';
 
 interface FormState {
   name: string;
@@ -14,24 +17,69 @@ const INITIAL: FormState = { name: '', phone: '', device: '', issue: '' };
 export default function Contact() {
   const { t } = useLanguage();
   const [form, setForm] = useState<FormState>(INITIAL);
+  const [errors, setErrors] = useState<ContactValidationErrors>({});
+  const [rateLimitSec, setRateLimitSec] = useState<number>(0);
   const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
 
+  // Countdown timer for rate limiting
+  useEffect(() => {
+    if (rateLimitSec <= 0) return;
+    const interval = setInterval(() => {
+      setRateLimitSec(prev => (prev > 1 ? prev - 1 : 0));
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [rateLimitSec]);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-    setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
+    const { name, value } = e.target;
+    setForm(prev => ({ ...prev, [name]: value }));
+    // Clear field-specific error upon typing
+    if (errors[name as keyof ContactValidationErrors]) {
+      setErrors(prev => ({ ...prev, [name]: undefined }));
+    }
   };
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
+
+    // 1. Check Rate Limit (Anti-Spam)
+    const rateCheck = checkRateLimit('contact_submit', 30);
+    if (!rateCheck.allowed) {
+      setRateLimitSec(rateCheck.remainingSeconds);
+      return;
+    }
+
+    // 2. Strict Input Validation & Sanitization
+    const validation = validateContactSubmission(form);
+    if (!validation.isValid) {
+      setErrors(validation.errors);
+      return;
+    }
+
+    setErrors({});
     setLoading(true);
+
+    const safeName = sanitizeText(form.name, 80);
+    const safePhone = cleanPhone(form.phone);
+    const safeIssue = sanitizeText(form.issue, 800);
+
     setTimeout(() => {
-      const msg = `Hello Abule Tech! 👋\n\n*Name:* ${form.name}\n*Phone:* ${form.phone}\n*Device:* ${form.device}\n*Problem:* ${form.issue}\n\nPlease help me fix my device. Thank you!`;
+      const msg = `Hello Abule Tech! 👋\n\n*Name:* ${safeName}\n*Phone:* ${safePhone}\n*Device:* ${form.device}\n*Problem:* ${safeIssue}\n\nPlease help me fix my device. Thank you!`;
       window.open(`https://wa.me/251954897133?text=${encodeURIComponent(msg)}`, '_blank');
+
+      // Record rate limit & log analytics
+      recordActionTimestamp('contact_submit');
+      trackEvent('contact_form_submitted', {
+        device: form.device,
+        hasPhone: Boolean(safePhone),
+      });
+
       setLoading(false);
       setSent(true);
       setForm(INITIAL);
-      setTimeout(() => setSent(false), 5000);
-    }, 1200);
+      setTimeout(() => setSent(false), 6000);
+    }, 1000);
   };
 
   const channels = [
@@ -120,64 +168,103 @@ export default function Contact() {
               Schedule Diagnosis
             </h3>
 
+            {/* Rate limit cooldown alert */}
+            {rateLimitSec > 0 && (
+              <div style={{ marginBottom: '1rem', padding: '0.75rem 1rem', borderRadius: 12, background: 'rgba(239, 68, 68, 0.1)', border: '1px solid rgba(239, 68, 68, 0.25)', color: '#EF4444', fontSize: '0.825rem', fontWeight: 600 }}>
+                ⏳ Please wait {rateLimitSec}s before sending another request to prevent duplicates.
+              </div>
+            )}
+
+            {/* Success notification */}
             {sent && (
               <div style={{ marginBottom: '1rem', padding: '0.75rem 1rem', borderRadius: 12, background: 'rgba(34,197,94,0.1)', border: '1px solid rgba(34,197,94,0.2)', color: '#22C55E', fontSize: '0.85rem', fontWeight: 600 }}>
                 {t('contact_sent')}
               </div>
             )}
 
-            <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
-              <input
-                id="f-name"
-                name="name"
-                autoComplete="name"
-                required
-                value={form.name}
-                onChange={handleChange}
-                placeholder={t('contact_name_ph')}
-                className="input-sleek"
-              />
-              <input
-                id="f-phone"
-                name="phone"
-                type="tel"
-                autoComplete="tel"
-                required
-                value={form.phone}
-                onChange={handleChange}
-                placeholder={t('contact_phone_ph')}
-                className="input-sleek"
-              />
-              <select
-                id="f-device"
-                name="device"
-                autoComplete="off"
-                required
-                value={form.device}
-                onChange={handleChange}
-                className="input-sleek"
-              >
-                <option value="">{t('contact_device_ph')}</option>
-                <option value="Desktop PC">Desktop PC</option>
-                <option value="Laptop">Laptop</option>
-                <option value="All-in-One">All-in-One</option>
-                <option value="Other">Other</option>
-              </select>
-              <textarea
-                id="f-issue"
-                name="issue"
-                autoComplete="off"
-                required
-                value={form.issue}
-                onChange={handleChange}
-                placeholder={t('contact_issue_ph')}
-                rows={4}
-                className="input-sleek"
-                style={{ resize: 'vertical' }}
-              />
+            <form onSubmit={handleSubmit} noValidate style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
+              <div>
+                <input
+                  id="f-name"
+                  name="name"
+                  autoComplete="name"
+                  value={form.name}
+                  onChange={handleChange}
+                  placeholder={t('contact_name_ph')}
+                  className="input-sleek"
+                  style={{ borderColor: errors.name ? '#EF4444' : undefined }}
+                />
+                {errors.name && (
+                  <div style={{ color: '#EF4444', fontSize: '0.75rem', marginTop: '0.25rem', paddingLeft: '0.25rem' }}>
+                    {errors.name}
+                  </div>
+                )}
+              </div>
+
+              <div>
+                <input
+                  id="f-phone"
+                  name="phone"
+                  type="tel"
+                  autoComplete="tel"
+                  value={form.phone}
+                  onChange={handleChange}
+                  placeholder={t('contact_phone_ph')}
+                  className="input-sleek"
+                  style={{ borderColor: errors.phone ? '#EF4444' : undefined }}
+                />
+                {errors.phone && (
+                  <div style={{ color: '#EF4444', fontSize: '0.75rem', marginTop: '0.25rem', paddingLeft: '0.25rem' }}>
+                    {errors.phone}
+                  </div>
+                )}
+              </div>
+
+              <div>
+                <select
+                  id="f-device"
+                  name="device"
+                  autoComplete="off"
+                  value={form.device}
+                  onChange={handleChange}
+                  className="input-sleek"
+                  style={{ borderColor: errors.device ? '#EF4444' : undefined }}
+                >
+                  <option value="">{t('contact_device_ph')}</option>
+                  <option value="Desktop PC">Desktop PC</option>
+                  <option value="Laptop">Laptop</option>
+                  <option value="All-in-One">All-in-One</option>
+                  <option value="Other">Other</option>
+                </select>
+                {errors.device && (
+                  <div style={{ color: '#EF4444', fontSize: '0.75rem', marginTop: '0.25rem', paddingLeft: '0.25rem' }}>
+                    {errors.device}
+                  </div>
+                )}
+              </div>
+
+              <div>
+                <textarea
+                  id="f-issue"
+                  name="issue"
+                  autoComplete="off"
+                  value={form.issue}
+                  onChange={handleChange}
+                  placeholder={t('contact_issue_ph')}
+                  rows={4}
+                  className="input-sleek"
+                  style={{ resize: 'vertical', borderColor: errors.issue ? '#EF4444' : undefined }}
+                />
+                {errors.issue && (
+                  <div style={{ color: '#EF4444', fontSize: '0.75rem', marginTop: '0.25rem', paddingLeft: '0.25rem' }}>
+                    {errors.issue}
+                  </div>
+                )}
+              </div>
+
               <button
                 type="submit"
-                disabled={loading}
+                disabled={loading || rateLimitSec > 0}
                 style={{
                   width: '100%',
                   padding: '0.85rem',
@@ -185,16 +272,24 @@ export default function Contact() {
                   fontWeight: 600,
                   fontSize: '0.875rem',
                   color: '#fff',
-                  background: 'var(--primary)',
+                  background: (rateLimitSec > 0 || loading) ? 'var(--muted)' : 'var(--primary)',
                   border: 'none',
-                  cursor: 'pointer',
+                  cursor: (rateLimitSec > 0 || loading) ? 'not-allowed' : 'pointer',
                   transition: 'background 0.2s ease',
                   marginTop: '0.5rem',
                 }}
-                onMouseEnter={e => { e.currentTarget.style.background = 'var(--primary-hover)'; }}
-                onMouseLeave={e => { e.currentTarget.style.background = 'var(--primary)'; }}
+                onMouseEnter={e => {
+                  if (rateLimitSec === 0 && !loading) e.currentTarget.style.background = 'var(--primary-hover)';
+                }}
+                onMouseLeave={e => {
+                  if (rateLimitSec === 0 && !loading) e.currentTarget.style.background = 'var(--primary)';
+                }}
               >
-                {loading ? t('contact_sending') : `📱 ${t('contact_submit')} →`}
+                {loading
+                  ? t('contact_sending')
+                  : rateLimitSec > 0
+                  ? `⏳ Wait ${rateLimitSec}s`
+                  : `📱 ${t('contact_submit')} →`}
               </button>
             </form>
           </div>

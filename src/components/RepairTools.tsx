@@ -45,27 +45,30 @@ interface TicketStatus {
 const DEMO_TICKETS: Record<string, TicketStatus> = {
   'AB-4801': {
     id: 'AB-4801',
-    customerName: 'Alemayehu T.',
+    ticket_id: 'AB-4801',
+    customer_name: 'Alemayehu T.',
     device: 'Dell XPS 15 (SSD Issue)',
-    step: 3,
-    updatedAt: 'Today at 2:15 PM',
-    notes: 'Replacement NVMe SSD installed. Restoring user documents.',
+    status_step: 3,
+    created_at: 'Today at 2:15 PM',
+    issue: 'Replacement NVMe SSD installed. Restoring user documents.',
   },
   'AB-1024': {
     id: 'AB-1024',
-    customerName: 'Bethlehem G.',
+    ticket_id: 'AB-1024',
+    customer_name: 'Bethlehem G.',
     device: 'HP Pavilion (Screen Fix)',
-    step: 5,
-    updatedAt: 'Today at 11:30 AM',
-    notes: 'Repair complete and quality tested. Ready for pickup at Arba Minch shop!',
+    status_step: 5,
+    created_at: 'Today at 11:30 AM',
+    issue: 'Repair complete and quality tested. Ready for pickup at Arba Minch shop!',
   },
   'AB-7730': {
     id: 'AB-7730',
-    customerName: 'Yosef M.',
+    ticket_id: 'AB-7730',
+    customer_name: 'Yosef M.',
     device: 'Lenovo ThinkPad (No Power)',
-    step: 2,
-    updatedAt: 'Today at 4:00 PM',
-    notes: 'Power rail diagnostic ongoing under microscope.',
+    status_step: 2,
+    created_at: 'Today at 4:00 PM',
+    issue: 'Power rail diagnostic ongoing under microscope.',
   },
 };
 
@@ -102,10 +105,7 @@ export default function RepairTools() {
     // Check demo tickets first for easy testing
     if (DEMO_TICKETS[query]) {
       const demo = DEMO_TICKETS[query];
-      setSearchedTicket({
-        id: demo.id, ticket_id: demo.id, customer_name: demo.customerName, 
-        device: demo.device, issue: demo.notes, status_step: demo.step, created_at: demo.updatedAt
-      });
+      setSearchedTicket(demo);
       setSearchError(null);
       return;
     }

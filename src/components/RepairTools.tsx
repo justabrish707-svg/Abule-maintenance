@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { supabase } from '../utils/supabase';
 
 // Estimator Types & Data
 interface DeviceOption {
@@ -33,11 +34,12 @@ const ISSUES: IssueOption[] = [
 
 interface TicketStatus {
   id: string;
-  customerName: string;
+  ticket_id: string;
+  customer_name: string;
   device: string;
-  step: number; // 1 to 5
-  updatedAt: string;
-  notes: string;
+  issue: string;
+  status_step: number; // 1 to 5
+  created_at: string;
 }
 
 const DEMO_TICKETS: Record<string, TicketStatus> = {
@@ -87,20 +89,43 @@ export default function RepairTools() {
   const [searchedTicket, setSearchedTicket] = useState<TicketStatus | null>(null);
   const [searchError, setSearchError] = useState<string | null>(null);
 
+  const [loadingSearch, setLoadingSearch] = useState(false);
+
   const currentDevice = DEVICES.find(d => d.id === selectedDevice) || DEVICES[0];
   const currentIssue = ISSUES.find(i => i.id === selectedIssue) || ISSUES[0];
 
-  const handleTrackSearch = (e: React.FormEvent) => {
+  const handleTrackSearch = async (e: React.FormEvent) => {
     e.preventDefault();
     const query = ticketInput.trim().toUpperCase();
     if (!query) return;
 
+    // Check demo tickets first for easy testing
     if (DEMO_TICKETS[query]) {
-      setSearchedTicket(DEMO_TICKETS[query]);
+      const demo = DEMO_TICKETS[query];
+      setSearchedTicket({
+        id: demo.id, ticket_id: demo.id, customer_name: demo.customerName, 
+        device: demo.device, issue: demo.notes, status_step: demo.step, created_at: demo.updatedAt
+      });
       setSearchError(null);
-    } else {
+      return;
+    }
+
+    setLoadingSearch(true);
+    setSearchError(null);
+
+    const { data, error } = await supabase
+      .from('tickets')
+      .select('*')
+      .eq('ticket_id', query)
+      .single();
+
+    setLoadingSearch(false);
+
+    if (error || !data) {
       setSearchedTicket(null);
-      setSearchError(`No ticket found for "${query}". Try sample codes: AB-4801, AB-1024, or AB-7730.`);
+      setSearchError(`No ticket found for "${query}". Please check your ticket ID.`);
+    } else {
+      setSearchedTicket(data);
     }
   };
 
@@ -286,13 +311,15 @@ export default function RepairTools() {
               />
               <button
                 type="submit"
+                disabled={loadingSearch}
                 style={{
                   padding: '0.85rem 1.5rem', borderRadius: 12, border: 'none',
                   background: 'var(--primary)', color: '#fff', fontWeight: 600,
                   fontSize: '0.875rem', cursor: 'pointer', whiteSpace: 'nowrap',
+                  opacity: loadingSearch ? 0.7 : 1,
                 }}
               >
-                Track 🔎
+                {loadingSearch ? 'Searching...' : 'Track 🔎'}
               </button>
             </form>
 
@@ -329,14 +356,14 @@ export default function RepairTools() {
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem', borderBottom: '1px solid var(--border)', paddingBottom: '0.85rem' }}>
                   <div>
                     <div style={{ fontSize: '1.1rem', fontWeight: 800, color: 'var(--text)' }}>
-                      Ticket #{searchedTicket.id}
+                      Ticket #{searchedTicket.ticket_id}
                     </div>
                     <div style={{ fontSize: '0.8rem', color: 'var(--muted)' }}>
-                      Owner: {searchedTicket.customerName} · {searchedTicket.device}
+                      Owner: {searchedTicket.customer_name} · {searchedTicket.device}
                     </div>
                   </div>
                   <div style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--primary)', background: 'var(--primary-light)', padding: '0.3rem 0.75rem', borderRadius: 99 }}>
-                    {searchedTicket.updatedAt}
+                    Updated Recently
                   </div>
                 </div>
 
@@ -349,13 +376,13 @@ export default function RepairTools() {
                     }} />
                   <div style={{
                     position: 'absolute', top: 16, left: '5%',
-                    width: `${((searchedTicket.step - 1) / (TRACKER_STEPS.length - 1)) * 90}%`,
+                    width: `${((searchedTicket.status_step - 1) / (TRACKER_STEPS.length - 1)) * 90}%`,
                     height: 2, background: 'var(--primary)', zIndex: 2, transition: 'width 0.4s ease',
                   }} />
 
                   {TRACKER_STEPS.map(s => {
-                    const isCompleted = s.step <= searchedTicket.step;
-                    const isCurrent = s.step === searchedTicket.step;
+                    const isCompleted = s.step <= searchedTicket.status_step;
+                    const isCurrent = s.step === searchedTicket.status_step;
 
                     return (
                       <div key={s.step} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', zIndex: 3, position: 'relative' }}>
@@ -380,10 +407,10 @@ export default function RepairTools() {
 
                 <div style={{ background: 'var(--surface)', borderRadius: 12, padding: '0.85rem 1rem', border: '1px solid var(--border)' }}>
                   <div style={{ fontSize: '0.72rem', fontWeight: 700, textTransform: 'uppercase', color: 'var(--muted)', marginBottom: '0.2rem' }}>
-                    📝 Latest Status Note:
+                    📝 Reported Issue:
                   </div>
                   <div style={{ fontSize: '0.875rem', fontWeight: 500, color: 'var(--text)' }}>
-                    "{searchedTicket.notes}"
+                    "{searchedTicket.issue}"
                   </div>
                 </div>
               </div>

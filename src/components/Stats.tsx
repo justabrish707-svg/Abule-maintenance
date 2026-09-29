@@ -64,7 +64,7 @@ export default function Stats() {
               }}
             >
               <div style={{
-                fontSize: '2.5rem',
+                fontSize: 'clamp(1.75rem, 4.5vw, 2.5rem)',
                 fontWeight: 800,
                 letterSpacing: '-0.04em',
                 color: 'var(--text)',

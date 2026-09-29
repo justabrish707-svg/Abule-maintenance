@@ -4,7 +4,7 @@ export default function CTA() {
   const { t } = useLanguage();
 
   return (
-    <section style={{ padding: '6rem 1.5rem', position: 'relative', overflow: 'hidden' }}>
+    <section style={{ padding: 'clamp(3.5rem, 8vw, 6rem) 1.5rem', position: 'relative', overflow: 'hidden' }}>
       {/* Subtle ambient glow */}
       <div style={{
         position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)',

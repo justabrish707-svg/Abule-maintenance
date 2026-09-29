@@ -67,7 +67,7 @@ export default function Services() {
   const { t } = useLanguage();
 
   return (
-    <section id="services" style={{ padding: '7rem 0', background: 'var(--bg)' }}>
+    <section id="services" style={{ padding: 'clamp(4.5rem, 8vw, 7rem) 0', background: 'var(--bg)' }}>
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 1.5rem' }}>
         
         {/* Section Header */}

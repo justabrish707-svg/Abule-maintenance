@@ -37,7 +37,7 @@ export default function Navbar() {
         borderBottom: scrolled ? '1px solid var(--border)' : '1px solid transparent',
       }}
     >
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 1.5rem' }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 clamp(1rem, 3vw, 1.5rem)' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 68 }}>
           
           {/* Brand Logo Mark */}
@@ -55,7 +55,7 @@ export default function Navbar() {
           </a>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex" style={{ gap: '2rem', alignItems: 'center' }}>
+          <nav className="hidden lg:flex" style={{ gap: '1.5rem', alignItems: 'center' }}>
             {links.map(l => (
               <a
                 key={l.href}
@@ -125,7 +125,7 @@ export default function Navbar() {
             {/* Primary Action Button */}
             <a
               href="#contact"
-              className="hidden md:inline-flex"
+              className="hidden lg:inline-flex"
               style={{
                 background: 'var(--primary)',
                 color: '#fff', textDecoration: 'none',
@@ -142,7 +142,7 @@ export default function Navbar() {
 
             {/* Mobile Navigation Toggle */}
             <button
-              className="md:hidden"
+              className="lg:hidden"
               onClick={() => setMenuOpen(!menuOpen)}
               aria-label="Toggle navigation menu"
               style={{
@@ -163,11 +163,16 @@ export default function Navbar() {
         {/* Mobile Nav Dropdown */}
         {menuOpen && (
           <div
-            className="md:hidden"
+            className="lg:hidden"
             style={{
               padding: '1rem 0 1.25rem',
               borderTop: '1px solid var(--border)',
               background: theme === 'dark' ? '#090D16' : '#FAFAFC',
+              position: 'relative',
+              left: `calc(-1 * clamp(1rem, 3vw, 1.5rem))`,
+              width: `calc(100% + 2 * clamp(1rem, 3vw, 1.5rem))`,
+              paddingLeft: 'clamp(1rem, 3vw, 1.5rem)',
+              paddingRight: 'clamp(1rem, 3vw, 1.5rem)',
             }}
           >
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>

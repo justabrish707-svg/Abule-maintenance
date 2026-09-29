@@ -108,7 +108,7 @@ export default function RepairTools() {
   const whatsappUrl = `https://wa.me/251954897133?text=${encodeURIComponent(bookingMsg)}`;
 
   return (
-    <section id="tools" style={{ padding: '7rem 0', background: 'var(--surface-2)', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)' }}>
+    <section id="tools" style={{ padding: 'clamp(4.5rem, 8vw, 7rem) 0', background: 'var(--surface-2)', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)' }}>
       <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 1.5rem' }}>
 
         {/* Section Header */}
@@ -123,12 +123,7 @@ export default function RepairTools() {
         </div>
 
         {/* Tab Segmented Control */}
-        <div style={{
-          display: 'flex', justifyContent: 'center', gap: '0.5rem',
-          maxWidth: 380, margin: '0 auto 3rem', padding: '0.35rem',
-          background: 'var(--surface)', border: '1px solid var(--border)',
-          borderRadius: 99,
-        }}>
+        <div className="tab-control">
           <button
             onClick={() => setActiveTab('estimator')}
             style={{
@@ -157,11 +152,13 @@ export default function RepairTools() {
 
         {/* TAB 1: ESTIMATOR */}
         {activeTab === 'estimator' && (
-          <div style={{
-            background: 'var(--surface)', border: '1px solid var(--border)',
-            borderRadius: 24, padding: '2.25rem', boxShadow: 'var(--shadow-md)',
-            display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2.5rem',
-          }} className="responsive-3-grid">
+          <div
+            className="estimator-grid"
+            style={{
+              background: 'var(--surface)', border: '1px solid var(--border)',
+              borderRadius: 24, padding: 'clamp(1.25rem, 3.5vw, 2.25rem)', boxShadow: 'var(--shadow-md)',
+            }}
+          >
 
             {/* Left Column */}
             <div>
@@ -278,7 +275,7 @@ export default function RepairTools() {
             maxWidth: 720, margin: '0 auto',
           }}>
             {/* Ticket Search Form */}
-            <form onSubmit={handleTrackSearch} style={{ display: 'flex', gap: '0.65rem', marginBottom: '1.75rem' }}>
+            <form onSubmit={handleTrackSearch} className="tracker-form" style={{ marginBottom: '1.75rem' }}>
               <input
                 type="text"
                 value={ticketInput}
@@ -344,11 +341,12 @@ export default function RepairTools() {
                 </div>
 
                 {/* Progress Tracker */}
-                <div style={{ display: 'flex', justifyContent: 'space-between', position: 'relative', margin: '2rem 0 1.5rem' }}>
-                  <div style={{
-                    position: 'absolute', top: 16, left: '5%', right: '5%', height: 2,
-                    background: 'var(--border)', zIndex: 1,
-                  }} />
+                <div style={{ overflowX: 'auto', paddingBottom: '0.5rem' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', position: 'relative', margin: '2rem 0 1.5rem', minWidth: 320 }}>
+                    <div style={{
+                      position: 'absolute', top: 16, left: '5%', right: '5%', height: 2,
+                      background: 'var(--border)', zIndex: 1,
+                    }} />
                   <div style={{
                     position: 'absolute', top: 16, left: '5%',
                     width: `${((searchedTicket.step - 1) / (TRACKER_STEPS.length - 1)) * 90}%`,
@@ -378,6 +376,7 @@ export default function RepairTools() {
                     );
                   })}
                 </div>
+              </div>
 
                 <div style={{ background: 'var(--surface)', borderRadius: 12, padding: '0.85rem 1rem', border: '1px solid var(--border)' }}>
                   <div style={{ fontSize: '0.72rem', fontWeight: 700, textTransform: 'uppercase', color: 'var(--muted)', marginBottom: '0.2rem' }}>

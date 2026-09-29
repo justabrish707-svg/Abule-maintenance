@@ -94,7 +94,7 @@ export default function Pricing() {
   const { t } = useLanguage();
 
   return (
-    <section id="pricing" style={{ padding: '7rem 0', background: 'var(--bg)' }}>
+    <section id="pricing" style={{ padding: 'clamp(4.5rem, 8vw, 7rem) 0', background: 'var(--bg)' }}>
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 1.5rem' }}>
         
         {/* Section Header */}
@@ -113,13 +113,7 @@ export default function Pricing() {
         </div>
 
         {/* Guarantee Banner */}
-        <div style={{
-          marginTop: '3.5rem', padding: '1rem 1.5rem', borderRadius: 99,
-          background: 'var(--surface-2)', border: '1px solid var(--border)',
-          maxWidth: 640, margin: '3.5rem auto 0', textAlign: 'center',
-          fontSize: '0.825rem', fontWeight: 600, color: 'var(--muted)',
-          display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap',
-        }}>
+        <div className="pricing-guarantee">
           <span>🔒 No-fix, no-fee guarantee</span>
           <span>•</span>
           <span>📋 Free written estimate</span>

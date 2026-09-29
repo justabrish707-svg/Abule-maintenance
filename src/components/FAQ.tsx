@@ -9,7 +9,7 @@ export default function FAQ() {
   const { t } = useLanguage();
 
   return (
-    <section id="faq" style={{ padding: '7rem 0', background: 'var(--surface-2)', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)' }}>
+    <section id="faq" style={{ padding: 'clamp(4.5rem, 8vw, 7rem) 0', background: 'var(--surface-2)', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)' }}>
       <div style={{ maxWidth: 800, margin: '0 auto', padding: '0 1.5rem' }}>
         
         {/* Section Header */}

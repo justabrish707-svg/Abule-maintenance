@@ -83,7 +83,7 @@ export default function Testimonials() {
     : TESTIMONIALS.filter(t => t.category === filter);
 
   return (
-    <section style={{ padding: '7rem 0', background: 'var(--surface-2)', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)' }}>
+    <section id="reviews" style={{ padding: 'clamp(4.5rem, 8vw, 7rem) 0', background: 'var(--surface-2)', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)' }}>
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 1.5rem' }}>
         
         {/* Section Header */}
@@ -132,21 +132,22 @@ export default function Testimonials() {
         <div style={{
           marginTop: '3.5rem', padding: '1.5rem 2rem', borderRadius: 18,
           background: 'var(--surface)', border: '1px solid var(--border)',
-          display: 'flex', alignItems: 'center', justifyContent: 'space-around', gap: '1.5rem', flexWrap: 'wrap',
         }}>
-          <div style={{ textAlign: 'center' }}>
-            <div style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--text)', letterSpacing: '-0.03em' }}>4.9 / 5.0</div>
-            <div style={{ fontSize: '0.78rem', color: 'var(--muted)', marginTop: 2 }}>Average Customer Rating</div>
-          </div>
-          <div style={{ width: 1, height: 36, background: 'var(--border)' }} />
-          <div style={{ textAlign: 'center' }}>
-            <div style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--text)', letterSpacing: '-0.03em' }}>500+</div>
-            <div style={{ fontSize: '0.78rem', color: 'var(--muted)', marginTop: 2 }}>Devices Fixed</div>
-          </div>
-          <div style={{ width: 1, height: 36, background: 'var(--border)' }} />
-          <div style={{ textAlign: 'center' }}>
-            <div style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--text)', letterSpacing: '-0.03em' }}>98%</div>
-            <div style={{ fontSize: '0.78rem', color: 'var(--muted)', marginTop: 2 }}>Recommendation Rate</div>
+          <div className="rating-bar">
+            <div style={{ textAlign: 'center' }}>
+              <div style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--text)', letterSpacing: '-0.03em' }}>4.9 / 5.0</div>
+              <div style={{ fontSize: '0.78rem', color: 'var(--muted)', marginTop: 2 }}>Average Customer Rating</div>
+            </div>
+            <div className="rating-bar-divider" />
+            <div style={{ textAlign: 'center' }}>
+              <div style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--text)', letterSpacing: '-0.03em' }}>500+</div>
+              <div style={{ fontSize: '0.78rem', color: 'var(--muted)', marginTop: 2 }}>Devices Fixed</div>
+            </div>
+            <div className="rating-bar-divider" />
+            <div style={{ textAlign: 'center' }}>
+              <div style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--text)', letterSpacing: '-0.03em' }}>98%</div>
+              <div style={{ fontSize: '0.78rem', color: 'var(--muted)', marginTop: 2 }}>Recommendation Rate</div>
+            </div>
           </div>
         </div>
 

@@ -20,9 +20,9 @@ export default function About() {
   ];
 
   return (
-    <section id="about" style={{ padding: '7rem 0', background: 'var(--bg)' }}>
+    <section id="about" style={{ padding: 'clamp(4.5rem, 8vw, 7rem) 0', background: 'var(--bg)' }}>
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 1.5rem' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }} className="responsive-3-grid">
+        <div className="grid-2-col">
 
           {/* LEFT: Minimal Visual Card Panel */}
           <div

@@ -83,14 +83,14 @@ export default function Contact() {
   };
 
   const channels = [
-    { href: 'https://wa.me/251954897133', icon: '💬', label: '+251 954 897 133', sublabel: 'WhatsApp' },
+    { href: 'https://wa.me/abule_76', icon: '💬', label: '@abule_76', sublabel: 'WhatsApp' },
     { href: 'mailto:abuletech@gmail.com', icon: '📧', label: 'abuletech@gmail.com', sublabel: 'Email' },
     { href: 'https://t.me/abule_48', icon: '✈️', label: '@abule_48', sublabel: 'Telegram' },
     { href: 'https://instagram.com/abule_48', icon: '📷', label: '@abule_48', sublabel: 'Instagram' },
   ];
 
   return (
-    <section id="contact" style={{ padding: '7rem 0', background: 'var(--bg)' }}>
+    <section id="contact" style={{ padding: 'clamp(4.5rem, 8vw, 7rem) 0', background: 'var(--bg)' }}>
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 1.5rem' }}>
         
         {/* Header */}
@@ -104,7 +104,7 @@ export default function Contact() {
           </p>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3.5rem', alignItems: 'start' }} className="responsive-3-grid">
+        <div className="grid-2-col" style={{ alignItems: 'start' }}>
           
           {/* Left Column: Direct Channels & Map */}
           <div>
@@ -112,7 +112,7 @@ export default function Contact() {
               Direct Channels
             </h3>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem', marginBottom: '2rem' }}>
+            <div className="channels-grid" style={{ marginBottom: '2rem' }}>
               {channels.map(c => (
                 <a
                   key={c.sublabel}

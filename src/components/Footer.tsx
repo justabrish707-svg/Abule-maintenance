@@ -42,7 +42,7 @@ export default function Footer() {
 
       <footer style={{ background: 'var(--surface)', borderTop: '1px solid var(--border)', padding: '3.5rem 0 2rem' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 1.5rem' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '2.5rem', marginBottom: '2.5rem' }}>
+          <div className="footer-inner">
             
             {/* Brand column */}
             <div style={{ maxWidth: 280 }}>
@@ -80,7 +80,7 @@ export default function Footer() {
             </div>
 
             {/* Links */}
-            <div style={{ display: 'flex', gap: '3.5rem', flexWrap: 'wrap' }}>
+            <div className="footer-links-group">
               {Object.entries(links).map(([col, items]) => (
                 <div key={col}>
                   <h4 style={{ fontSize: '0.78rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--text)', marginBottom: '1rem' }}>{col}</h4>

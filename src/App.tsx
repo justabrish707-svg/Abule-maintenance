@@ -5,12 +5,14 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import Admin from './pages/Admin';
+import AdminShortcut from './components/AdminShortcut';
 
 export default function App() {
   return (
     <LanguageProvider>
       <ThemeProvider>
         <Router>
+          <AdminShortcut />
           <Routes>
             <Route path="/" element={
               <>

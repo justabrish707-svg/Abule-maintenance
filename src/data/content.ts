@@ -1,44 +1,34 @@
-// All static data extracted from HTML — now easy to update without touching components
+// Static content configuration for services, testimonials, pricing, faqs, and stats
 export const SERVICES = [
   {
     id: 'hardware',
     icon: '🖥️',
-    iconClass: 'bg-indigo-50 text-indigo-600',
     title: 'Hardware Diagnosis & Repair',
     description: 'From motherboard failures to power supply issues — we identify root causes fast with professional diagnostic tools.',
-    wide: false,
   },
   {
     id: 'data-recovery',
     icon: '💾',
-    iconClass: 'bg-pink-50 text-pink-600',
     title: 'Data Recovery',
     description: 'Lost files? Corrupted drives? We recover your precious data from HDDs, SSDs, and flash drives with industry-grade tools.',
-    wide: false,
   },
   {
     id: 'software',
     icon: '⚙️',
-    iconClass: 'bg-yellow-50 text-yellow-600',
     title: 'Software & OS Repair',
     description: 'Windows crashes, boot loops, driver conflicts — fixed cleanly. We reinstall, optimize, and configure your OS to run like new.',
-    wide: true,
   },
   {
     id: 'networking',
     icon: '📡',
-    iconClass: 'bg-teal-50 text-teal-600',
     title: 'Network Setup',
     description: 'Professional WiFi and LAN configuration for homes and offices. Get a fast, secure, and reliable connection.',
-    wide: false,
   },
   {
     id: 'upgrade',
     icon: '🚀',
-    iconClass: 'bg-purple-50 text-purple-600',
     title: 'PC Upgrades',
     description: 'RAM, SSD, GPU — we recommend and install the right upgrades to breathe new life into your machine.',
-    wide: false,
   },
 ];
 
@@ -142,11 +132,4 @@ export const STATS = [
   { num: '98%', label: 'Success Rate' },
   { num: '24h', label: 'Avg. Turnaround' },
   { num: '4.9★', label: 'Customer Rating' },
-];
-
-export const FEATURES = [
-  'No fix, no fee — ever',
-  'Free transparent diagnosis',
-  '24-hour average turnaround',
-  'Certified & experienced technicians',
 ];

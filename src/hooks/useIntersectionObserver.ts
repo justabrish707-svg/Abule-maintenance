@@ -1,11 +1,15 @@
 import { useEffect, useRef, useState } from 'react';
+import type { RefObject } from 'react';
 
 /**
- * Performance fix: replaces the raw scroll listener with IntersectionObserver.
- * This fires ONLY when elements enter/exit the viewport, not on every pixel scrolled.
+ * Reusable IntersectionObserver hook with strict typing.
+ * Fires ONLY when element enters viewport.
  */
-export function useIntersectionObserver(threshold = 0.1) {
-  const ref = useRef<HTMLElement>(null);
+export function useIntersectionObserver<T extends HTMLElement = HTMLDivElement>(threshold = 0.1): {
+  ref: RefObject<T | null>;
+  isVisible: boolean;
+} {
+  const ref = useRef<T>(null);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -16,15 +20,13 @@ export function useIntersectionObserver(threshold = 0.1) {
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-          observer.unobserve(el); // Stop observing after first reveal — no memory leak
+          observer.unobserve(el);
         }
       },
       { threshold }
     );
 
     observer.observe(el);
-
-    // Cleanup: disconnect observer when component unmounts
     return () => observer.disconnect();
   }, [threshold]);
 

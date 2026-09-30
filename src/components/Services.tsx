@@ -1,15 +1,15 @@
 import { useState } from 'react';
-import { useLanguage } from '../context/LanguageContext';
+import { useLanguage } from '../hooks/useLanguage';
 import { SERVICES } from '../data/content';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 
 function ServiceCard({ service, delay, btnText }: { service: typeof SERVICES[0]; delay: number; btnText: string }) {
-  const { ref, isVisible } = useIntersectionObserver();
+  const { ref, isVisible } = useIntersectionObserver<HTMLDivElement>();
   const [hovered, setHovered] = useState(false);
 
   return (
     <div
-      ref={ref as React.RefObject<HTMLDivElement>}
+      ref={ref}
       className={`reveal ${isVisible ? 'active' : ''}`}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -29,14 +29,20 @@ function ServiceCard({ service, delay, btnText }: { service: typeof SERVICES[0];
       }}
     >
       <div>
-        <div style={{
-          width: 48, height: 48, borderRadius: 14,
-          background: 'var(--surface-2)',
-          border: '1px solid var(--border)',
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          fontSize: '1.4rem',
-          marginBottom: '1.5rem',
-        }}>
+        <div
+          style={{
+            width: 48,
+            height: 48,
+            borderRadius: 14,
+            background: 'var(--surface-2)',
+            border: '1px solid var(--border)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: '1.4rem',
+            marginBottom: '1.5rem',
+          }}
+        >
           {service.icon}
         </div>
 
@@ -51,9 +57,14 @@ function ServiceCard({ service, delay, btnText }: { service: typeof SERVICES[0];
       <a
         href="#contact"
         style={{
-          display: 'inline-flex', alignItems: 'center', gap: '0.4rem',
-          marginTop: '1.75rem', fontSize: '0.85rem', fontWeight: 600,
-          color: 'var(--primary)', textDecoration: 'none',
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: '0.4rem',
+          marginTop: '1.75rem',
+          fontSize: '0.85rem',
+          fontWeight: 600,
+          color: 'var(--primary)',
+          textDecoration: 'none',
           transition: 'gap 0.2s',
         }}
       >

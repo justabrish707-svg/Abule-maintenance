@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useLanguage } from '../context/LanguageContext';
+import { useLanguage } from '../hooks/useLanguage';
 import { TESTIMONIALS } from '../data/content';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 
@@ -11,13 +11,13 @@ const CATEGORY_MAP: Record<string, { label: string; icon: string }> = {
 };
 
 function TestCard({ t, delay }: { t: typeof TESTIMONIALS[0]; delay: number }) {
-  const { ref, isVisible } = useIntersectionObserver();
+  const { ref, isVisible } = useIntersectionObserver<HTMLDivElement>();
   const [hovered, setHovered] = useState(false);
   const catInfo = CATEGORY_MAP[t.category || 'hardware'] || CATEGORY_MAP.hardware;
 
   return (
     <div
-      ref={ref as React.RefObject<HTMLDivElement>}
+      ref={ref}
       className={`reveal ${isVisible ? 'active' : ''}`}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -39,11 +39,17 @@ function TestCard({ t, delay }: { t: typeof TESTIMONIALS[0]; delay: number }) {
       <div>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
           <div style={{ color: '#F59E0B', fontSize: '0.95rem', letterSpacing: 2 }}>★★★★★</div>
-          <span style={{
-            fontSize: '0.7rem', fontWeight: 600,
-            color: 'var(--muted)', background: 'var(--surface-2)', border: '1px solid var(--border)',
-            padding: '0.2rem 0.65rem', borderRadius: 99,
-          }}>
+          <span
+            style={{
+              fontSize: '0.7rem',
+              fontWeight: 600,
+              color: 'var(--muted)',
+              background: 'var(--surface-2)',
+              border: '1px solid var(--border)',
+              padding: '0.2rem 0.65rem',
+              borderRadius: 99,
+            }}
+          >
             {catInfo.icon} {catInfo.label}
           </span>
         </div>
@@ -54,12 +60,21 @@ function TestCard({ t, delay }: { t: typeof TESTIMONIALS[0]; delay: number }) {
       </div>
 
       <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', paddingTop: '1rem', borderTop: '1px solid var(--border)' }}>
-        <div style={{
-          width: 38, height: 38, borderRadius: '50%',
-          background: 'var(--surface-2)', border: '1px solid var(--border)',
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          color: 'var(--text)', fontWeight: 700, fontSize: '0.825rem',
-        }}>
+        <div
+          style={{
+            width: 38,
+            height: 38,
+            borderRadius: '50%',
+            background: 'var(--surface-2)',
+            border: '1px solid var(--border)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: 'var(--text)',
+            fontWeight: 700,
+            fontSize: '0.825rem',
+          }}
+        >
           {t.initials}
         </div>
         <div style={{ flex: 1, minWidth: 0 }}>
@@ -80,7 +95,7 @@ export default function Testimonials() {
 
   const filtered = filter === 'all'
     ? TESTIMONIALS
-    : TESTIMONIALS.filter(t => t.category === filter);
+    : TESTIMONIALS.filter(item => item.category === filter);
 
   return (
     <section id="reviews" style={{ padding: 'clamp(4.5rem, 8vw, 7rem) 0', background: 'var(--surface-2)', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)' }}>
@@ -98,20 +113,30 @@ export default function Testimonials() {
         </div>
 
         {/* Category Pills */}
-        <div style={{
-          display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '0.5rem',
-          marginBottom: '3rem',
-        }}>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            flexWrap: 'wrap',
+            gap: '0.5rem',
+            marginBottom: '3rem',
+          }}
+        >
           {Object.entries(CATEGORY_MAP).map(([catKey, catObj]) => {
             const isActive = filter === catKey;
             return (
               <button
                 key={catKey}
+                type="button"
                 onClick={() => setFilter(catKey)}
                 style={{
-                  padding: '0.45rem 1.15rem', borderRadius: 99,
-                  fontWeight: 600, fontSize: '0.825rem', border: '1px solid',
-                  cursor: 'pointer', transition: 'all 0.2s ease',
+                  padding: '0.45rem 1.15rem',
+                  borderRadius: 99,
+                  fontWeight: 600,
+                  fontSize: '0.825rem',
+                  border: '1px solid',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease',
                   borderColor: isActive ? 'var(--primary)' : 'var(--border)',
                   background: isActive ? 'var(--primary)' : 'var(--surface)',
                   color: isActive ? '#fff' : 'var(--muted)',
@@ -125,14 +150,19 @@ export default function Testimonials() {
 
         {/* Cards Grid */}
         <div className="responsive-3-grid">
-          {filtered.map((t, i) => <TestCard key={t.id} t={t} delay={i * 60} />)}
+          {filtered.map((item, i) => <TestCard key={item.id} t={item} delay={i * 60} />)}
         </div>
 
         {/* Rating Summary Bar */}
-        <div style={{
-          marginTop: '3.5rem', padding: '1.5rem 2rem', borderRadius: 18,
-          background: 'var(--surface)', border: '1px solid var(--border)',
-        }}>
+        <div
+          style={{
+            marginTop: '3.5rem',
+            padding: '1.5rem 2rem',
+            borderRadius: 18,
+            background: 'var(--surface)',
+            border: '1px solid var(--border)',
+          }}
+        >
           <div className="rating-bar">
             <div style={{ textAlign: 'center' }}>
               <div style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--text)', letterSpacing: '-0.03em' }}>4.9 / 5.0</div>

@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { FAQS } from '../data/content';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
-import { useLanguage } from '../context/LanguageContext';
+import { useLanguage } from '../hooks/useLanguage';
 
 export default function FAQ() {
   const [openIdx, setOpenIdx] = useState<number | null>(null);
-  const { ref, isVisible } = useIntersectionObserver();
+  const { ref, isVisible } = useIntersectionObserver<HTMLDivElement>();
   const { t } = useLanguage();
 
   return (
@@ -21,7 +21,7 @@ export default function FAQ() {
         </div>
 
         <div
-          ref={ref as React.RefObject<HTMLDivElement>}
+          ref={ref}
           className={`reveal ${isVisible ? 'active' : ''}`}
           style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem' }}
         >

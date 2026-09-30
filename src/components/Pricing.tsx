@@ -1,15 +1,15 @@
 import { useState } from 'react';
-import { useLanguage } from '../context/LanguageContext';
+import { useLanguage } from '../hooks/useLanguage';
 import { PRICING } from '../data/content';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 
 function PricingCard({ plan, delay }: { plan: typeof PRICING[0]; delay: number }) {
-  const { ref, isVisible } = useIntersectionObserver();
+  const { ref, isVisible } = useIntersectionObserver<HTMLDivElement>();
   const [hovered, setHovered] = useState(false);
 
   return (
     <div
-      ref={ref as React.RefObject<HTMLDivElement>}
+      ref={ref}
       className={`reveal ${isVisible ? 'active' : ''}`}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -33,12 +33,22 @@ function PricingCard({ plan, delay }: { plan: typeof PRICING[0]; delay: number }
       }}
     >
       {plan.featured && (
-        <div style={{
-          position: 'absolute', top: -12, left: '50%', transform: 'translateX(-50%)',
-          padding: '0.25rem 0.85rem', borderRadius: 99,
-          background: 'var(--primary)', color: '#fff',
-          fontSize: '0.72rem', fontWeight: 700, letterSpacing: '0.05em', textTransform: 'uppercase',
-        }}>
+        <div
+          style={{
+            position: 'absolute',
+            top: -12,
+            left: '50%',
+            transform: 'translateX(-50%)',
+            padding: '0.25rem 0.85rem',
+            borderRadius: 99,
+            background: 'var(--primary)',
+            color: '#fff',
+            fontSize: '0.72rem',
+            fontWeight: 700,
+            letterSpacing: '0.05em',
+            textTransform: 'uppercase',
+          }}
+        >
           Most Popular
         </div>
       )}
@@ -67,8 +77,11 @@ function PricingCard({ plan, delay }: { plan: typeof PRICING[0]; delay: number }
       <a
         href="#contact"
         style={{
-          textAlign: 'center', padding: '0.85rem', borderRadius: 99,
-          fontWeight: 600, fontSize: '0.875rem',
+          textAlign: 'center',
+          padding: '0.85rem',
+          borderRadius: 99,
+          fontWeight: 600,
+          fontSize: '0.875rem',
           color: plan.featured ? '#fff' : 'var(--text)',
           background: plan.featured ? 'var(--primary)' : 'var(--surface-2)',
           border: plan.featured ? 'none' : '1px solid var(--border)',

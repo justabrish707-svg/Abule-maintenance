@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { supabase } from '../utils/supabase';
+import { useLanguage } from '../hooks/useLanguage';
 
-// Estimator Types & Data
 interface DeviceOption {
   id: string;
   name: string;
@@ -38,7 +38,7 @@ interface TicketStatus {
   customer_name: string;
   device: string;
   issue: string;
-  status_step: number; // 1 to 5
+  status_step: number;
   created_at: string;
 }
 
@@ -81,6 +81,7 @@ const TRACKER_STEPS = [
 ];
 
 export default function RepairTools() {
+  const { t } = useLanguage();
   const [activeTab, setActiveTab] = useState<'estimator' | 'tracker'>('estimator');
 
   // Estimator State
@@ -91,7 +92,6 @@ export default function RepairTools() {
   const [ticketInput, setTicketInput] = useState<string>('');
   const [searchedTicket, setSearchedTicket] = useState<TicketStatus | null>(null);
   const [searchError, setSearchError] = useState<string | null>(null);
-
   const [loadingSearch, setLoadingSearch] = useState(false);
 
   const currentDevice = DEVICES.find(d => d.id === selectedDevice) || DEVICES[0];
@@ -102,10 +102,9 @@ export default function RepairTools() {
     const query = ticketInput.trim().toUpperCase();
     if (!query) return;
 
-    // Check demo tickets first for easy testing
+    // Check demo tickets first
     if (DEMO_TICKETS[query]) {
-      const demo = DEMO_TICKETS[query];
-      setSearchedTicket(demo);
+      setSearchedTicket(DEMO_TICKETS[query]);
       setSearchError(null);
       return;
     }
@@ -116,14 +115,14 @@ export default function RepairTools() {
     const { data, error } = await supabase
       .from('tickets')
       .select('*')
-      .eq('ticket_id', query)
-      .single();
+      .ilike('ticket_id', query)
+      .maybeSingle();
 
     setLoadingSearch(false);
 
     if (error || !data) {
       setSearchedTicket(null);
-      setSearchError(`No ticket found for "${query}". Please check your ticket ID.`);
+      setSearchError(t('tools_ticket_not_found', { query }));
     } else {
       setSearchedTicket(data);
     }
@@ -138,18 +137,19 @@ export default function RepairTools() {
 
         {/* Section Header */}
         <div style={{ textAlign: 'center', maxWidth: 560, margin: '0 auto 2.5rem' }}>
-          <div className="section-badge">Interactive Tools</div>
+          <div className="section-badge">{t('tools_badge')}</div>
           <h2 className="section-heading" style={{ marginBottom: '0.85rem' }}>
-            Instant Estimate &<br /><span className="gradient-text">Live Status Tracker</span>
+            {t('tools_title_1')}<br /><span className="gradient-text">{t('tools_title_2')}</span>
           </h2>
           <p style={{ fontSize: '0.975rem', color: 'var(--muted)', lineHeight: 1.65 }}>
-            Calculate your repair price in seconds or check the real-time repair progress of your device.
+            {t('tools_desc')}
           </p>
         </div>
 
         {/* Tab Segmented Control */}
         <div className="tab-control">
           <button
+            type="button"
             onClick={() => setActiveTab('estimator')}
             style={{
               flex: 1, padding: '0.65rem 1.15rem', borderRadius: 99,
@@ -159,9 +159,10 @@ export default function RepairTools() {
               color: activeTab === 'estimator' ? '#fff' : 'var(--muted)',
             }}
           >
-            🧮 Price Estimator
+            {t('tools_tab_estimator')}
           </button>
           <button
+            type="button"
             onClick={() => setActiveTab('tracker')}
             style={{
               flex: 1, padding: '0.65rem 1.15rem', borderRadius: 99,
@@ -171,7 +172,7 @@ export default function RepairTools() {
               color: activeTab === 'tracker' ? '#fff' : 'var(--muted)',
             }}
           >
-            🔎 Track Repair Status
+            {t('tools_tab_tracker')}
           </button>
         </div>
 
@@ -188,12 +189,13 @@ export default function RepairTools() {
             {/* Left Column */}
             <div>
               <h3 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: '1rem', color: 'var(--text)' }}>
-                1. Select Device
+                {t('tools_select_device')}
               </h3>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '0.65rem', marginBottom: '1.75rem' }}>
                 {DEVICES.map(dev => (
                   <button
                     key={dev.id}
+                    type="button"
                     onClick={() => setSelectedDevice(dev.id)}
                     style={{
                       padding: '0.85rem', borderRadius: 12, border: '1px solid',
@@ -213,12 +215,13 @@ export default function RepairTools() {
               </div>
 
               <h3 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: '1rem', color: 'var(--text)' }}>
-                2. Select Primary Issue
+                {t('tools_select_issue')}
               </h3>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
                 {ISSUES.map(iss => (
                   <button
                     key={iss.id}
+                    type="button"
                     onClick={() => setSelectedIssue(iss.id)}
                     style={{
                       padding: '0.85rem 1rem', borderRadius: 12, border: '1px solid',
@@ -248,7 +251,7 @@ export default function RepairTools() {
             }}>
               <div>
                 <div style={{ fontSize: '0.72rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--primary)', marginBottom: '0.5rem' }}>
-                  Estimated Price Summary
+                  {t('tools_est_summary')}
                 </div>
 
                 <div style={{ fontSize: '2.5rem', fontWeight: 800, color: 'var(--text)', letterSpacing: '-0.04em', marginBottom: '0.5rem' }}>
@@ -256,7 +259,7 @@ export default function RepairTools() {
                 </div>
 
                 <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', padding: '0.3rem 0.75rem', borderRadius: 99, background: 'rgba(34,197,94,0.1)', color: '#22C55E', fontSize: '0.78rem', fontWeight: 600, marginBottom: '1.25rem' }}>
-                  ⏱️ Turnaround: {currentIssue.time}
+                  ⏱️ {t('tools_turnaround')} {currentIssue.time}
                 </div>
 
                 <p style={{ fontSize: '0.875rem', lineHeight: 1.6, color: 'var(--muted)', marginBottom: '1.5rem' }}>
@@ -264,7 +267,7 @@ export default function RepairTools() {
                 </p>
 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '1.75rem' }}>
-                  {['Free written estimate before work starts', 'No-Fix, No-Fee Guarantee', '30-Day warranty on parts & repair'].map(perk => (
+                  {[t('tools_perk_1'), t('tools_perk_2'), t('tools_perk_3')].map(perk => (
                     <div key={perk} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.825rem', color: 'var(--text)', fontWeight: 500 }}>
                       <span style={{ color: '#22C55E', fontWeight: 800 }}>✓</span>
                       {perk}
@@ -273,20 +276,34 @@ export default function RepairTools() {
                 </div>
               </div>
 
-              <a
-                href={whatsappUrl}
-                target="_blank"
-                rel="noreferrer"
-                style={{
-                  display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
-                  padding: '0.85rem', borderRadius: 99, background: '#25D366',
-                  color: '#fff', textDecoration: 'none', fontWeight: 700, fontSize: '0.875rem',
-                  boxShadow: '0 4px 14px rgba(37,211,102,0.3)',
-                  transition: 'opacity 0.2s',
-                }}
-              >
-                💬 Book This Estimate on WhatsApp
-              </a>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
+                <a
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{
+                    display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
+                    padding: '0.85rem', borderRadius: 99, background: '#25D366',
+                    color: '#fff', textDecoration: 'none', fontWeight: 700, fontSize: '0.875rem',
+                    boxShadow: '0 4px 14px rgba(37,211,102,0.3)',
+                    transition: 'opacity 0.2s',
+                  }}
+                >
+                  {t('tools_book_whatsapp')}
+                </a>
+                <a
+                  href="#contact"
+                  style={{
+                    display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
+                    padding: '0.75rem', borderRadius: 99, background: 'var(--surface)',
+                    border: '1px solid var(--border)', color: 'var(--text)',
+                    textDecoration: 'none', fontWeight: 600, fontSize: '0.825rem',
+                    transition: 'border-color 0.2s',
+                  }}
+                >
+                  {t('tools_book_form')} →
+                </a>
+              </div>
             </div>
 
           </div>
@@ -305,7 +322,7 @@ export default function RepairTools() {
                 type="text"
                 value={ticketInput}
                 onChange={e => setTicketInput(e.target.value)}
-                placeholder="Enter Ticket ID (e.g. AB-4801)"
+                placeholder={t('tools_search_ph')}
                 className="input-sleek"
                 style={{ textTransform: 'uppercase' }}
               />
@@ -319,13 +336,13 @@ export default function RepairTools() {
                   opacity: loadingSearch ? 0.7 : 1,
                 }}
               >
-                {loadingSearch ? 'Searching...' : 'Track 🔎'}
+                {loadingSearch ? t('tools_searching') : t('tools_search_btn')}
               </button>
             </form>
 
             {/* Sample Buttons */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1.75rem', flexWrap: 'wrap' }}>
-              <span style={{ fontSize: '0.78rem', color: 'var(--muted)', fontWeight: 500 }}>Try Demo Tickets:</span>
+              <span style={{ fontSize: '0.78rem', color: 'var(--muted)', fontWeight: 500 }}>{t('tools_demo_tickets')}</span>
               {Object.keys(DEMO_TICKETS).map(code => (
                 <button
                   key={code}
@@ -359,11 +376,11 @@ export default function RepairTools() {
                       Ticket #{searchedTicket.ticket_id}
                     </div>
                     <div style={{ fontSize: '0.8rem', color: 'var(--muted)' }}>
-                      Owner: {searchedTicket.customer_name} · {searchedTicket.device}
+                      {t('tools_ticket_owner')} {searchedTicket.customer_name} · {searchedTicket.device}
                     </div>
                   </div>
                   <div style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--primary)', background: 'var(--primary-light)', padding: '0.3rem 0.75rem', borderRadius: 99 }}>
-                    Updated Recently
+                    {t('tools_ticket_updated')}
                   </div>
                 </div>
 
@@ -374,40 +391,40 @@ export default function RepairTools() {
                       position: 'absolute', top: 16, left: '5%', right: '5%', height: 2,
                       background: 'var(--border)', zIndex: 1,
                     }} />
-                  <div style={{
-                    position: 'absolute', top: 16, left: '5%',
-                    width: `${((searchedTicket.status_step - 1) / (TRACKER_STEPS.length - 1)) * 90}%`,
-                    height: 2, background: 'var(--primary)', zIndex: 2, transition: 'width 0.4s ease',
-                  }} />
+                    <div style={{
+                      position: 'absolute', top: 16, left: '5%',
+                      width: `${((searchedTicket.status_step - 1) / (TRACKER_STEPS.length - 1)) * 90}%`,
+                      height: 2, background: 'var(--primary)', zIndex: 2, transition: 'width 0.4s ease',
+                    }} />
 
-                  {TRACKER_STEPS.map(s => {
-                    const isCompleted = s.step <= searchedTicket.status_step;
-                    const isCurrent = s.step === searchedTicket.status_step;
+                    {TRACKER_STEPS.map(s => {
+                      const isCompleted = s.step <= searchedTicket.status_step;
+                      const isCurrent = s.step === searchedTicket.status_step;
 
-                    return (
-                      <div key={s.step} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', zIndex: 3, position: 'relative' }}>
-                        <div style={{
-                          width: 34, height: 34, borderRadius: '50%',
-                          background: isCompleted ? 'var(--primary)' : 'var(--surface)',
-                          color: isCompleted ? '#fff' : 'var(--muted)',
-                          border: `2px solid ${isCurrent ? 'var(--primary)' : 'var(--border)'}`,
-                          display: 'flex', alignItems: 'center', justifyContent: 'center',
-                          fontSize: '0.8rem', fontWeight: 700,
-                        }}>
-                          {s.step}
+                      return (
+                        <div key={s.step} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', zIndex: 3, position: 'relative' }}>
+                          <div style={{
+                            width: 34, height: 34, borderRadius: '50%',
+                            background: isCompleted ? 'var(--primary)' : 'var(--surface)',
+                            color: isCompleted ? '#fff' : 'var(--muted)',
+                            border: `2px solid ${isCurrent ? 'var(--primary)' : 'var(--border)'}`,
+                            display: 'flex', alignItems: 'center', justifyContent: 'center',
+                            fontSize: '0.8rem', fontWeight: 700,
+                          }}>
+                            {s.step}
+                          </div>
+                          <span style={{ fontSize: '0.75rem', fontWeight: isCurrent ? 700 : 500, color: isCurrent ? 'var(--text)' : 'var(--muted)', marginTop: '0.5rem' }}>
+                            {s.label}
+                          </span>
                         </div>
-                        <span style={{ fontSize: '0.75rem', fontWeight: isCurrent ? 700 : 500, color: isCurrent ? 'var(--text)' : 'var(--muted)', marginTop: '0.5rem' }}>
-                          {s.label}
-                        </span>
-                      </div>
-                    );
-                  })}
+                      );
+                    })}
+                  </div>
                 </div>
-              </div>
 
                 <div style={{ background: 'var(--surface)', borderRadius: 12, padding: '0.85rem 1rem', border: '1px solid var(--border)' }}>
                   <div style={{ fontSize: '0.72rem', fontWeight: 700, textTransform: 'uppercase', color: 'var(--muted)', marginBottom: '0.2rem' }}>
-                    📝 Reported Issue:
+                    {t('tools_ticket_issue')}
                   </div>
                   <div style={{ fontSize: '0.875rem', fontWeight: 500, color: 'var(--text)' }}>
                     "{searchedTicket.issue}"

@@ -1,6 +1,3 @@
-import { createContext, useContext, useState, useEffect } from 'react';
-import type { ReactNode } from 'react';
-
 export type Language = 'en' | 'am';
 
 export const TRANSLATIONS = {
@@ -15,7 +12,7 @@ export const TRANSLATIONS = {
     nav_book_now: 'Book Now',
 
     // Hero
-    hero_badge: 'ARBA MINCH\'S PREMIER TECH HUB',
+    hero_badge: "ARBA MINCH'S PREMIER TECH HUB",
     hero_title_1: 'Every PC Problem.',
     hero_title_2: 'Perfectly Fixed.',
     hero_subtitle: 'Hardware & software expertise built on radical transparency, 24-hour turnarounds, and a no-fix, no-fee guarantee — right here in Arba Minch.',
@@ -40,10 +37,27 @@ export const TRANSLATIONS = {
     // Tools
     tools_badge: 'Interactive Tools',
     tools_title_1: 'Instant Estimate &',
-    tools_title_2: 'Live Repair Tracker',
-    tools_desc: 'Calculate your repair price in seconds or check the live progress of your device in repair.',
-    tools_tab_estimator: 'Price Estimator',
-    tools_tab_tracker: 'Track Repair Status',
+    tools_title_2: 'Live Status Tracker',
+    tools_desc: 'Calculate your repair price in seconds or check the real-time repair progress of your device.',
+    tools_tab_estimator: '🧮 Price Estimator',
+    tools_tab_tracker: '🔎 Track Repair Status',
+    tools_select_device: '1. Select Device',
+    tools_select_issue: '2. Select Primary Issue',
+    tools_est_summary: 'Estimated Price Summary',
+    tools_turnaround: 'Turnaround:',
+    tools_perk_1: 'Free written estimate before work starts',
+    tools_perk_2: 'No-Fix, No-Fee Guarantee',
+    tools_perk_3: '30-Day warranty on parts & repair',
+    tools_book_whatsapp: '💬 Book This Estimate on WhatsApp',
+    tools_book_form: '📝 Pre-fill Contact Form Below',
+    tools_search_ph: 'Enter Ticket ID (e.g. AB-4801)',
+    tools_search_btn: 'Track 🔎',
+    tools_searching: 'Searching...',
+    tools_demo_tickets: 'Try Demo Tickets:',
+    tools_ticket_not_found: 'No ticket found for "{query}". Please check your ticket ID.',
+    tools_ticket_owner: 'Owner:',
+    tools_ticket_updated: 'Updated Recently',
+    tools_ticket_issue: '📝 Reported Issue:',
 
     // About
     about_badge: 'OUR PROMISE',
@@ -66,7 +80,7 @@ export const TRANSLATIONS = {
     test_badge: 'Customer Stories',
     test_title_1: 'Real People.',
     test_title_2: 'Real Results.',
-    test_desc: 'Don\'t just take our word for it — hear what local device owners say about Abule Maintenance.',
+    test_desc: "Don't just take our word for it — hear what local device owners say about Abule Maintenance.",
 
     // FAQ
     faq_badge: 'FAQ',
@@ -78,13 +92,22 @@ export const TRANSLATIONS = {
     contact_title_1: 'Book Your',
     contact_title_2: 'Free Diagnosis',
     contact_desc: 'We are based in Arba Minch. Book online or reach us directly.',
+    contact_direct_channels: 'Direct Channels',
+    contact_schedule_title: 'Schedule Diagnosis',
     contact_name_ph: 'Your Full Name',
     contact_phone_ph: 'Phone Number (e.g. 0911...)',
     contact_device_ph: 'Select Device Type',
-    contact_issue_ph: 'Describe the issue (e.g. laptop won\'t turn on, blue screen, screen broken...)',
+    contact_issue_ph: "Describe the issue (e.g. laptop won't turn on, blue screen, screen broken...)",
     contact_submit: 'Submit & Send on WhatsApp',
     contact_sending: 'Connecting to WhatsApp...',
-    contact_sent: '✓ Thank you! Redirecting to WhatsApp...',
+    contact_sent: '✓ Thank you! Opening WhatsApp...',
+    contact_rate_wait: '⏳ Please wait {sec}s before sending another request.',
+
+    // Footer
+    footer_ticker: 'Currently accepting new repairs in Arba Minch — average 24h turnaround.',
+    footer_desc: "Arba Minch's most trusted PC repair & maintenance service. Fast, transparent, and guaranteed.",
+    footer_rights: 'Abule Tech. All rights reserved.',
+    footer_location: 'Made in Arba Minch, Ethiopia',
 
     // CTA
     cta_badge: 'Free Diagnosis Available Now',
@@ -107,9 +130,9 @@ export const TRANSLATIONS = {
 
     // Hero
     hero_badge: 'የአርባ ምንጭ ቁጥር 1 የቴክኖሎጂ ማዕከል',
-    hero_title_1: ' የማንኛውም ኮምፒውተር ችግር።',
-    hero_title_2: 'በጥራት ይጠገናል::',
-    hero_subtitle: 'በግልጽነት፣ በ24 ሰዓት ፈጣን ጥገና እና ካልተጠበነ ምንም አይከፍሉም ዋስትና የተደገፈ የሃርድዌር እና ሶፍትዌር ጥገና — እዚሁ አርባ ምንጭ።',
+    hero_title_1: ' የማንኛውም ኮምፒውተር ችግር',
+    hero_title_2: 'በጥራት ይጠገናል!',
+    hero_subtitle: 'በግልጽነት፣ በ24 ሰዓት ፈጣን ጥገና እና ካልተጠገነ ምንም አይከፍሉም ዋስትና የተደገፈ የሃርድዌር እና ሶፍትዌር ጥገና — እዚሁ አርባ ምንጭ።',
     hero_cta_book: 'ነፃ ምርመራ ይዘዙ',
     hero_cta_explore: 'አገልግሎቶችን ይመልከቱ',
     hero_trusted: 'ከ500+ በላይ ደንበኞች በላቀ እርካታ የተገለገሉበት',
@@ -133,8 +156,25 @@ export const TRANSLATIONS = {
     tools_title_1: 'የዋጋ ግምት እና',
     tools_title_2: 'የጥገና ሁኔታ መከታተያ',
     tools_desc: 'የጥገና ዋጋዎን በሰከንዶች ውስጥ ያሰሉ ወይም የተሰጠዎትን የጥገና ቲኬት ቁጥር በመጠቀም ያሉበትን ደረጃ ይከታተሉ።',
-    tools_tab_estimator: 'የዋጋ ማሰያ',
-    tools_tab_tracker: 'የጥገና ሁኔታ መከታተያ',
+    tools_tab_estimator: '🧮 የዋጋ ማሰያ',
+    tools_tab_tracker: '🔎 የጥገና ሁኔታ መከታተያ',
+    tools_select_device: '1. መሳሪያ ይምረጡ',
+    tools_select_issue: '2. ዋና ችግሩን ይምረጡ',
+    tools_est_summary: 'የተገመተ የዋጋ ማጠቃለያ',
+    tools_turnaround: 'የሚወስደው ጊዜ:',
+    tools_perk_1: 'ስራ ከመጀመሩ በፊት ነፃ የተፃፈ የዋጋ ግምት',
+    tools_perk_2: 'ካልተጠገነ ክፍያ የለም',
+    tools_perk_3: 'የ30 ቀናት የጥገና እና ዕቃዎች ዋስትና',
+    tools_book_whatsapp: '💬 ይህንን ግምት በዋትሳፕ ይዘዙ',
+    tools_book_form: '📝 ቅጹን ከታች ይሙሉ',
+    tools_search_ph: 'የቲኬት ቁጥር ያስገቡ (ምሳሌ፡ AB-4801)',
+    tools_search_btn: 'ፈልግ 🔎',
+    tools_searching: 'በመፈለግ ላይ...',
+    tools_demo_tickets: 'የናሙና ቲኬቶችን ይሞክሩ:',
+    tools_ticket_not_found: 'ለቲኬት ቁጥር "{query}" ምንም አልተገኘም። እባክዎ ቁጥሩን ያረጋግጡ።',
+    tools_ticket_owner: 'ባለቤት:',
+    tools_ticket_updated: 'በቅርቡ የተዘመነ',
+    tools_ticket_issue: '📝 የተገለፀ ችግር:',
 
     // About
     about_badge: 'ቃላችን',
@@ -169,6 +209,8 @@ export const TRANSLATIONS = {
     contact_title_1: 'ነፃ ምርመራዎን',
     contact_title_2: 'አሁኑኑ ይዘዙ',
     contact_desc: 'አድራሻችን አርባ ምንጭ ነው። በኦንላይን ወይም በቀጥታ ያግኙን።',
+    contact_direct_channels: 'የቀጥታ መገናኛዎች',
+    contact_schedule_title: 'ምርመራ ይመዝግቡ',
     contact_name_ph: 'ሙሉ ስምዎን ያስገቡ',
     contact_phone_ph: 'ስልክ ቁጥር (ምሳሌ፡ 0911...)',
     contact_device_ph: 'የመሳሪያውን አይነት ይምረጡ',
@@ -176,6 +218,13 @@ export const TRANSLATIONS = {
     contact_submit: 'በዋትሳፕ (WhatsApp) ይላኩ',
     contact_sending: 'ወደ ዋትሳፕ በመገናኘት ላይ...',
     contact_sent: '✓ እናመሰግናለን! ወደ ዋትሳፕ በመዛወር ላይ...',
+    contact_rate_wait: '⏳ እባክዎ ሌላ ከመላክዎ በፊት {sec} ሰከንድ ይጠብቁ።',
+
+    // Footer
+    footer_ticker: 'በአርባ ምንጭ አዲስ ጥገናዎችን በመቀበል ላይ እንገኛለን — አማካይ 24 ሰዓት።',
+    footer_desc: 'የአርባ ምንጭ ታማኝ የኮምፒውተር ጥገና አገልግሎት። ፈጣን፣ ግልጽ እና ዋስትና ያለው።',
+    footer_rights: 'አቡሌ ቴክ። መብቱ በሕግ የተጠበቀ ነው።',
+    footer_location: 'አርባ ምንጭ፣ ኢትዮጵያ',
 
     // CTA
     cta_badge: 'ነፃ ምርመራ አሁኑኑ ያግኙ',
@@ -185,46 +234,6 @@ export const TRANSLATIONS = {
     cta_btn_book: 'ነፃ ምርመራ ይዘዙ',
     cta_btn_wa: 'በዋትሳፕ ያውሩን',
   },
-};
+} as const;
 
-interface LanguageContextType {
-  language: Language;
-  setLanguage: (lang: Language) => void;
-  t: (key: keyof typeof TRANSLATIONS['en']) => string;
-}
-
-const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
-
-export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguageState] = useState<Language>(() => {
-    const saved = localStorage.getItem('abule_lang');
-    return (saved === 'am' || saved === 'en') ? saved : 'en';
-  });
-
-  const setLanguage = (lang: Language) => {
-    setLanguageState(lang);
-    localStorage.setItem('abule_lang', lang);
-  };
-
-  const t = (key: keyof typeof TRANSLATIONS['en']): string => {
-    return TRANSLATIONS[language][key] || TRANSLATIONS['en'][key] || key;
-  };
-
-  useEffect(() => {
-    document.documentElement.lang = language;
-  }, [language]);
-
-  return (
-    <LanguageContext.Provider value={{ language, setLanguage, t }}>
-      {children}
-    </LanguageContext.Provider>
-  );
-}
-
-export function useLanguage() {
-  const context = useContext(LanguageContext);
-  if (!context) {
-    throw new Error('useLanguage must be used within a LanguageProvider');
-  }
-  return context;
-}
+export type TranslationKey = keyof typeof TRANSLATIONS['en'];

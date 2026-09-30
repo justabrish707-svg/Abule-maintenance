@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { useLanguage } from '../context/LanguageContext';
+import { useLanguage } from '../hooks/useLanguage';
 import { STATS } from '../data/content';
 
 function AnimatedNumber({ target }: { target: string }) {

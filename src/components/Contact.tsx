@@ -5,6 +5,8 @@ import { validateContactSubmission, cleanPhone, sanitizeText, type ContactValida
 import { checkRateLimit, recordActionTimestamp } from '../utils/rateLimiter';
 import { trackEvent } from '../utils/analytics';
 
+import { WhatsAppIcon, EmailIcon, TelegramIcon, InstagramIcon } from './SocialIcons';
+
 interface FormState {
   name: string;
   phone: string;
@@ -84,10 +86,10 @@ export default function Contact() {
   };
 
   const channels = [
-    { href: 'https://wa.me/abule_76', icon: '💬', label: '@abule_76', sublabel: 'WhatsApp' },
-    { href: 'mailto:abuletech@gmail.com', icon: '📧', label: 'abuletech@gmail.com', sublabel: 'Email' },
-    { href: 'https://t.me/abule_48', icon: '✈️', label: '@abule_48', sublabel: 'Telegram' },
-    { href: 'https://instagram.com/abule_48', icon: '📷', label: '@abule_48', sublabel: 'Instagram' },
+    { href: 'https://wa.me/abule_76', icon: <WhatsAppIcon size={20} color="#25D366" />, label: '@abule_76', sublabel: 'WhatsApp' },
+    { href: 'mailto:abuletech@gmail.com', icon: <EmailIcon size={20} color="var(--primary)" />, label: 'abuletech@gmail.com', sublabel: 'Email' },
+    { href: 'https://t.me/abule_48', icon: <TelegramIcon size={20} color="#229ED9" />, label: '@abule_48', sublabel: 'Telegram' },
+    { href: 'https://instagram.com/abule_48', icon: <InstagramIcon size={20} color="#E4405F" />, label: '@abule_48', sublabel: 'Instagram' },
   ];
 
   return (

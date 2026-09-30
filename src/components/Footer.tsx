@@ -1,4 +1,5 @@
 import { useLanguage } from '../hooks/useLanguage';
+import { WhatsAppIcon, TelegramIcon, InstagramIcon } from './SocialIcons';
 
 const links = {
   Services: [
@@ -17,9 +18,9 @@ const links = {
 };
 
 const socials = [
-  { icon: '💬', label: 'WhatsApp', href: 'https://wa.me/abule_76' },
-  { icon: '✈️', label: 'Telegram', href: 'https://t.me/abule_48' },
-  { icon: '📷', label: 'Instagram', href: 'https://instagram.com/abule_48' },
+  { icon: <WhatsAppIcon size={18} color="#25D366" />, label: 'WhatsApp', href: 'https://wa.me/abule_76' },
+  { icon: <TelegramIcon size={18} color="#229ED9" />, label: 'Telegram', href: 'https://t.me/abule_48' },
+  { icon: <InstagramIcon size={18} color="#E4405F" />, label: 'Instagram', href: 'https://instagram.com/abule_48' },
 ];
 
 export default function Footer() {

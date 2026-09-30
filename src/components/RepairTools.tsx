@@ -289,7 +289,7 @@ export default function RepairTools() {
                     transition: 'opacity 0.2s',
                   }}
                 >
-                  {t('tools_book_whatsapp')}
+                  {t('tools_book_telegram')}
                 </a>
                 <a
                   href="#contact"

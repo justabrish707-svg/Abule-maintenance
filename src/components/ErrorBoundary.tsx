@@ -115,7 +115,7 @@ export default class ErrorBoundary extends Component<Props, State> {
               </button>
 
               <a
-                href="https://wa.me/abule_76"
+                href="https://t.me/Abule_48"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
@@ -132,7 +132,7 @@ export default class ErrorBoundary extends Component<Props, State> {
                   gap: '0.5rem',
                 }}
               >
-                💬 Contact Support
+                ✈️ Contact Support on Telegram
               </a>
             </div>
           </div>

@@ -122,7 +122,7 @@ export default function CTA() {
               onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--border-strong)'; e.currentTarget.style.transform = 'translateY(-2px)'; }}
               onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.transform = 'none'; }}
             >
-              💬 {t('cta_btn_wa')}
+              ✈️ {t('cta_btn_wa')}
             </a>
           </div>
 

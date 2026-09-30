@@ -87,7 +87,7 @@ export default function Contact() {
 
   const channels = [
     { href: 'https://t.me/Abule_48', icon: <TelegramIcon size={20} color="#229ED9" />, label: '@Abule_48', sublabel: 'Telegram' },
-    { href: 'https://wa.me/abule_76', icon: <WhatsAppIcon size={20} color="#25D366" />, label: '@abule_76', sublabel: 'WhatsApp' },
+    { href: 'https://wa.me/251954897133', icon: <WhatsAppIcon size={20} color="#25D366" />, label: '+251 954 897 133', sublabel: 'WhatsApp' },
     { href: 'mailto:abuletech@gmail.com', icon: <EmailIcon size={20} color="var(--primary)" />, label: 'abuletech@gmail.com', sublabel: 'Email' },
     { href: 'https://instagram.com/abule_48', icon: <InstagramIcon size={20} color="#E4405F" />, label: '@abule_48', sublabel: 'Instagram' },
   ];
@@ -233,7 +233,7 @@ export default function Contact() {
 
             <form onSubmit={handleSubmit} noValidate style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
               <div>
-                <label htmlFor="f-name" className="sr-only" style={{ display: 'none' }}>
+                <label htmlFor="f-name" style={{ position: 'absolute', width: 1, height: 1, padding: 0, margin: -1, overflow: 'hidden', clip: 'rect(0,0,0,0)', whiteSpace: 'nowrap', border: 0 }}>
                   Full Name
                 </label>
                 <input
@@ -256,7 +256,7 @@ export default function Contact() {
               </div>
 
               <div>
-                <label htmlFor="f-phone" className="sr-only" style={{ display: 'none' }}>
+                <label htmlFor="f-phone" style={{ position: 'absolute', width: 1, height: 1, padding: 0, margin: -1, overflow: 'hidden', clip: 'rect(0,0,0,0)', whiteSpace: 'nowrap', border: 0 }}>
                   Phone Number
                 </label>
                 <input
@@ -280,7 +280,7 @@ export default function Contact() {
               </div>
 
               <div>
-                <label htmlFor="f-device" className="sr-only" style={{ display: 'none' }}>
+                <label htmlFor="f-device" style={{ position: 'absolute', width: 1, height: 1, padding: 0, margin: -1, overflow: 'hidden', clip: 'rect(0,0,0,0)', whiteSpace: 'nowrap', border: 0 }}>
                   Device Type
                 </label>
                 <select
@@ -309,7 +309,7 @@ export default function Contact() {
               </div>
 
               <div>
-                <label htmlFor="f-issue" className="sr-only" style={{ display: 'none' }}>
+                <label htmlFor="f-issue" style={{ position: 'absolute', width: 1, height: 1, padding: 0, margin: -1, overflow: 'hidden', clip: 'rect(0,0,0,0)', whiteSpace: 'nowrap', border: 0 }}>
                   Problem Description
                 </label>
                 <textarea

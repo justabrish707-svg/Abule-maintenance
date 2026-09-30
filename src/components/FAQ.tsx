@@ -78,7 +78,7 @@ export default function FAQ() {
                   role="region"
                   aria-labelledby={`faq-header-${i}`}
                   style={{
-                    maxHeight: isOpen ? '240px' : '0px',
+                    maxHeight: isOpen ? '600px' : '0px',
                     overflow: 'hidden',
                     transition: 'max-height 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
                   }}

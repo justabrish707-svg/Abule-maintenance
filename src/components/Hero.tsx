@@ -254,8 +254,7 @@ export default function Hero() {
                     <div style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--text)' }}>OS Optimization Progress</div>
                     <div style={{ fontSize: '0.78rem', fontWeight: 700, color: 'var(--muted)' }}>85%</div>
                   </div>
-                  <div style={{ width: '100%', height: 6, borderRadius: 99, background: 'var(--border)', overflow: 'hidden' }}>
-                    <div style={{ width: '85%', height: '100%', borderRadius: 99, background: 'var(--primary)' }} />
+                  <div style={{ width: '100%', height: 6, borderRadius: 99, background: 'var(--border)', overflow: 'hidden' }}>                    <div className="progress-bar-animated" style={{ height: '100%', borderRadius: 99, background: 'var(--primary)' }} />
                   </div>
                 </div>
 

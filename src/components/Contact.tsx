@@ -66,7 +66,7 @@ export default function Contact() {
     const safeIssue = sanitizeText(form.issue, 800);
 
     const msg = `Hello Abule Tech! 👋\n\n*Name:* ${safeName}\n*Phone:* ${safePhone}\n*Device:* ${form.device}\n*Problem:* ${safeIssue}\n\nPlease help me fix my device. Thank you!`;
-    const targetUrl = `https://wa.me/abule_76?text=${encodeURIComponent(msg)}`;
+    const targetUrl = `https://t.me/Abule_48?text=${encodeURIComponent(msg)}`;
 
     // Record rate limit & log analytics immediately
     recordActionTimestamp('contact_submit');
@@ -79,16 +79,16 @@ export default function Contact() {
     setSent(true);
     setForm(INITIAL);
 
-    // Open WhatsApp immediately without setTimeout to prevent mobile popup-blockers
+    // Open Telegram immediately without setTimeout to prevent mobile popup-blockers
     window.open(targetUrl, '_blank', 'noopener,noreferrer');
 
     setTimeout(() => setSent(false), 6000);
   };
 
   const channels = [
+    { href: 'https://t.me/Abule_48', icon: <TelegramIcon size={20} color="#229ED9" />, label: '@Abule_48', sublabel: 'Telegram' },
     { href: 'https://wa.me/abule_76', icon: <WhatsAppIcon size={20} color="#25D366" />, label: '@abule_76', sublabel: 'WhatsApp' },
     { href: 'mailto:abuletech@gmail.com', icon: <EmailIcon size={20} color="var(--primary)" />, label: 'abuletech@gmail.com', sublabel: 'Email' },
-    { href: 'https://t.me/abule_48', icon: <TelegramIcon size={20} color="#229ED9" />, label: '@abule_48', sublabel: 'Telegram' },
     { href: 'https://instagram.com/abule_48', icon: <InstagramIcon size={20} color="#E4405F" />, label: '@abule_48', sublabel: 'Instagram' },
   ];
 
@@ -359,7 +359,7 @@ export default function Contact() {
                   ? t('contact_sending')
                   : rateLimitSec > 0
                   ? `⏳ Wait ${rateLimitSec}s`
-                  : `📱 ${t('contact_submit')} →`}
+                  : `✈️ ${t('contact_submit')} →`}
               </button>
             </form>
           </div>

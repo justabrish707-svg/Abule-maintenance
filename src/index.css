@@ -192,6 +192,7 @@ body {
 }
 
 /* ─── Floating WhatsApp Button ────────────────── */
+.telegram-float,
 .whatsapp-float {
   position: fixed;
   bottom: 2rem;
@@ -199,18 +200,24 @@ body {
   z-index: 999;
   width: 52px;
   height: 52px;
-  background: #25D366;
+  background: #229ED9;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4);
+  box-shadow: 0 8px 24px rgba(34, 158, 217, 0.4);
   text-decoration: none;
   transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
+.whatsapp-float {
+  background: #25D366;
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4);
+}
+.telegram-float:hover,
 .whatsapp-float:hover {
   transform: scale(1.1);
 }
+.telegram-tooltip,
 .whatsapp-tooltip {
   position: absolute;
   right: 64px;
@@ -226,6 +233,7 @@ body {
   transition: opacity 0.2s, transform 0.2s;
   transform: translateX(6px);
 }
+.telegram-float:hover .telegram-tooltip,
 .whatsapp-float:hover .whatsapp-tooltip {
   opacity: 1;
   transform: translateX(0);

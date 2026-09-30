@@ -102,7 +102,7 @@ export default function CTA() {
               🛠️ {t('cta_btn_book')}
             </a>
             <a
-              href="https://wa.me/abule_76"
+              href="https://t.me/Abule_48"
               target="_blank"
               rel="noopener noreferrer"
               style={{

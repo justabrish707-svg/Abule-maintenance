@@ -48,7 +48,7 @@ export const TRANSLATIONS = {
     tools_perk_1: 'Free written estimate before work starts',
     tools_perk_2: 'No-Fix, No-Fee Guarantee',
     tools_perk_3: '30-Day warranty on parts & repair',
-    tools_book_whatsapp: '💬 Book This Estimate on WhatsApp',
+    tools_book_whatsapp: '✈️ Book This Estimate on Telegram',
     tools_book_form: '📝 Pre-fill Contact Form Below',
     tools_search_ph: 'Enter Ticket ID (e.g. AB-4801)',
     tools_search_btn: 'Track 🔎',
@@ -98,9 +98,9 @@ export const TRANSLATIONS = {
     contact_phone_ph: 'Phone Number (e.g. 0911...)',
     contact_device_ph: 'Select Device Type',
     contact_issue_ph: "Describe the issue (e.g. laptop won't turn on, blue screen, screen broken...)",
-    contact_submit: 'Submit & Send on WhatsApp',
-    contact_sending: 'Connecting to WhatsApp...',
-    contact_sent: '✓ Thank you! Opening WhatsApp...',
+    contact_submit: 'Submit & Send on Telegram',
+    contact_sending: 'Connecting to Telegram...',
+    contact_sent: '✓ Thank you! Opening Telegram...',
     contact_rate_wait: '⏳ Please wait {sec}s before sending another request.',
 
     // Footer
@@ -115,7 +115,7 @@ export const TRANSLATIONS = {
     cta_title_2: 'Letting You Down?',
     cta_desc: 'Get a free diagnosis today. No commitment, no surprises — just real answers and fast solutions.',
     cta_btn_book: 'Book Free Diagnosis',
-    cta_btn_wa: 'Chat on WhatsApp',
+    cta_btn_wa: 'Chat on Telegram',
   },
 
   am: {
@@ -165,7 +165,7 @@ export const TRANSLATIONS = {
     tools_perk_1: 'ስራ ከመጀመሩ በፊት ነፃ የተፃፈ የዋጋ ግምት',
     tools_perk_2: 'ካልተጠገነ ክፍያ የለም',
     tools_perk_3: 'የ30 ቀናት የጥገና እና ዕቃዎች ዋስትና',
-    tools_book_whatsapp: '💬 ይህንን ግምት በዋትሳፕ ይዘዙ',
+    tools_book_whatsapp: '✈️ ይህንን ግምት በቴሌግራም ይዘዙ',
     tools_book_form: '📝 ቅጹን ከታች ይሙሉ',
     tools_search_ph: 'የቲኬት ቁጥር ያስገቡ (ምሳሌ፡ AB-4801)',
     tools_search_btn: 'ፈልግ 🔎',
@@ -215,9 +215,9 @@ export const TRANSLATIONS = {
     contact_phone_ph: 'ስልክ ቁጥር (ምሳሌ፡ 0911...)',
     contact_device_ph: 'የመሳሪያውን አይነት ይምረጡ',
     contact_issue_ph: 'የችግሩን አይነት ይግለጹ (ምሳሌ፡ ላፕቶፕ አይበራም፣ ስክሪን ተሰብሯል...)',
-    contact_submit: 'በዋትሳፕ (WhatsApp) ይላኩ',
-    contact_sending: 'ወደ ዋትሳፕ በመገናኘት ላይ...',
-    contact_sent: '✓ እናመሰግናለን! ወደ ዋትሳፕ በመዛወር ላይ...',
+    contact_submit: 'በቴሌግራም (Telegram) ይላኩ',
+    contact_sending: 'ወደ ቴሌግራም በመገናኘት ላይ...',
+    contact_sent: '✓ እናመሰግናለን! ወደ ቴሌግራም በመዛወር ላይ...',
     contact_rate_wait: '⏳ እባክዎ ሌላ ከመላክዎ በፊት {sec} ሰከንድ ይጠብቁ።',
 
     // Footer
@@ -232,7 +232,7 @@ export const TRANSLATIONS = {
     cta_title_2: 'ቸግሮዎታል?',
     cta_desc: 'ዛሬውኑ ነፃ ምርመራ ያግኙ። ምንም አይነት ድብቅ ክፍያ የለም — ፈጣን እና ታማኝ ጥገና።',
     cta_btn_book: 'ነፃ ምርመራ ይዘዙ',
-    cta_btn_wa: 'በዋትሳፕ ያውሩን',
+    cta_btn_wa: 'በቴሌግራም ያውሩን',
   },
 } as const;
 

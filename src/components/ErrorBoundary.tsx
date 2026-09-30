@@ -115,7 +115,7 @@ export default class ErrorBoundary extends Component<Props, State> {
               </button>
 
               <a
-                href="https://wa.me/251954897133"
+                href="https://wa.me/abule_76"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{

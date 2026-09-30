@@ -129,7 +129,7 @@ export default function RepairTools() {
   };
 
   const bookingMsg = `Hello Abule Tech! 👋\n\nI used your online estimator:\n*Device:* ${currentDevice.icon} ${currentDevice.name}\n*Issue:* ${currentIssue.name}\n*Estimated Cost:* ${currentIssue.minPrice} - ${currentIssue.maxPrice} ETB\n\nI would like to book a free diagnosis. Thank you!`;
-  const whatsappUrl = `https://wa.me/251954897133?text=${encodeURIComponent(bookingMsg)}`;
+  const whatsappUrl = `https://wa.me/abule_76?text=${encodeURIComponent(bookingMsg)}`;
 
   return (
     <section id="tools" style={{ padding: 'clamp(4.5rem, 8vw, 7rem) 0', background: 'var(--surface-2)', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)' }}>

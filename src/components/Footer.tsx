@@ -17,7 +17,7 @@ const links = {
 };
 
 const socials = [
-  { icon: '💬', label: 'WhatsApp', href: 'https://wa.me/251954897133' },
+  { icon: '💬', label: 'WhatsApp', href: 'https://wa.me/abule_76' },
   { icon: '✈️', label: 'Telegram', href: 'https://t.me/abule_48' },
   { icon: '📷', label: 'Instagram', href: 'https://instagram.com/abule_48' },
 ];

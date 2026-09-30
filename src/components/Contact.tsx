@@ -64,7 +64,7 @@ export default function Contact() {
     const safeIssue = sanitizeText(form.issue, 800);
 
     const msg = `Hello Abule Tech! 👋\n\n*Name:* ${safeName}\n*Phone:* ${safePhone}\n*Device:* ${form.device}\n*Problem:* ${safeIssue}\n\nPlease help me fix my device. Thank you!`;
-    const targetUrl = `https://wa.me/251954897133?text=${encodeURIComponent(msg)}`;
+    const targetUrl = `https://wa.me/abule_76?text=${encodeURIComponent(msg)}`;
 
     // Record rate limit & log analytics immediately
     recordActionTimestamp('contact_submit');
@@ -84,7 +84,7 @@ export default function Contact() {
   };
 
   const channels = [
-    { href: 'https://wa.me/251954897133', icon: '💬', label: '+251 954 897 133', sublabel: 'WhatsApp' },
+    { href: 'https://wa.me/abule_76', icon: '💬', label: '@abule_76', sublabel: 'WhatsApp' },
     { href: 'mailto:abuletech@gmail.com', icon: '📧', label: 'abuletech@gmail.com', sublabel: 'Email' },
     { href: 'https://t.me/abule_48', icon: '✈️', label: '@abule_48', sublabel: 'Telegram' },
     { href: 'https://instagram.com/abule_48', icon: '📷', label: '@abule_48', sublabel: 'Instagram' },

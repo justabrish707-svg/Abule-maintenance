@@ -26,7 +26,7 @@ export default function App() {
                   <Footer />
                   {/* Floating WhatsApp Button */}
                   <a
-                    href="https://wa.me/251954897133"
+                    href="https://wa.me/abule_76"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="whatsapp-float"
